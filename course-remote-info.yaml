@@ -1,0 +1,13 @@
+hyperskill_project:
+  id: 39
+  ide_files: https://stepik.org/media/attachments/lesson/203019/additional_files.json
+  is_template_based: false
+stages:
+- id: 205
+  step: 5262
+- id: 206
+  step: 5263
+- id: 207
+  step: 5264
+- id: 208
+  step: 5265
