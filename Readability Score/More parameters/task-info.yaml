@@ -385,6 +385,18 @@ files:
 - name: src/readability/Main.class
   visible: true
   learner_created: false
+- name: src/readability/WordsAndSentences.java
+  visible: true
+  learner_created: true
+- name: src/readability/SimpleEstimation.java
+  visible: true
+  learner_created: true
+- name: src/readability/Score.java
+  visible: true
+  learner_created: true
+- name: src/readability/MoreParameters.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/39/stages/208/implement
 status: Failed
 record: 3
