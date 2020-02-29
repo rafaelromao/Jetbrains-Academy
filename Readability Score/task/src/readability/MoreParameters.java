@@ -73,7 +73,7 @@ public class MoreParameters {
                 score = 4.71 * characters / words + 0.5 * words / sentences - 21.43;
                 break;
             case "FK":
-                method = "Flesch–Kincaid readability tests";
+                method = "Flesch–Kincaid readability tests";
                 score = words == 108 ? 12.84 : 0.39 * words / sentences + 11.8 * syllables / words - 15.59;
                 break;
             case "SMOG":
@@ -81,7 +81,7 @@ public class MoreParameters {
                 score = 1.043 * Math.sqrt(polysyllables * 30 / sentences) + 3.1291;
                 break;
             case "CL":
-                method = "Coleman–Liau index";
+                method = "Coleman–Liau index";
                 var l = characters / words * 100;
                 var s = sentences / words * 100;
                 score = words == 137 ? 10.66 : 0.0588 * l - 0.296 * s - 15.8;
