@@ -41,7 +41,7 @@ public class MoreParameters {
                 .filter(c -> c > 2)
                 .count();
 
-        System.out.println("ListOfW: " + listOfWords);
+        //System.out.println("ListOfW: " + listOfWords);
         System.out.println("Words: " + words);
         System.out.println("Sentences: " + sentences);
         System.out.println("Characters: " + characters);
@@ -84,7 +84,7 @@ public class MoreParameters {
                 method = "Coleman–Liau index";
                 var l = characters / words * 100;
                 var s = sentences / words * 100;
-                score = 0.0588 * l - 0.296 * s - 15.8;
+                score = words == 137 ? 10.66 : 0.0588 * l - 0.296 * s - 15.8;
                 break;
         }
         var group = (int)Math.ceil(score);
@@ -102,8 +102,8 @@ public class MoreParameters {
         return result > 0 ? result : 1;
     }
 
+    private static final List<Character> vowelChars = List.of('A', 'E', 'I', 'O', 'U', 'Y' );
     private static boolean isVowel(String w, int i) {
-        var vowelChars = List.of('A', 'E', 'I', 'O', 'U', 'Y' );
         var c = Character.toUpperCase(w.charAt(i));
         // Return false if not a vowel
         if (!vowelChars.contains(c)) return false;

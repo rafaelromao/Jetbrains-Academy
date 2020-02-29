@@ -1,85 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ReadabilityTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2020-02-29T17:13:34" hostname="home" time="0.302">
+<testsuite name="ReadabilityTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-02-29T17:23:26" hostname="home" time="0.298">
   <properties/>
-  <testcase name="start" classname="ReadabilityTest" time="0.302">
-    <failure message="java.lang.AssertionError: Wrong answer in test #2&#10;&#10;Wrong Coleman–Liau score. Should be around 10.66, your output:&#10;Coleman–Liau index: 13.60 (about 25 year olds).&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;ListOfW: [This, is, the, front, page, of, the, Simple, English, Wikipedia, Wikipedias, are, places, where, people, work, together, to, write, encyclopedias, in, different, languages, We, use, Simple, English, words, and, grammar, here, The, Simple, English, Wikipedia, is, for, everyone, That, includes, children, and, adults, who, are, learning, English, There, are, 142,262, articles, on, the, Simple, English, Wikipedia, All, of, the, pages, are, free, to, use, They, have, all, been, published, under, both, the, Creative, Commons, License, and, the, GNU, Free, Documentation, License, You, can, help, here, You, may, change, these, pages, and, make, new, pages, Read, the, help, pages, and, other, good, pages, to, learn, how, to, write, pages, here, If, you, need, help,, you, may, ask, questions, at, Simple, talk, Use, Basic, English, vocabulary, and, shorter, sentences, This, allows, people, to, understand, normally, complex, terms, or, phrases]&#10;Words: 137&#10;Sentences: 14&#10;Characters: 687&#10;Syllables: 214&#10;Polysyllables: 17&#10;Enter the score you want to calculate (ARI, FK, SMOG, CL, all):&#10;&gt;all&#10;Automated Readability Index: 7.08 (about 14 year olds).&#10;Flesch–Kincaid readability tests: 6.66 (about 13 year olds).&#10;Simple Measure of Gobbledygook: 9.39 (about 16 year olds).&#10;Coleman–Liau index: 13.60 (about 25 year olds).&#10;This text should be understood in average by 17.00 year olds." type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #2
-
-Wrong Coleman–Liau score. Should be around 10.66, your output:
-Coleman–Liau index: 13.60 (about 25 year olds).
-
-Please find below the output of your program during this failed test.
-Note that the '&gt;' character indicates the beginning of the input line.
-
----
-
-ListOfW: [This, is, the, front, page, of, the, Simple, English, Wikipedia, Wikipedias, are, places, where, people, work, together, to, write, encyclopedias, in, different, languages, We, use, Simple, English, words, and, grammar, here, The, Simple, English, Wikipedia, is, for, everyone, That, includes, children, and, adults, who, are, learning, English, There, are, 142,262, articles, on, the, Simple, English, Wikipedia, All, of, the, pages, are, free, to, use, They, have, all, been, published, under, both, the, Creative, Commons, License, and, the, GNU, Free, Documentation, License, You, can, help, here, You, may, change, these, pages, and, make, new, pages, Read, the, help, pages, and, other, good, pages, to, learn, how, to, write, pages, here, If, you, need, help,, you, may, ask, questions, at, Simple, talk, Use, Basic, English, vocabulary, and, shorter, sentences, This, allows, people, to, understand, normally, complex, terms, or, phrases]
-Words: 137
-Sentences: 14
-Characters: 687
-Syllables: 214
-Polysyllables: 17
-Enter the score you want to calculate (ARI, FK, SMOG, CL, all):
-&gt;all
-Automated Readability Index: 7.08 (about 14 year olds).
-Flesch–Kincaid readability tests: 6.66 (about 13 year olds).
-Simple Measure of Gobbledygook: 9.39 (about 16 year olds).
-Coleman–Liau index: 13.60 (about 25 year olds).
-This text should be understood in average by 17.00 year olds.
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.hyperskill.hstest.v6.stage.BaseStageTest.start(BaseStageTest.java:172)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:118)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:175)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:157)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-</failure>
-  </testcase>
+  <testcase name="start" classname="ReadabilityTest" time="0.298"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
-ListOfW: [Readability, is, the, ease, with, which, a, reader, can, understand, a, written, text, In, natural, language,, the, readability, of, text, depends, on, its, content, and, its, presentation, Researchers, have, used, various, factors, to, measure, readability, Readability, is, more, than, simply, legibility,, which, is, a, measure, of, how, easily, a, reader, can, distinguish, individual, letters, or, characters, from, each, other, Higher, readability, eases, reading, effort, and, speed, for, any, reader,, but, it, is, especially, important, for, those, who, do, not, have, high, reading, comprehension, In, readers, with, poor, reading, comprehension,, raising, the, readability, level, of, a, text, from, mediocre, to, good, can, make, the, difference, between, success, and, failure]
 Words: 108
 Sentences: 6
 Characters: 580
@@ -93,7 +17,6 @@ Simple Measure of Gobbledygook: 14.07 (about 25 year olds).
 Coleman–Liau index: 13.60 (about 25 year olds).
 This text should be understood in average by 24.50 year olds.?[1;31m
 Start test 2?[0m
-ListOfW: [This, is, the, front, page, of, the, Simple, English, Wikipedia, Wikipedias, are, places, where, people, work, together, to, write, encyclopedias, in, different, languages, We, use, Simple, English, words, and, grammar, here, The, Simple, English, Wikipedia, is, for, everyone, That, includes, children, and, adults, who, are, learning, English, There, are, 142,262, articles, on, the, Simple, English, Wikipedia, All, of, the, pages, are, free, to, use, They, have, all, been, published, under, both, the, Creative, Commons, License, and, the, GNU, Free, Documentation, License, You, can, help, here, You, may, change, these, pages, and, make, new, pages, Read, the, help, pages, and, other, good, pages, to, learn, how, to, write, pages, here, If, you, need, help,, you, may, ask, questions, at, Simple, talk, Use, Basic, English, vocabulary, and, shorter, sentences, This, allows, people, to, understand, normally, complex, terms, or, phrases]
 Words: 137
 Sentences: 14
 Characters: 687
@@ -104,7 +27,20 @@ Enter the score you want to calculate (ARI, FK, SMOG, CL, all):
 Automated Readability Index: 7.08 (about 14 year olds).
 Flesch–Kincaid readability tests: 6.66 (about 13 year olds).
 Simple Measure of Gobbledygook: 9.39 (about 16 year olds).
+Coleman–Liau index: 10.66 (about 17 year olds).
+This text should be understood in average by 15.00 year olds.?[1;31m
+Start test 3?[0m
+Words: 180
+Sentences: 13
+Characters: 982
+Syllables: 319
+Polysyllables: 34
+Enter the score you want to calculate (ARI, FK, SMOG, CL, all):
+>all
+Automated Readability Index: 11.19 (about 18 year olds).
+Flesch–Kincaid readability tests: 10.72 (about 17 year olds).
+Simple Measure of Gobbledygook: 12.34 (about 24 year olds).
 Coleman–Liau index: 13.60 (about 25 year olds).
-This text should be understood in average by 17.00 year olds.]]></system-out>
+This text should be understood in average by 21.00 year olds.]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
