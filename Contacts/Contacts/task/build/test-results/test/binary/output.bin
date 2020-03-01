@@ -1,0 +1,343 @@
+[1;31m
+Start test 1[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 2[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>count
+The Phone Book has 0
+ records.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 3[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>count
+The Phone Book has 0
+ records.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>edit
+No records to edit
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 4[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>count
+The Phone Book has 0
+ records.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>remove
+No records to remove
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 5[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>person
+Enter the name for the person:
+>John
+!Enter the surname for the person:
+>Smith
+Enter the birth date:
+>
+Bad birth date!
+Enter the gender (M, F):
+>
+Bad gender!
+Enter the number:
+>123 456 789
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>count
+The Phone Book has 1
+ records.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 6[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>person
+Enter the name for the person:
+>John
+!Enter the surname for the person:
+>Smith
+Enter the birth date:
+>
+Bad birth date!
+Enter the gender (M, F):
+>
+Bad gender!
+Enter the number:
+>123 456 789
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Name: John
+Surname: Smith
+Birth date: [no data]
+Gender: [no data]
+Number: 123 456 789
+,Time created: 2020-03-01T16:31:44.908321500
+-Time last edit: 2020-03-01T16:31:44.909321200
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 7[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>organization
+Enter the organization name:
+>Pizza Shop
+Enter the address:
+>Wall St. 1
+Enter the number:
+>+0 (123) 456-789-9999
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Organization name: Pizza Shop
+Address: Wall St. 1
+Number: +0 (123) 456-789-9999
+,Time created: 2020-03-01T16:31:44.913320800
+-Time last edit: 2020-03-01T16:31:44.914320400
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 8[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>person
+Enter the name for the person:
+>John
+!Enter the surname for the person:
+>Smith
+Enter the birth date:
+>
+Bad birth date!
+Enter the gender (M, F):
+>
+Bad gender!
+Enter the number:
+>123 456 789
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>edit
+Select a record:
+>1
+'Select a field (name, surname, number):
+>gender
+Enter the gender (M, F):
+>M
+The record updated.
+No records to edit
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Name: John
+Surname: Smith
+Birth date: [no data]
+
+Gender: M
+Number: 123 456 789
+,Time created: 2020-03-01T16:31:44.917320700
+-Time last edit: 2020-03-01T16:31:44.919321300
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 9[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>person
+Enter the name for the person:
+>John2
+!Enter the surname for the person:
+>Smith2
+Enter the birth date:
+>
+Bad birth date!
+Enter the gender (M, F):
+>
+Bad gender!
+Enter the number:
+>123 456 789
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>edit
+Select a record:
+>1
+'Select a field (name, surname, number):
+>name
+Enter the name:
+>John3
+The record updated.
+No records to edit
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Name: John3
+Surname: Smith2
+Birth date: [no data]
+Gender: [no data]
+Number: 123 456 789
+,Time created: 2020-03-01T16:31:44.924322700
+-Time last edit: 2020-03-01T16:31:44.926324600
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 10[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>person
+Enter the name for the person:
+>John2
+!Enter the surname for the person:
+>Smith2
+Enter the birth date:
+>
+Bad birth date!
+Enter the gender (M, F):
+>
+Bad gender!
+Enter the number:
+>123 456 789
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>edit
+Select a record:
+>1
+'Select a field (name, surname, number):
+>number
+Enter the number:
+>321 654 978
+The record updated.
+No records to edit
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Name: John2
+Surname: Smith2
+Birth date: [no data]
+Gender: [no data]
+Number: 321 654 978
+,Time created: 2020-03-01T16:31:44.929320500
+-Time last edit: 2020-03-01T16:31:44.931321100
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 11[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>organization
+Enter the organization name:
+>Pizza Shop
+Enter the address:
+>Wall St. 1
+Enter the number:
+>+0 (123) 456-789-9999
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>edit
+Select a record:
+>1
+4Select a field (organization name, address, number):
+	>address
+Enter the address:
+>Wall St 2
+The record updated.
+No records to edit
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Organization name: Pizza Shop
+Address: Wall St 2
+Number: +0 (123) 456-789-9999
+,Time created: 2020-03-01T16:31:44.935321200
+-Time last edit: 2020-03-01T16:31:44.936321400
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
+[1;31m
+Start test 12[0m
+:Enter action (add, remove, info, edit, count, list, exit):
+>add
+&Enter the type (person, organization):
+>organization
+Enter the organization name:
+>Pizza Shop
+Enter the address:
+>Wall St. 1
+Enter the number:
+>+0 (123) 456-789-9999
+The record added.
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>edit
+Select a record:
+>1
+4Select a field (organization name, address, number):
+>number
+Enter the number:
+>+0 (123) 456-789-12345
+The record updated.
+No records to edit
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>info
+Select a record:
+>1
+Organization name: Pizza Shop
+Address: Wall St. 1
+Number: +0 (123) 456-789-12345
+,Time created: 2020-03-01T16:31:44.939321300
+-Time last edit: 2020-03-01T16:31:44.941320900
+No records to show
+ 
+:Enter action (add, remove, info, edit, count, list, exit):
+>exit
