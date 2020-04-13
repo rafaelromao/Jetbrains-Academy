@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Problems-Search_in_a_descending_ordered_array" external.linked.project.path="$MODULE_DIR$/../../../../Problems/Search in a descending ordered array" external.root.project.path="$MODULE_DIR$/../../../.." external.system.id="GRADLE" external.system.module.group="Phone_Book" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../Problems/Search in a descending ordered array">
+      <excludeFolder url="file://$MODULE_DIR$/../../../../Problems/Search in a descending ordered array/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../../../../Problems/Search in a descending ordered array/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

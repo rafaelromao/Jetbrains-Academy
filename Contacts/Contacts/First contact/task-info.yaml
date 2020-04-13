@@ -72,13 +72,7 @@ files:
         }
     }
   learner_created: false
-- name: src/contacts/Contact.java
-  visible: true
-  learner_created: true
 - name: lombok.config
-  visible: true
-  learner_created: true
-- name: src/contacts/FirstContact.java
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/43/stages/228/implement

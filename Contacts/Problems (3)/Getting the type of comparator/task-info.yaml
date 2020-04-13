@@ -1,0 +1,14 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "/**\n * Class to work with\n */\nclass ComparatorInspector {\n\n\t/**\n\t\
+    \ * Return Type variable that corresponds to the type parameterizing Comparator.\
+    \   \n\t * \n\t * @param clazz {@link Class} object, should be non null\n\t *\
+    \ @return {@link Type} object or null if Comparable does not have type parameter\n\
+    \t */\n\tpublic static <T> Type getComparatorType(Class clazz) {\n\t\t// Add implementation\n\
+    \t}\n\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2589
+status: Solved
+record: -1

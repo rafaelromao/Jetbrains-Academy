@@ -3,17 +3,40 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Gradle Imported" enabled="true">
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.10/625fc0055674dff70dbc76efa36d0f2c89b04a24/lombok-1.18.10.jar" />
-        </processorPath>
-        <module name="util_main" />
-      </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="Contacts-task_main" target="11" />
       <module name="Contacts-task_test" target="11" />
+      <module name="Problems-Violator_main" target="11" />
+      <module name="Problems-Violator_test" target="11" />
+      <module name="Problems__10_-Generating_passwords_main" target="11" />
+      <module name="Problems__10_-Generating_passwords_test" target="11" />
+      <module name="Problems__11_-Concat_all_strings_without_digits_main" target="11" />
+      <module name="Problems__11_-Concat_all_strings_without_digits_test" target="11" />
+      <module name="Problems__12_-Convert_to_bytes_main" target="11" />
+      <module name="Problems__12_-Convert_to_bytes_test" target="11" />
+      <module name="Problems__13_-Reverse_input_text_main" target="11" />
+      <module name="Problems__13_-Reverse_input_text_test" target="11" />
+      <module name="Problems__14_-Count_words_main" target="11" />
+      <module name="Problems__14_-Count_words_test" target="11" />
+      <module name="Problems__1_-Violator_main" target="11" />
+      <module name="Problems__1_-Violator_test" target="11" />
+      <module name="Problems__2_-Quality_control_system_main" target="11" />
+      <module name="Problems__2_-Quality_control_system_test" target="11" />
+      <module name="Problems__3_-Getting_the_type_of_comparator_main" target="11" />
+      <module name="Problems__3_-Getting_the_type_of_comparator_test" target="11" />
+      <module name="Problems__4_-Photocopiers_main" target="11" />
+      <module name="Problems__4_-Photocopiers_test" target="11" />
+      <module name="Problems__5_-The_star_figure_main" target="11" />
+      <module name="Problems__5_-The_star_figure_test" target="11" />
+      <module name="Problems__6_-Rotate_a_rectange_array_main" target="11" />
+      <module name="Problems__6_-Rotate_a_rectange_array_test" target="11" />
+      <module name="Problems__7_-Check_sudoku_main" target="11" />
+      <module name="Problems__7_-Check_sudoku_test" target="11" />
+      <module name="Problems__8_-The_lucky_ticket_main" target="11" />
+      <module name="Problems__8_-The_lucky_ticket_test" target="11" />
+      <module name="Problems__9_-Compression_algorithm_main" target="11" />
+      <module name="Problems__9_-Compression_algorithm_test" target="11" />
       <module name="util_main" target="11" />
       <module name="util_test" target="11" />
     </bytecodeTargetLevel>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="true" />
+        <option name="testRunner" value="GRADLE" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="#JAVA_INTERNAL" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Phone Book/task" />
+            <option value="$PROJECT_DIR$/Problems/Alternating Fibonacci numbers" />
+            <option value="$PROJECT_DIR$/Problems/Find a fixed point in an array" />
+            <option value="$PROJECT_DIR$/Problems/Find array elements in another array" />
+            <option value="$PROJECT_DIR$/Problems/Fix the method to print strings in the reverse order" />
+            <option value="$PROJECT_DIR$/Problems/Move the pivot" />
+            <option value="$PROJECT_DIR$/Problems/Movie" />
+            <option value="$PROJECT_DIR$/Problems/N-th power" />
+            <option value="$PROJECT_DIR$/Problems/Number of decompositions" />
+            <option value="$PROJECT_DIR$/Problems/Print comparisons" />
+            <option value="$PROJECT_DIR$/Problems/Search in a descending ordered array" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+        <option name="useQualifiedModuleNames" value="true" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

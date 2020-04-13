@@ -1,0 +1,34 @@
+<b>Quality control system</b> <a class="right" href="https://hyperskill.org/learn/step/2587">Open on JetBrains Academy</a><br/><br/><html>
+ <head></head>
+ <body>
+  <p>You are asked to create quality control system in a company that produces and packs Bakery, the snippet of main classes follows:</p>
+  <pre><code class="language-java">// These and its sublasses should pass quality check
+class Bakery {}
+
+class Cake extends Bakery {}
+
+// And this and other stuff should not
+class Paper {}
+
+// These boxes are used to pack stuff
+interface Box&lt;T&gt; {
+&nbsp; &nbsp; void put(T item);
+&nbsp; &nbsp; T get();
+}
+
+// Class you need to work on
+class QualityControl {
+&nbsp; 
+&nbsp; public static boolean check(List&lt;Box&lt;? extends Bakery&gt;&gt; boxes) {
+&nbsp;     // Add implementation here
+&nbsp; }
+&nbsp; 
+}</code></pre>
+  <p>Implement check method in a way it would:</p>
+  <ul>
+   <li>Return true if all objects in all boxes belong to class Bakery or its subclasses or list contains no boxes </li>
+   <li>Return false otherwise, including cases when Box is empty or List contains something that is not Box at all</li>
+  </ul>The method shouldn't throw any exceptions. 
+  <br>
+ </body>
+</html><br><b>Sample Input:</b><br>QualityControl class<br><br><b>Sample Output:</b><br>Well done!<br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br><br/><a href="https://hyperskill.org/learn/step/3562">Show topic summary</a>

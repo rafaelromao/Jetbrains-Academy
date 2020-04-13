@@ -1,0 +1,10 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "class QualityControl {\n\n\tpublic static boolean check(List<Box<? extends\
+    \ Bakery>> boxes) {\n\t\t// Add implementation here\t\n\t}\n\n}"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/2587
+status: Solved
+record: -1

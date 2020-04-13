@@ -12,6 +12,21 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Contacts/task" />
+            <option value="$PROJECT_DIR$/Problems (1)/Violator" />
+            <option value="$PROJECT_DIR$/Problems (10)/Generating passwords" />
+            <option value="$PROJECT_DIR$/Problems (11)/Concat all strings without digits" />
+            <option value="$PROJECT_DIR$/Problems (12)/Convert to bytes" />
+            <option value="$PROJECT_DIR$/Problems (13)/Reverse input text" />
+            <option value="$PROJECT_DIR$/Problems (14)/Count words" />
+            <option value="$PROJECT_DIR$/Problems (2)/Quality control system" />
+            <option value="$PROJECT_DIR$/Problems (3)/Getting the type of comparator" />
+            <option value="$PROJECT_DIR$/Problems (4)/Photocopiers" />
+            <option value="$PROJECT_DIR$/Problems (5)/The star figure" />
+            <option value="$PROJECT_DIR$/Problems (6)/Rotate a rectange array" />
+            <option value="$PROJECT_DIR$/Problems (7)/Check sudoku" />
+            <option value="$PROJECT_DIR$/Problems (8)/The lucky ticket" />
+            <option value="$PROJECT_DIR$/Problems (9)/Compression algorithm" />
+            <option value="$PROJECT_DIR$/Problems/Violator" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>

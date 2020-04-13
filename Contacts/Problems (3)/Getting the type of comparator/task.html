@@ -1,0 +1,28 @@
+<b>Getting the type of comparator</b> <a class="right" href="https://hyperskill.org/learn/step/2589">Open on JetBrains Academy</a><br/><br/><html>
+ <head></head>
+ <body>
+  <p>You need to implement method <code>getComparatorType(Class)</code> in <code>ComparatorInspector</code> class. The method should examine provided class and return <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Type.html" rel="nofollow noopener noreferrer">Type</a> object that corresponds to the type parameter that parameterizes <code>Comparable</code> interface the class implements. Consider the example:</p> 
+  <pre><code class="language-java">class MyInt implements Comparable&lt;Integer&gt; {
+    // Implementation omitted 
+}
+
+// Method to implement
+Type type = ComparatorInspector.getComparatorType(MyInt.class);
+
+System.out.println(type.getTypeName());
+// prints: java.lang.Integer since MyInt implements Comparable with Integer parameter type</code></pre> 
+  <p>The method should:</p> 
+  <ul> 
+   <li>Return type parameter for Comparable interface class implements</li> 
+   <li>Return null if Comparable interface does not have type parameter</li> 
+   <li>Should not produce compile-time warnings</li> 
+  </ul> 
+  <p>Additional requirements:﻿</p> 
+  <ul> 
+   <li>Compile-time error should arise if class not implementing Comparable is provided as input value</li> 
+   <li>No 'rawtype' warnings should remain or be suppressed</li> 
+   <li>Method getComparatorType should be generic</li> 
+  </ul> 
+  <p>You are free to correct method's type signature if needed.</p>
+ </body>
+</html><br><b>Sample Input:</b><br>ComparatorInspector class<br><br><b>Sample Output:</b><br>Well done!<br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br><br/><a href="https://hyperskill.org/learn/step/3562">Show topic summary</a>

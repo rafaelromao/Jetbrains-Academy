@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="11">
+      <module name="Phone_Book-task_main" target="11" />
+      <module name="Phone_Book-task_test" target="11" />
+      <module name="Phone_Book.Problems-Heron's_formula.main" target="11" />
+      <module name="Phone_Book.Problems-Heron's_formula.test" target="11" />
+      <module name="Phone_Book.Problems-Pow.main" target="11" />
+      <module name="Phone_Book.Problems-Pow.test" target="11" />
+      <module name="Phone_Book.Problems-Quadratic_equation.main" target="11" />
+      <module name="Phone_Book.Problems-Quadratic_equation.test" target="11" />
+      <module name="util_main" target="11" />
+      <module name="util_test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
