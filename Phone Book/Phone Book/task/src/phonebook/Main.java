@@ -3,12 +3,15 @@ package phonebook;
 import java.io.*;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.BooleanSupplier;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toMap;
 
 public class Main {
     private static AtomicInteger search = new AtomicInteger();
@@ -27,21 +30,47 @@ public class Main {
 
             var phoneLines = phonesBufferedReader.lines().collect(toList());
             var findLines = findBufferedReader.lines().collect(toList());
+            var hashTable = new HashMap<String, String>();
 
             var linearSearchTime = search("linear search",
+                    null,
                     null,
                     () -> linearSearch(phoneLines, findLines),
                     null);
 
             search("bubble sort + jump search",
+                    null,
                     () -> bubbleSort(phoneLines, linearSearchTime * 10),
                     () -> jumpSearch(phoneLines, findLines),
                     () -> linearSearch(phoneLines, findLines));
 
             search("quick sort + binary search",
+                    null,
                     () -> quickSort(phoneLines),
                     () -> binarySearch(phoneLines, findLines),
                     null);
+
+            search("hash table",
+                    () -> populateHashTable(phoneLines, hashTable),
+                    null,
+                    () -> hashtableSearch(hashTable, findLines),
+                    null);
+        }
+    }
+
+    private static void populateHashTable(List<String> phoneLines, Map<String, String> hashTable) {
+        hashTable.putAll(phoneLines
+                .stream()
+                .collect(toMap(s -> getOwnersName(s), s -> getPhoneNumber(s))));
+    }
+
+    private static void hashtableSearch(Map<String, String> hashTable, List<String> findLines) {
+        for (var findLine : findLines) {
+            search.getAndIncrement();
+            var result = hashTable.getOrDefault(findLine, null);
+            if (result != null) {
+                found.getAndIncrement();
+            }
         }
     }
 
@@ -123,12 +152,18 @@ public class Main {
         return first.compareTo(second);
     }
 
-    private static Pattern pattern = Pattern.compile("\\d* ?(.*)");
+    private static Pattern pattern = Pattern.compile("(\\d* ?)(.*)");
 
     private static String getOwnersName(String phoneLine) {
         var matcher = pattern.matcher(phoneLine);
         matcher.matches();
-        return matcher.group(1);
+        return matcher.group(2).strip();
+    }
+
+    private static String getPhoneNumber(String phoneLine) {
+        var matcher = pattern.matcher(phoneLine);
+        matcher.matches();
+        return matcher.group(1).strip();
     }
 
     private static boolean bubbleSort(List<String> phoneLines, long timeLimitInMillis) {
@@ -166,12 +201,21 @@ public class Main {
 
     private static long search(
             String caption,
+            Runnable creationAction,
             BooleanSupplier sortingAction,
             Runnable searchingAction,
             Runnable fallbackSearchingAction) {
         found.set(0);
         search.set(0);
         var start = System.currentTimeMillis();
+
+        Duration creationTime = null;
+        if (creationAction != null) {
+            var creationStart = System.currentTimeMillis();
+            creationAction.run();
+            var creationEnd = System.currentTimeMillis();
+            creationTime = Duration.ofMillis(creationEnd - creationStart);
+        }
 
         Duration sortTime = null;
         boolean couldSort = true;
@@ -194,10 +238,17 @@ public class Main {
         System.out.printf("Found %d / %d entries. Time taken: %d min. %d sec. %d ms.\n",
                 found.get(), search.get(), time.toMinutesPart(), time.toSecondsPart(), time.toMillisPart());
 
+        if (creationAction != null) {
+            System.out.printf("Creating time: %d min. %d sec. %d ms.\n",
+                    creationTime.toMinutesPart(), creationTime.toSecondsPart(), creationTime.toMillisPart());
+        }
         if (sortingAction != null) {
             System.out.printf("Sorting time: %d min. %d sec. %d ms.\n",
                     sortTime.toMinutesPart(), sortTime.toSecondsPart(), sortTime.toMillisPart());
-            var searchingTime = Duration.ofMillis(time.toMillis() - sortTime.toMillis());
+        }
+        if (creationAction != null || sortingAction != null) {
+            var prepTime = creationTime != null ? creationTime : sortTime;
+            var searchingTime = Duration.ofMillis(time.toMillis() - prepTime.toMillis());
             System.out.printf("Searching time: %d min. %d sec. %d ms.\n",
                     searchingTime.toMinutesPart(), searchingTime.toSecondsPart(), searchingTime.toMillisPart());
         }
