@@ -15,3 +15,6 @@ content:
 - Implementing the EntrySet method
 - Phone Book
 - Removing
+- Remove extra spaces
+- Remove HTML tags
+- Remove comments
