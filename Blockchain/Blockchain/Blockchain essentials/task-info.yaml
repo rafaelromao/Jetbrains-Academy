@@ -204,6 +204,15 @@ files:
         }
     }
   learner_created: false
+- name: src/blockchain/Hash.java
+  visible: true
+  learner_created: true
+- name: src/blockchain/Block.java
+  visible: true
+  learner_created: true
+- name: src/blockchain/BlockChain.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/271/implement
-status: Unchecked
+status: Solved
 record: -1

@@ -2,6 +2,10 @@ package blockchain;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        var chain = new BlockChain();
+        for (var i = 0; i < 5; i++) {
+            chain.put();
+        }
+        System.out.println(chain);
     }
 }
