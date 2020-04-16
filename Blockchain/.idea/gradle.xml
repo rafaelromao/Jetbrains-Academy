@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Blockchain/task" />
+            <option value="$PROJECT_DIR$/Problems/Add 11 hours and print the date" />
+            <option value="$PROJECT_DIR$/Problems/Return time without seconds" />
+            <option value="$PROJECT_DIR$/Problems/Seconds between two time points" />
+            <option value="$PROJECT_DIR$/Problems/Some hours and minutes ago" />
+            <option value="$PROJECT_DIR$/Problems/Subtracting hours and adding minutes" />
+            <option value="$PROJECT_DIR$/Problems/Whole hours between two date-time pairs" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>
