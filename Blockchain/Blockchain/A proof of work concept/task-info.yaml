@@ -5,9 +5,9 @@ files:
   visible: false
   text: |
     import blockchain.Main;
-    import org.hyperskill.hstest.v6.stage.BaseStageTest;
-    import org.hyperskill.hstest.v6.testcase.CheckResult;
-    import org.hyperskill.hstest.v6.testcase.TestCase;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testcase.TestCase;
 
     import java.util.ArrayList;
     import java.util.List;
@@ -160,7 +160,7 @@ files:
     }
 
 
-    public class BlockchainTest extends BaseStageTest<Clue> {
+    public class BlockchainTest extends StageTest<Clue> {
         public BlockchainTest() {
             super(Main.class);
         }
@@ -195,7 +195,7 @@ files:
             } catch (BlockParseException ex) {
                 return new CheckResult(false, ex.getMessage());
             } catch (Exception ex) {
-                return CheckResult.FALSE;
+                return CheckResult.wrong("");
             }
 
             if (blocks.size() != 5) {
@@ -229,7 +229,7 @@ files:
             }
 
 
-            return CheckResult.TRUE;
+            return CheckResult.correct();
         }
     }
   learner_created: false
@@ -244,6 +244,121 @@ files:
         }
     }
   learner_created: false
+- name: src/blockchain/Hash.java
+  visible: true
+  text: |
+    package blockchain;
+
+    import java.security.MessageDigest;
+
+    public class Hash {
+        private String value;
+
+        public Hash(String value) {
+            this.value = hash(value);
+        }
+
+        private String hash(String input){
+            try {
+                var digest = MessageDigest.getInstance("SHA-256");
+                var hash = digest.digest(input.getBytes("UTF-8"));
+                var hexString = new StringBuilder();
+                for (var elem: hash) {
+                    var hex = Integer.toHexString(0xff & elem);
+                    if(hex.length() == 1) hexString.append('0');
+                    hexString.append(hex);
+                }
+                return hexString.toString();
+            }
+            catch(Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+  learner_created: true
+- name: src/blockchain/BlockChain.java
+  visible: true
+  text: |
+    package blockchain;
+
+    import java.util.Stack;
+
+    public class BlockChain {
+
+        private Stack<Block> blocks = new Stack<>();
+
+        public Block put() {
+            var id = blocks.size();
+            var previous = blocks.size() == 0 ? null : blocks.peek().hash();
+            var block = new Block(id, previous);
+            blocks.add(block);
+            return block;
+        }
+
+        @Override
+        public String toString() {
+            var sb = new StringBuilder();
+            for (var block: blocks) {
+                sb.append(block);
+                sb.append("\n");
+            }
+            return sb.toString();
+        }
+    }
+  learner_created: true
+- name: src/blockchain/Block.java
+  visible: true
+  text: |
+    package blockchain;
+
+    public class Block {
+
+        private int id;
+        private long timestamp;
+        private Hash previous;
+
+        public Block(int id, Hash hashOfPreviousBlock) {
+            this.id = id;
+            this.timestamp = System.currentTimeMillis();
+            this.previous = hashOfPreviousBlock;
+        }
+
+        Hash hash() {
+            return new Hash(this.getValues());
+        }
+
+        private String getValues() {
+            return Integer.toString(id) + timestamp + previous;
+        }
+
+        @Override
+        public String toString() {
+            var sb = new StringBuilder();
+            sb.append("Block:");
+            sb.append("\n");
+            sb.append("Id: ");
+            sb.append(id);
+            sb.append("\n");
+            sb.append("Timestamp: ");
+            sb.append(timestamp);
+            sb.append("\n");
+            sb.append("Hash of the previous block:");
+            sb.append("\n");
+            sb.append(previous == null ? 0 : previous);
+            sb.append("\n");
+            sb.append("Hash of the block:");
+            sb.append("\n");
+            sb.append(hash());
+            sb.append("\n");
+            return sb.toString();
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/272/implement
-status: Unchecked
+status: Solved
 record: -1
