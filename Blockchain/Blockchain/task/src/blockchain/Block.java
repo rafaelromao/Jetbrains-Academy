@@ -7,17 +7,21 @@ public class Block implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    private final int minerId;
     private final int id;
     private final int proofLength;
+    private final int proofLengthState;
     private final long timestamp;
     private final Hash current;
     private final Hash previous;
     private int magicNumber;
     private transient long generatingTime;
 
-    public Block(int id, int proofLength, Hash hashOfPreviousBlock) {
+    public Block(int minerId, int id, int proofLength, Hash hashOfPreviousBlock, int proofLengthState) {
+        this.minerId = minerId;
         this.id = id;
         this.proofLength = proofLength;
+        this.proofLengthState = proofLengthState;
         this.timestamp = System.currentTimeMillis();
         this.previous = hashOfPreviousBlock;
         this.current = hash();
@@ -39,8 +43,12 @@ public class Block implements Serializable {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
     private String getValues() {
-        return Integer.toString(magicNumber) + id + timestamp + (previous != null ? previous : 0);
+        return Integer.toString(magicNumber) + minerId + id + timestamp + (previous != null ? previous : 0);
     }
 
     public Hash getHash() {
@@ -72,6 +80,9 @@ public class Block implements Serializable {
         var sb = new StringBuilder();
         sb.append("Block:");
         sb.append("\n");
+        sb.append("Created by miner # ");
+        sb.append(minerId);
+        sb.append("\n");
         sb.append("Id: ");
         sb.append(id);
         sb.append("\n");
@@ -92,6 +103,12 @@ public class Block implements Serializable {
         sb.append("Block was generating for ");
         sb.append(generatingTime);
         sb.append(" seconds");
+        sb.append("\n");
+        sb.append(proofLengthState == 0
+                ? "N stays the same"
+                : proofLengthState < 0
+                    ? "N decreased to " + proofLength
+                    : "N increased to " + proofLength);
         sb.append("\n");
         return sb.toString();
     }

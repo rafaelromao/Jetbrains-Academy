@@ -10,5 +10,6 @@ public static void cookVeganPizza() throws InterruptedException {
     stepOfCook.add(bake);
     for (Thread step : stepOfCook) {
         step.start();
+        step.join();
     }
 }

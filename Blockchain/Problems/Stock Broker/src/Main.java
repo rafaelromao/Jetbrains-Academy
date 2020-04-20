@@ -2,7 +2,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        /* write your code here */
+        var stock = new Stock();
+        var buyCommand = new BuyCommand(stock);
+        var sellCommand = new SellCommand(stock);
+        var broker = new Broker();
 
         broker.setCommand(buyCommand);
         broker.executeCommand();
@@ -25,7 +28,7 @@ class Stock {
 }
 
 interface Command {
-    /* write your code here */
+    void execute();
 }
 
 class BuyCommand implements Command {
@@ -35,7 +38,10 @@ class BuyCommand implements Command {
         this.stock = stock;
     }
 
-    /* write your code here */
+    @Override
+    public void execute() {
+        stock.buy();
+    }
 }
 
 class SellCommand implements Command {
@@ -45,7 +51,10 @@ class SellCommand implements Command {
         this.stock = stock;
     }
 
-    /* write your code here */
+    @Override
+    public void execute() {
+        stock.sell();
+    }
 }
 
 class Broker {
@@ -54,6 +63,6 @@ class Broker {
         this.command = command;
     }
     public void executeCommand() {
-        /* write your code here */
+        command.execute();
     }
 }

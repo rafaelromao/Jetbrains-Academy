@@ -18,7 +18,7 @@ interface AsyncMessageSender {
 }
 
 class AsyncMessageSenderImpl implements AsyncMessageSender {
-    private ExecutorService executor; // TODO initialize the executor
+    private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     private final int repeatFactor;
 
     public AsyncMessageSenderImpl(int repeatFactor) {
@@ -29,14 +29,21 @@ class AsyncMessageSenderImpl implements AsyncMessageSender {
     public void sendMessages(Message[] messages) {
         for (Message msg : messages) {
             // TODO repeat messages
-            executor.submit(() -> {
-                System.out.printf("(%s>%s): %s\n", msg.from, msg.to, msg.text); // do not change it
-            });
+            for (var i = 0; i < repeatFactor; i++) {
+                executor.submit(() -> {
+                    System.out.printf("(%s>%s): %s\n", msg.from, msg.to, msg.text); // do not change it
+                });
+            }
         }
     }
 
     @Override
     public void stop() {
-        // TODO stop the executor and wait for it
+        executor.shutdown();
+        try {
+            executor.awaitTermination(30, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

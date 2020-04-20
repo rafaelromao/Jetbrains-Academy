@@ -5,5 +5,8 @@ public static void main(String[] args) throws InterruptedException {
 
     final SlowStringProcessor processor = new SlowStringProcessor(str);
 
+    processor.start();
+    processor.join();
+
     System.out.println(processor.getNumberOfUniqueCharacters());
 }
