@@ -2,7 +2,6 @@ package blockchain;
 
 public class Miner implements Runnable {
     private static volatile int proofLength;
-    private static volatile int prints;
 
     private final BlockChain blockChain;
     private final int id;
