@@ -3,11 +3,15 @@ import java.util.*;
 class SetUtils {
 
     public static Set<Integer> getSetFromString(String str) {
-        // write your code here
+        var result = new HashSet<Integer>();
+        for (var e: str.split(" ")) {
+            result.add(Integer.parseInt(e));
+        }
+        return result;
     }
 
     public static void removeAllNumbersGreaterThan10(Set<Integer> set) {
-        // write your code here
+        set.removeIf(e -> e > 10);
     }
 
 }

@@ -2,7 +2,20 @@ import java.util.*;
 
 class MapUtils {
     public static Map<Integer, String> getSubMap(TreeMap<Integer, String> map) {
-        // Write your code here
+        var result = new LinkedHashMap<Integer, String>();
+        var firstKey = map.firstKey();
+        var lastKey = map.lastKey();
+        if (firstKey % 2 != 0) {
+            lastKey = firstKey + 4;
+        } else {
+            firstKey = lastKey - 4;
+        }
+        for (var key = lastKey; key >= firstKey; key--) {
+            if (map.containsKey(key)) {
+                result.put(key, map.get(key));
+            }
+        }
+        return result;
     }
 }
 

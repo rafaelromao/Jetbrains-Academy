@@ -3,7 +3,10 @@ import java.util.*;
 class MapUtils {
 
     public static void mapShare(Map<String, String> map) {
-        // write your code here
+        if (map.containsKey("a")) {
+            map.put("b", map.get("a"));
+        }
+        map.remove("c");
     }
 
 }
