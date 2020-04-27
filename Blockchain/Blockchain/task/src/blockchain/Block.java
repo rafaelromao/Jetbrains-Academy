@@ -16,12 +16,14 @@ public class Block implements Serializable {
     private final Hash previous;
     private int magicNumber;
     private transient long generatingTime;
+    private Serializable data;
 
-    public Block(int minerId, int id, int proofLength, Hash hashOfPreviousBlock, int proofLengthState) {
+    public Block(int minerId, int id, int proofLength, Hash hashOfPreviousBlock, int proofLengthState, Serializable data) {
         this.minerId = minerId;
         this.id = id;
         this.proofLength = proofLength;
         this.proofLengthState = proofLengthState;
+        this.data = data;
         this.timestamp = System.currentTimeMillis();
         this.previous = hashOfPreviousBlock;
         this.current = hash();
@@ -31,7 +33,7 @@ public class Block implements Serializable {
         var start = System.currentTimeMillis();
         try {
             while (true) {
-                magicNumber = (int)(Math.random() * Integer.MAX_VALUE);
+                magicNumber = (int) (Math.random() * Integer.MAX_VALUE);
                 var hash = new Hash(getValues());
                 if (hash.validate(proofLength, getValues())) {
                     return hash;
@@ -43,29 +45,16 @@ public class Block implements Serializable {
         }
     }
 
-    public int getId() {
-        return id;
-    }
-
     private String getValues() {
-        return Integer.toString(magicNumber) + minerId + id + timestamp + (previous != null ? previous : 0);
+        return Integer.toString(magicNumber) +
+                minerId +
+                id +
+                timestamp +
+                data +
+                (previous != null ? previous : 0);
     }
 
-    public Hash getHash() {
-        return current;
-    }
-
-    public void validate(Hash previous) {
-        if (!ValidatePrevious(previous)) {
-            return;
-        }
-        if (!current.validate(proofLength, getValues())) {
-            return;
-        }
-        throw new IllegalArgumentException(String.format("Block %s is not valid!", id));
-    }
-
-    private boolean ValidatePrevious(Hash previous) {
+    private boolean validatePrevious(Hash previous) {
         if (this.previous == null && previous == null) {
             return true;
         }
@@ -73,6 +62,10 @@ public class Block implements Serializable {
             return true;
         }
         return false;
+    }
+
+    public Hash getHash() {
+        return current;
     }
 
     @Override
@@ -100,6 +93,14 @@ public class Block implements Serializable {
         sb.append("\n");
         sb.append(current);
         sb.append("\n");
+        sb.append("Block data:");
+        if (data == null) {
+            sb.append(" no messages");
+            sb.append("\n");
+        } else {
+            sb.append("\n");
+            sb.append(data);
+        }
         sb.append("Block was generating for ");
         sb.append(generatingTime);
         sb.append(" seconds");
@@ -107,9 +108,24 @@ public class Block implements Serializable {
         sb.append(proofLengthState == 0
                 ? "N stays the same"
                 : proofLengthState < 0
-                    ? "N decreased to " + proofLength
-                    : "N increased to " + proofLength);
+                ? "N decreased to " + proofLength
+                : "N increased to " + proofLength);
         sb.append("\n");
         return sb.toString();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void validate(Hash previous) {
+        if (!validatePrevious(previous)) {
+            return;
+        }
+        if (!current.validate(proofLength, getValues())) {
+            return;
+        }
+        throw new IllegalArgumentException(String.format("Block %s is not valid!", id));
+    }
+
 }
