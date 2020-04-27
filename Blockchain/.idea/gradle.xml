@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/Problems/Breakfast Decorator" />
             <option value="$PROJECT_DIR$/Problems/Burgers" />
             <option value="$PROJECT_DIR$/Problems/Calculate the number of distinct characters" />
+            <option value="$PROJECT_DIR$/Problems/Calculating factorials" />
             <option value="$PROJECT_DIR$/Problems/Check whether a number is prime" />
             <option value="$PROJECT_DIR$/Problems/Cinema Facade" />
             <option value="$PROJECT_DIR$/Problems/Clock factory" />
@@ -51,8 +52,10 @@
             <option value="$PROJECT_DIR$/Problems/Numbers filtering" />
             <option value="$PROJECT_DIR$/Problems/Ordering the execution of threads" />
             <option value="$PROJECT_DIR$/Problems/Output elements" />
+            <option value="$PROJECT_DIR$/Problems/Palindrome or not" />
             <option value="$PROJECT_DIR$/Problems/Phone factory" />
             <option value="$PROJECT_DIR$/Problems/Pizza Decorator" />
+            <option value="$PROJECT_DIR$/Problems/Range quadratic sum" />
             <option value="$PROJECT_DIR$/Problems/Reducer operator" />
             <option value="$PROJECT_DIR$/Problems/Remote Controller" />
             <option value="$PROJECT_DIR$/Problems/Removing elements" />
@@ -68,8 +71,10 @@
             <option value="$PROJECT_DIR$/Problems/Stock Broker" />
             <option value="$PROJECT_DIR$/Problems/String processor" />
             <option value="$PROJECT_DIR$/Problems/Subtracting hours and adding minutes" />
+            <option value="$PROJECT_DIR$/Problems/Sum of divisors" />
             <option value="$PROJECT_DIR$/Problems/The Range class" />
             <option value="$PROJECT_DIR$/Problems/The chain of responsibility" />
+            <option value="$PROJECT_DIR$/Problems/The ten most frequent words" />
             <option value="$PROJECT_DIR$/Problems/Tricky sub-maps" />
             <option value="$PROJECT_DIR$/Problems/Undo command" />
             <option value="$PROJECT_DIR$/Problems/VeganPizza" />
