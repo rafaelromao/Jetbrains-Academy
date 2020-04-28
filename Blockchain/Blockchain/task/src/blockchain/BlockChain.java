@@ -3,10 +3,14 @@ package blockchain;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SignatureException;
 import java.time.Duration;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.Stack;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -14,7 +18,9 @@ public class BlockChain implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static BlockChain load(String fileName) throws IOException, ClassNotFoundException {
+    public static BlockChain load(String fileName)
+            throws IOException, ClassNotFoundException,
+                   NoSuchAlgorithmException, InvalidKeyException, SignatureException {
         BlockChain blockChain;
         if (Files.exists(Paths.get(fileName))) {
             try (var file = new FileInputStream(fileName);
@@ -35,7 +41,8 @@ public class BlockChain implements Serializable {
     private long lastBlockTime = System.currentTimeMillis();
     private int proofLength = 0;
     private int previousProofLength = 0;
-    private Queue<Message> pendingMessages = new ArrayDeque<>();
+    private Queue<Message> messagesForTheNextBlock = new ArrayDeque<>();
+    private int nextMessageId = 1;
 
     public BlockChain() {
     }
@@ -83,7 +90,7 @@ public class BlockChain implements Serializable {
 
     private void save() throws IOException {
         synchronized (blocks) {
-            synchronized (pendingMessages) {
+            synchronized (messagesForTheNextBlock) {
                 if (fileName == null) {
                     return;
                 }
@@ -100,46 +107,75 @@ public class BlockChain implements Serializable {
         }
     }
 
-    private void validate() {
+    private void validate() throws NoSuchAlgorithmException, InvalidKeyException, SignatureException {
         synchronized (blocks) {
             if (!blocks.empty()) {
                 blocks.get(0).validate(null);
                 for (int i = 1; i < blocks.size(); i++) {
-                    var block = blocks.get(i);
-                    block.validate(blocks.get(i - 1).getHash());
+                    var currentBlock = blocks.get(i);
+                    var previousBlock = blocks.get(i - 1);
+                    // Validate messages
+                    MessageList previousBlockMessages = previousBlock.getData();
+                    previousBlockMessages.validate();
+                    MessageList currentBlockMessages = currentBlock.getData();
+                    currentBlockMessages.validate();
+                    if (previousBlockMessages
+                            .messages()
+                            .mapToInt(m -> m.getId()).max().orElse(-1) >=
+                        currentBlockMessages
+                            .messages()
+                            .mapToInt(m -> m.getId()).min().orElse(0)) {
+                        throw new IllegalArgumentException("Message ids are not valid!");
+                    }
+                    // Validate block
+                    currentBlock.validate(previousBlock.getHash());
                 }
             }
         }
     }
 
-    public Iterable<Block> blocks() {
+    public Stream<Block> blocks() {
         synchronized (blocks) {
-            return blocks;
+            return blocks.stream();
+        }
+    }
+
+    public int getNextMessageId() {
+        synchronized (messagesForTheNextBlock)        {
+            return nextMessageId++;
         }
     }
 
     public void queueMessage(Message message) {
-        synchronized (pendingMessages) {
-            pendingMessages.add(message);
+        synchronized (messagesForTheNextBlock) {
+            var lastMessageId = messagesForTheNextBlock.stream().mapToInt(m -> m.getId()).max().orElse(0);
+            if (message.getId() <= lastMessageId) {
+                return;
+            }
+            messagesForTheNextBlock.add(message);
         }
     }
 
     public boolean tryPutNewBlock(int minerId) throws IOException {
         var blockId = getNextBlockId();
         var previous = getLastBlockHash();
-        synchronized (pendingMessages) {
+        synchronized (messagesForTheNextBlock) {
             var block = new Block(
                     minerId,
                     blockId,
                     proofLength,
                     previous,
                     Integer.compare(proofLength, previousProofLength),
-                    pendingMessages.isEmpty()
+                    messagesForTheNextBlock.isEmpty()
                             ? null
-                            : new MessageList(pendingMessages.stream().collect(toList())));
+                            : new MessageList(
+                            messagesForTheNextBlock
+                                    .stream()
+                                    .collect(toList()))
+            );
             var result = put(block);
             if (result) {
-                pendingMessages.clear();
+                messagesForTheNextBlock.clear();
             }
             return result;
         }

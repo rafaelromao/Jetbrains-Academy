@@ -54,16 +54,6 @@ public class Block implements Serializable {
                 (previous != null ? previous : 0);
     }
 
-    private boolean validatePrevious(Hash previous) {
-        if (this.previous == null && previous == null) {
-            return true;
-        }
-        if (this.previous.equals(previous)) {
-            return true;
-        }
-        return false;
-    }
-
     public Hash getHash() {
         return current;
     }
@@ -119,13 +109,17 @@ public class Block implements Serializable {
     }
 
     public void validate(Hash previous) {
-        if (!validatePrevious(previous)) {
-            return;
+        var isValid = true;
+
+        isValid &= (this.previous == null && previous == null) || this.previous.equals(previous);
+        isValid &= !current.validate(proofLength, getValues());
+
+        if (!isValid) {
+            throw new IllegalArgumentException(String.format("Block %s is not valid!", id));
         }
-        if (!current.validate(proofLength, getValues())) {
-            return;
-        }
-        throw new IllegalArgumentException(String.format("Block %s is not valid!", id));
     }
 
+    public <T> T getData() {
+        return (T)data;
+    }
 }

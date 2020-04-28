@@ -274,32 +274,6 @@ files:
         }
     }
   learner_created: true
-- name: src/blockchain/MessageList.java
-  visible: true
-  text: |
-    package blockchain;
-
-    import java.io.Serializable;
-    import java.util.List;
-
-    public class MessageList implements Serializable {
-        private final List<Message> messages;
-
-        public MessageList(List<Message> messages) {
-            this.messages = messages;
-        }
-
-        @Override
-        public String toString() {
-            var sb = new StringBuilder();
-            for (var message: messages) {
-                sb.append(message);
-                sb.append("\n");
-            }
-            return sb.toString();
-        }
-    }
-  learner_created: true
 - name: src/blockchain/Miner.java
   visible: true
   text: |
@@ -669,27 +643,33 @@ files:
   learner_created: true
 - name: src/blockchain/Message.java
   visible: true
-  text: |+
+  learner_created: true
+- name: src/blockchain/MessageList.java
+  visible: true
+  text: |
     package blockchain;
 
     import java.io.Serializable;
+    import java.util.List;
 
-    public class Message implements Serializable {
-        private final String from;
-        private String value;
+    public class MessageList implements Serializable {
+        private final List<Message> messages;
 
-        public Message(String from, String value) {
-            this.from = from;
-            this.value = value;
+        public MessageList(List<Message> messages) {
+            this.messages = messages;
         }
 
         @Override
         public String toString() {
-            return from + ": " + value;
+            var sb = new StringBuilder();
+            for (var message: messages) {
+                sb.append(message);
+                sb.append("\n");
+            }
+            return sb.toString();
         }
     }
-
   learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/275/implement
-status: Unchecked
+status: Solved
 record: -1
