@@ -1,13 +1,12 @@
 package blockchain;
 
 import java.io.Serializable;
-import java.time.Duration;
 
 public class Block implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final int minerId;
+    private final String minerId;
     private final int id;
     private final int proofLength;
     private final int proofLengthState;
@@ -15,10 +14,10 @@ public class Block implements Serializable {
     private final Hash current;
     private final Hash previous;
     private int magicNumber;
-    private transient long generatingTime;
+    private long generatingTime;
     private Serializable data;
 
-    public Block(int minerId, int id, int proofLength, Hash hashOfPreviousBlock, int proofLengthState, Serializable data) {
+    public Block(String minerId, int id, int proofLength, Hash hashOfPreviousBlock, int proofLengthState, Serializable data) {
         this.minerId = minerId;
         this.id = id;
         this.proofLength = proofLength;
@@ -41,12 +40,16 @@ public class Block implements Serializable {
             }
         } finally {
             var end = System.currentTimeMillis();
-            generatingTime = Duration.ofMillis(end - start).toSeconds();
+            generatingTime = end - start;
         }
     }
 
+    public long getGeneratingTime() {
+        return generatingTime;
+    }
+
     private String getValues() {
-        return Integer.toString(magicNumber) +
+        return magicNumber +
                 minerId +
                 id +
                 timestamp +
@@ -63,8 +66,11 @@ public class Block implements Serializable {
         var sb = new StringBuilder();
         sb.append("Block:");
         sb.append("\n");
-        sb.append("Created by miner # ");
+        sb.append("Created by ");
         sb.append(minerId);
+        sb.append("\n");
+        sb.append(minerId);
+        sb.append(" gets 100 VC");
         sb.append("\n");
         sb.append("Id: ");
         sb.append(id);
@@ -85,14 +91,14 @@ public class Block implements Serializable {
         sb.append("\n");
         sb.append("Block data:");
         if (data == null) {
-            sb.append(" no messages");
+            sb.append(" no transactions");
             sb.append("\n");
         } else {
             sb.append("\n");
             sb.append(data);
         }
         sb.append("Block was generating for ");
-        sb.append(generatingTime);
+        sb.append(generatingTime / 1000);
         sb.append(" seconds");
         sb.append("\n");
         sb.append(proofLengthState == 0
@@ -100,7 +106,6 @@ public class Block implements Serializable {
                 : proofLengthState < 0
                 ? "N decreased to " + proofLength
                 : "N increased to " + proofLength);
-        sb.append("\n");
         return sb.toString();
     }
 

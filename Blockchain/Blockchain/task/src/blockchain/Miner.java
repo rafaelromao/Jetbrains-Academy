@@ -1,13 +1,12 @@
 package blockchain;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class Miner implements Runnable {
     private final BlockChain blockChain;
-    private final int id;
+    private final String id;
 
-    public Miner(BlockChain blockChain, int id) {
+    public Miner(BlockChain blockChain, String id) {
         this.blockChain = blockChain;
         this.id = id;
     }
@@ -16,10 +15,11 @@ public class Miner implements Runnable {
     public void run() {
         try {
             while (true) {
+                TimeUnit.MILLISECONDS.sleep((int) (Math.random() * 1000));
                 blockChain.tryPutNewBlock(id);
-                TimeUnit.MILLISECONDS.sleep(2);
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
