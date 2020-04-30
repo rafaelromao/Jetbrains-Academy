@@ -1,17 +1,22 @@
 package engine.controllers;
 
+import engine.models.Answer;
 import engine.models.Quiz;
 import engine.models.Feedback;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
+@Validated
 @RestController
 @RequestMapping("api/quizzes")
 public class QuizController {
@@ -44,17 +49,30 @@ public class QuizController {
     }
 
     @PostMapping
-    public ResponseEntity<Quiz> post(@RequestBody Quiz quiz) {
+    public ResponseEntity<Quiz> post(@Valid @RequestBody Quiz quiz) {
         quiz.setId(quizzes.size());
         quizzes.add(quiz);
         return ResponseEntity.ok(quiz);
     }
 
     @PostMapping("{id}/solve")
-    public ResponseEntity<Feedback> post(@PathVariable String id, @RequestParam String answer) {
+    public ResponseEntity<Feedback> post(@PathVariable String id, @RequestBody Answer answer) {
         var quiz = getQuiz(id);
         if (quiz.isPresent()) {
-            if (quiz.get().getAnswer() == Integer.parseInt(answer)) {
+            var providedAnswers = answer == null || answer.getAnswer() == null
+                    ? new int[0]
+                    : Arrays.stream(answer.getAnswer()).distinct().toArray();
+            var quizAnswers = quiz.get().getAnswer();
+            var correctAnswers = quizAnswers == null
+                    ? new int[0]
+                    : quizAnswers;
+            if (correctAnswers.length == providedAnswers.length &&
+                    Arrays.stream(answer.getAnswer())
+                            .filter(a -> Arrays.stream(correctAnswers)
+                                    .filter(v -> v == a)
+                                    .findAny()
+                                    .isPresent())
+                            .count() == correctAnswers.length) {
                 return ResponseEntity.ok(
                         new Feedback(true, "Congratulations, you're right!"));
             }
