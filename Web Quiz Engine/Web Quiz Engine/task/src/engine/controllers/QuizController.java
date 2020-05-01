@@ -3,38 +3,35 @@ package engine.controllers;
 import engine.models.Answer;
 import engine.models.Quiz;
 import engine.models.Feedback;
+import engine.repositories.QuizRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
-
-import static java.util.stream.Collectors.toList;
 
 @Validated
 @RestController
 @RequestMapping("api/quizzes")
 public class QuizController {
 
-    private List<Quiz> quizzes = new ArrayList<>();
+    @Autowired
+    private QuizRepository quizzes;
 
     @GetMapping
-    public ResponseEntity<List<Quiz>> get() {
-        return ResponseEntity.ok(
-                quizzes.stream().collect(toList()));
+    public ResponseEntity<Iterable<Quiz>> get() {
+        return ResponseEntity.ok(quizzes.findAll());
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Quiz> get(@PathVariable String id) {
         var quiz = getQuiz(id);
         if (quiz.isPresent()) {
-            return ResponseEntity.ok(
-                    quizzes.stream().filter(q -> q.getId() == Integer.parseInt(id)).findAny().get());
+            return ResponseEntity.ok(quiz.get());
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
@@ -50,8 +47,7 @@ public class QuizController {
 
     @PostMapping
     public ResponseEntity<Quiz> post(@Valid @RequestBody Quiz quiz) {
-        quiz.setId(quizzes.size());
-        quizzes.add(quiz);
+        quiz = quizzes.save(quiz);
         return ResponseEntity.ok(quiz);
     }
 
@@ -61,11 +57,16 @@ public class QuizController {
         if (quiz.isPresent()) {
             var providedAnswers = answer == null || answer.getAnswer() == null
                     ? new int[0]
-                    : Arrays.stream(answer.getAnswer()).distinct().toArray();
-            var quizAnswers = quiz.get().getAnswer();
+                    : Arrays.stream(answer.getAnswer())
+                    .distinct()
+                    .toArray();
+            var quizAnswers = quiz.get().getAnswers();
             var correctAnswers = quizAnswers == null
                     ? new int[0]
-                    : quizAnswers;
+                    : quizAnswers
+                    .stream()
+                    .mapToInt(a -> a.getValue())
+                    .toArray();
             if (correctAnswers.length == providedAnswers.length &&
                     Arrays.stream(answer.getAnswer())
                             .filter(a -> Arrays.stream(correctAnswers)
@@ -84,8 +85,8 @@ public class QuizController {
     }
 
     private Optional<Quiz> getQuiz(String id) {
-        var answerValue = Integer.parseInt(id);
-        var quiz = quizzes.stream().filter(q -> q.getId() == answerValue).findAny();
+        var idValue = Integer.parseInt(id);
+        var quiz = quizzes.findById(idValue);
         return quiz;
     }
 

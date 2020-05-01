@@ -9,256 +9,34 @@
 ( =========|_|==============|___/=/_/_/_/
 * :: Spring Boot ::        (v2.2.2.RELEASE)
 
-Û2020-04-30 19:33:29.057  INFO 15712 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine on home with PID 15712 (started by rafae in C:\Projects\GitHub\jetbrains-academy\Web Quiz Engine\Web Quiz Engine\task)
-¶2020-04-30 19:33:29.060  INFO 15712 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
-í2020-04-30 19:33:30.272  INFO 15712 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
-2020-04-30 19:33:30.283  INFO 15712 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-ï2020-04-30 19:33:30.284  INFO 15712 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
-ò2020-04-30 19:33:30.415  INFO 15712 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-•2020-04-30 19:33:30.416  INFO 15712 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1304 ms
-ú2020-04-30 19:33:30.802  INFO 15712 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-õ2020-04-30 19:33:31.029  INFO 15712 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-°2020-04-30 19:33:31.082  INFO 15712 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
-§2020-04-30 19:33:31.086  INFO 15712 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 2.425 seconds (JVM running for 3.403)
-ü2020-04-30 19:33:31.413  INFO 15712 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-é2020-04-30 19:33:31.414  INFO 15712 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-Ü2020-04-30 19:33:31.424  INFO 15712 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+Ò2020-05-01 12:27:57.182  INFO 5960 --- [    Test worker] engine.WebQuizEngine                     : Starting WebQuizEngine on home with PID 5960 (started by rafae in C:\Projects\GitHub\jetbrains-academy\Web Quiz Engine\Web Quiz Engine\task)
+•2020-05-01 12:27:57.185  INFO 5960 --- [    Test worker] engine.WebQuizEngine                     : No active profile set, falling back to default profiles: default
+†2020-05-01 12:27:58.154  INFO 5960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+π2020-05-01 12:27:58.210  INFO 5960 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47ms. Found 1 JPA repository interfaces.
+â2020-05-01 12:27:58.577  INFO 5960 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+ë2020-05-01 12:27:58.886  INFO 5960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+~2020-05-01 12:27:58.897  INFO 5960 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+î2020-05-01 12:27:58.897  INFO 5960 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.29]
+ó2020-05-01 12:27:59.070  INFO 5960 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+§2020-05-01 12:27:59.071  INFO 5960 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1828 ms
+2020-05-01 12:27:59.236  INFO 5960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+Ñ2020-05-01 12:27:59.465  INFO 5960 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+∫2020-05-01 12:27:59.472  INFO 5960 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../quizdb'
+û2020-05-01 12:27:59.773  INFO 5960 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+å2020-05-01 12:27:59.869  INFO 5960 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.9.Final}
+ù2020-05-01 12:28:00.059  INFO 5960 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+û2020-05-01 12:28:00.206  INFO 5960 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+ÿ2020-05-01 12:28:01.043  INFO 5960 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+®2020-05-01 12:28:01.050  INFO 5960 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+ú2020-05-01 12:28:01.357  WARN 5960 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+õ2020-05-01 12:28:01.481  INFO 5960 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+ö2020-05-01 12:28:01.755  INFO 5960 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+†2020-05-01 12:28:01.813  INFO 5960 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+£2020-05-01 12:28:01.816  INFO 5960 --- [    Test worker] engine.WebQuizEngine                     : Started WebQuizEngine in 5.079 seconds (JVM running for 6.056)
+û2020-05-01 12:28:02.134  INFO 5960 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+ç2020-05-01 12:28:02.135  INFO 5960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+Ö2020-05-01 12:28:02.142  INFO 5960 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 7 ms
 [1;31m
 Start test 2[0m
-[1;31m
-Start test 3[0m
-[1;31m
-Start test 4[0m
-[1;31m
-Start test 5[0m
-[1;31m
-Start test 6[0m
-[1;31m
-Start test 7[0m
-[1;31m
-Start test 8[0m
-[1;31m
-Start test 9[0m
-[1;31m
-Start test 10[0m
-[1;31m
-Start test 11[0m
-[1;31m
-Start test 12[0m
-[1;31m
-Start test 13[0m
-[1;31m
-Start test 14[0m
-[1;31m
-Start test 15[0m
-[1;31m
-Start test 16[0m
-[1;31m
-Start test 17[0m
-[1;31m
-Start test 18[0m
-≥2020-04-30 19:33:31.827  WARN 15712 --- [nio-8889-exec-8] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
-9 at [Source: (PushbackInputStream); line: 4, column: 4]]
-[1;31m
-Start test 19[0m
-≥2020-04-30 19:33:31.847  WARN 15712 --- [nio-8889-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
-9 at [Source: (PushbackInputStream); line: 5, column: 4]]
-[1;31m
-Start test 20[0m
-≥2020-04-30 19:33:31.852  WARN 15712 --- [io-8889-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
-9 at [Source: (PushbackInputStream); line: 4, column: 4]]
-[1;31m
-Start test 21[0m
-≥2020-04-30 19:33:31.857  WARN 15712 --- [nio-8889-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
-9 at [Source: (PushbackInputStream); line: 5, column: 4]]
-[1;31m
-Start test 22[0m
-™2020-04-30 19:33:31.890  WARN 15712 --- [nio-8889-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<engine.models.Quiz> engine.controllers.QuizController.post(engine.models.Quiz): [Field error in object 'quiz' on field 'options': rejected value [null]; codes [NotNull.quiz.options,NotNull.options,NotNull.[Ljava.lang.String;,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [quiz.options,options]; arguments []; default message [options]]; default message [must not be null]] ]
-[1;31m
-Start test 23[0m
-≥2020-04-30 19:33:31.910  WARN 15712 --- [nio-8889-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
-9 at [Source: (PushbackInputStream); line: 5, column: 4]]
-[1;31m
-Start test 24[0m
-≥2020-04-30 19:33:31.916  WARN 15712 --- [nio-8889-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('"' (code 34)): was expecting comma to separate Object entries
-9 at [Source: (PushbackInputStream); line: 5, column: 4]]
-[1;31m
-Start test 25[0m
-[1;31m
-Start test 26[0m
-[1;31m
-Start test 27[0m
-[1;31m
-Start test 28[0m
-[1;31m
-Start test 29[0m
-[1;31m
-Start test 30[0m
-[1;31m
-Start test 31[0m
-[1;31m
-Start test 32[0m
-[1;31m
-Start test 33[0m
-[1;31m
-Start test 34[0m
-[1;31m
-Start test 35[0m
-[1;31m
-Start test 36[0m
-[1;31m
-Start test 37[0m
-[1;31m
-Start test 38[0m
-[1;31m
-Start test 39[0m
-[1;31m
-Start test 40[0m
-[1;31m
-Start test 41[0m
-[1;31m
-Start test 42[0m
-[1;31m
-Start test 43[0m
-[1;31m
-Start test 44[0m
-[1;31m
-Start test 45[0m
-[1;31m
-Start test 46[0m
-[1;31m
-Start test 47[0m
-[1;31m
-Start test 48[0m
-[1;31m
-Start test 49[0m
-[1;31m
-Start test 50[0m
-[1;31m
-Start test 51[0m
-[1;31m
-Start test 52[0m
-[1;31m
-Start test 53[0m
-[1;31m
-Start test 54[0m
-[1;31m
-Start test 55[0m
-[1;31m
-Start test 56[0m
-[1;31m
-Start test 57[0m
-[1;31m
-Start test 58[0m
-[1;31m
-Start test 59[0m
-[1;31m
-Start test 60[0m
-[1;31m
-Start test 61[0m
-[1;31m
-Start test 62[0m
-[1;31m
-Start test 63[0m
-[1;31m
-Start test 64[0m
-[1;31m
-Start test 65[0m
-[1;31m
-Start test 66[0m
-[1;31m
-Start test 67[0m
-[1;31m
-Start test 68[0m
-[1;31m
-Start test 69[0m
-[1;31m
-Start test 70[0m
-[1;31m
-Start test 71[0m
-[1;31m
-Start test 72[0m
-[1;31m
-Start test 73[0m
-[1;31m
-Start test 74[0m
-[1;31m
-Start test 75[0m
-[1;31m
-Start test 76[0m
-[1;31m
-Start test 77[0m
-[1;31m
-Start test 78[0m
-[1;31m
-Start test 79[0m
-[1;31m
-Start test 80[0m
-[1;31m
-Start test 81[0m
-[1;31m
-Start test 82[0m
-[1;31m
-Start test 83[0m
-[1;31m
-Start test 84[0m
-[1;31m
-Start test 85[0m
-[1;31m
-Start test 86[0m
-[1;31m
-Start test 87[0m
-[1;31m
-Start test 88[0m
-[1;31m
-Start test 89[0m
-[1;31m
-Start test 90[0m
-[1;31m
-Start test 91[0m
-[1;31m
-Start test 92[0m
-[1;31m
-Start test 93[0m
-[1;31m
-Start test 94[0m
-[1;31m
-Start test 95[0m
-[1;31m
-Start test 96[0m
-[1;31m
-Start test 97[0m
-[1;31m
-Start test 98[0m
-[1;31m
-Start test 99[0m
-[1;31m
-Start test 100[0m
-[1;31m
-Start test 101[0m
-[1;31m
-Start test 102[0m
-[1;31m
-Start test 103[0m
-[1;31m
-Start test 104[0m
-[1;31m
-Start test 105[0m
-[1;31m
-Start test 106[0m
-[1;31m
-Start test 107[0m
-[1;31m
-Start test 108[0m
-[1;31m
-Start test 109[0m
-[1;31m
-Start test 110[0m
-[1;31m
-Start test 111[0m
-[1;31m
-Start test 112[0m
-[1;31m
-Start test 113[0m
-[1;31m
-Start test 114[0m
+à2020-05-01 12:28:02.441  WARN 5960 --- [nio-8889-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `engine.models.QuizOption` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('Robot'); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `engine.models.QuizOption` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('Robot')
+ã at [Source: (PushbackInputStream); line: 4, column: 15] (through reference chain: engine.models.Quiz["options"]->java.util.ArrayList[0])]
