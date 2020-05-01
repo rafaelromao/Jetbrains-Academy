@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,6 +18,7 @@ import java.util.List;
 public class Quiz {
     @Id
     @Column
+    @GeneratedValue
     private Integer id;
     @NotBlank
     @Column
@@ -27,13 +27,11 @@ public class Quiz {
     @Column
     private String text;
     @Column
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn
     @Size(min=2) @NotNull
-    private List<QuizOption> options = new ArrayList<>();
+    @ElementCollection
+    private List<String> options;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
-    @OneToMany(cascade = CascadeType.REMOVE)
-    @JoinColumn
-    private List<QuizAnswer> answers = new ArrayList<>();
+    @ElementCollection
+    private List<Integer> answer;
 }

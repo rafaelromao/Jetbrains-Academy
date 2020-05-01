@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Validated
@@ -60,20 +61,17 @@ public class QuizController {
                     : Arrays.stream(answer.getAnswer())
                     .distinct()
                     .toArray();
-            var quizAnswers = quiz.get().getAnswers();
+            var quizAnswers = quiz.get().getAnswer();
             var correctAnswers = quizAnswers == null
-                    ? new int[0]
-                    : quizAnswers
-                    .stream()
-                    .mapToInt(a -> a.getValue())
-                    .toArray();
-            if (correctAnswers.length == providedAnswers.length &&
+                    ? List.of()
+                    : quizAnswers;
+            if (correctAnswers.size() == providedAnswers.length &&
                     Arrays.stream(answer.getAnswer())
-                            .filter(a -> Arrays.stream(correctAnswers)
-                                    .filter(v -> v == a)
+                            .filter(a -> correctAnswers.stream()
+                                    .filter(v -> ((Integer)v).intValue() == a)
                                     .findAny()
                                     .isPresent())
-                            .count() == correctAnswers.length) {
+                            .count() == correctAnswers.size()) {
                 return ResponseEntity.ok(
                         new Feedback(true, "Congratulations, you're right!"));
             }

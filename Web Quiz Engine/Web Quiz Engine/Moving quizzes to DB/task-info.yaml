@@ -927,15 +927,9 @@ files:
 - name: src/engine/repositories/QuizRepository.java
   visible: true
   learner_created: true
-- name: src/engine/models/QuizOption.java
-  visible: true
-  learner_created: true
-- name: src/engine/models/QuizAnswer.java
-  visible: true
-  learner_created: true
 - name: src/engine/models/Answer.java
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/507/implement
-status: Failed
+status: Solved
 record: 4
