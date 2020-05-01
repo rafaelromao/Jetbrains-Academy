@@ -3,10 +3,11 @@ package engine.controllers;
 import engine.models.Answer;
 import engine.models.Quiz;
 import engine.models.Feedback;
+import engine.models.User;
 import engine.repositories.QuizRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,8 +21,11 @@ import java.util.Optional;
 @RequestMapping("api/quizzes")
 public class QuizController {
 
-    @Autowired
-    private QuizRepository quizzes;
+    private final QuizRepository quizzes;
+
+    public QuizController(QuizRepository quizzes) {
+        this.quizzes = quizzes;
+    }
 
     @GetMapping
     public ResponseEntity<Iterable<Quiz>> get() {
@@ -38,16 +42,22 @@ public class QuizController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity delete(@PathVariable String id) {
+    public ResponseEntity delete(@PathVariable String id, @AuthenticationPrincipal User user) {
         var quiz = getQuiz(id);
         if (quiz.isPresent()) {
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            if (quiz.get().getAuthor().equals(user)) {
+                quizzes.delete(quiz.get());
+                return new ResponseEntity(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity(HttpStatus.FORBIDDEN);
+            }
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
-    public ResponseEntity<Quiz> post(@Valid @RequestBody Quiz quiz) {
+    public ResponseEntity<Quiz> post(@Valid @RequestBody Quiz quiz, @AuthenticationPrincipal User user) {
+        quiz.setAuthor(user);
         quiz = quizzes.save(quiz);
         return ResponseEntity.ok(quiz);
     }

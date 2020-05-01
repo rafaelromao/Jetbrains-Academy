@@ -34,4 +34,6 @@ public class Quiz {
     @Column
     @ElementCollection
     private List<Integer> answer;
+    @ManyToOne(cascade = CascadeType.DETACH)
+    private User author;
 }

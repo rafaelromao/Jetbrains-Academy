@@ -894,6 +894,269 @@ files:
         }
     }
   learner_created: false
+- name: src/resources/application.properties
+  visible: true
+  text: |-
+    server.port=8889
+    management.endpoints.web.exposure.include=*
+    management.endpoint.shutdown.enabled=true
+
+    spring.datasource.url=jdbc:h2:file:../quizdb
+    spring.datasource.driverClassName=org.h2.Driver
+    spring.datasource.username=sa
+    spring.datasource.password=password
+
+    spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+    spring.jpa.hibernate.ddl-auto=update
+
+    spring.h2.console.enabled=true
+    spring.h2.console.settings.trace=false
+    spring.h2.console.settings.web-allow-others=false
+  learner_created: true
+- name: src/engine/WebQuizEngine.java
+  visible: true
+  text: |
+    package engine;
+
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+    @SpringBootApplication
+    public class WebQuizEngine {
+
+        public static void main(String[] args) {
+            SpringApplication.run(WebQuizEngine.class, args);
+        }
+
+    }
+  learner_created: true
+- name: build.gradle
+  visible: true
+  text: |
+    plugins {
+        id 'org.springframework.boot' version '2.2.2.RELEASE'
+        id 'java'
+    }
+
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = '11'
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceSets.main.resources.srcDirs = ["src/resources"]
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        runtimeOnly 'com.h2database:h2'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+    }
+  learner_created: true
+- name: src/engine/models/Answer.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Answer {
+        private int[] answer;
+    }
+  learner_created: true
+- name: src/engine/models/Feedback.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+
+    @Data
+    @AllArgsConstructor
+    public class Feedback {
+        private boolean success;
+        private String feedback;
+    }
+  learner_created: true
+- name: src/engine/models/Quiz.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.NotNull;
+    import javax.validation.constraints.Size;
+    import java.util.List;
+
+    @Data
+    @Entity
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Quiz {
+        @Id
+        @Column
+        @GeneratedValue
+        private Integer id;
+        @NotBlank
+        @Column
+        private String title;
+        @NotBlank
+        @Column
+        private String text;
+        @Column
+        @Size(min=2) @NotNull
+        @ElementCollection
+        private List<String> options;
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+        @Column
+        @ElementCollection
+        private List<Integer> answer;
+    }
+  learner_created: true
+- name: src/engine/repositories/QuizRepository.java
+  visible: true
+  text: |
+    package engine.repositories;
+
+    import engine.models.Quiz;
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
+
+    @Repository
+    public interface QuizRepository extends CrudRepository<Quiz, Integer> {
+    }
+  learner_created: true
+- name: src/engine/controllers/QuizController.java
+  visible: true
+  text: |
+    package engine.controllers;
+
+    import engine.models.Answer;
+    import engine.models.Quiz;
+    import engine.models.Feedback;
+    import engine.repositories.QuizRepository;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.validation.annotation.Validated;
+    import org.springframework.web.bind.annotation.*;
+
+    import javax.validation.Valid;
+    import java.util.Arrays;
+    import java.util.List;
+    import java.util.Optional;
+
+    @Validated
+    @RestController
+    @RequestMapping("api/quizzes")
+    public class QuizController {
+
+        @Autowired
+        private QuizRepository quizzes;
+
+        @GetMapping
+        public ResponseEntity<Iterable<Quiz>> get() {
+            return ResponseEntity.ok(quizzes.findAll());
+        }
+
+        @GetMapping("{id}")
+        public ResponseEntity<Quiz> get(@PathVariable String id) {
+            var quiz = getQuiz(id);
+            if (quiz.isPresent()) {
+                return ResponseEntity.ok(quiz.get());
+            }
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        @DeleteMapping("{id}")
+        public ResponseEntity delete(@PathVariable String id) {
+            var quiz = getQuiz(id);
+            if (quiz.isPresent()) {
+                return new ResponseEntity(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        @PostMapping
+        public ResponseEntity<Quiz> post(@Valid @RequestBody Quiz quiz) {
+            quiz = quizzes.save(quiz);
+            return ResponseEntity.ok(quiz);
+        }
+
+        @PostMapping("{id}/solve")
+        public ResponseEntity<Feedback> post(@PathVariable String id, @RequestBody Answer answer) {
+            var quiz = getQuiz(id);
+            if (quiz.isPresent()) {
+                var providedAnswers = answer == null || answer.getAnswer() == null
+                        ? new int[0]
+                        : Arrays.stream(answer.getAnswer())
+                        .distinct()
+                        .toArray();
+                var quizAnswers = quiz.get().getAnswer();
+                var correctAnswers = quizAnswers == null
+                        ? List.of()
+                        : quizAnswers;
+                if (correctAnswers.size() == providedAnswers.length &&
+                        Arrays.stream(answer.getAnswer())
+                                .filter(a -> correctAnswers.stream()
+                                        .filter(v -> ((Integer)v).intValue() == a)
+                                        .findAny()
+                                        .isPresent())
+                                .count() == correctAnswers.size()) {
+                    return ResponseEntity.ok(
+                            new Feedback(true, "Congratulations, you're right!"));
+                }
+                return ResponseEntity.ok(
+                        new Feedback(false, "Wrong answer! Please try again.")
+                );
+            }
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        private Optional<Quiz> getQuiz(String id) {
+            var idValue = Integer.parseInt(id);
+            var quiz = quizzes.findById(idValue);
+            return quiz;
+        }
+
+    }
+  learner_created: true
+- name: src/engine/Security.java
+  visible: true
+  learner_created: true
+- name: src/engine/controllers/UserController.java
+  visible: true
+  learner_created: true
+- name: src/engine/repositories/UserRepository.java
+  visible: true
+  learner_created: true
+- name: src/engine/models/User.java
+  visible: true
+  learner_created: true
+- name: src/engine/services/UserService.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/508/implement
-status: Unchecked
+status: Failed
 record: -1
