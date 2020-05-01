@@ -1,5 +1,6 @@
 package engine.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,13 +28,19 @@ public class Quiz {
     @Column
     private String text;
     @Column
-    @Size(min=2) @NotNull
+    @Size(min = 2)
+    @NotNull
     @ElementCollection
     private List<String> options;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     @ElementCollection
     private List<Integer> answer;
-    @ManyToOne(cascade = CascadeType.DETACH)
+    @JsonIgnore
+    @ManyToOne
     private User author;
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.REMOVE)
+    @JsonIgnore
+    private List<Completion> completions;
 }

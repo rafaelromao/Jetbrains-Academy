@@ -1053,6 +1053,472 @@ files:
         }
     }
   learner_created: false
+- name: src/resources/application.properties
+  visible: true
+  text: |-
+    server.port=8889
+    management.endpoints.web.exposure.include=*
+    management.endpoint.shutdown.enabled=true
+
+    spring.datasource.url=jdbc:h2:file:../quizdb
+    spring.datasource.driverClassName=org.h2.Driver
+    spring.datasource.username=sa
+    spring.datasource.password=password
+
+    spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+    spring.jpa.hibernate.ddl-auto=update
+
+    spring.h2.console.enabled=true
+    spring.h2.console.settings.trace=false
+    spring.h2.console.settings.web-allow-others=false
+  learner_created: true
+- name: src/engine/controllers/UserController.java
+  visible: true
+  text: |
+    package engine.controllers;
+
+    import engine.models.User;
+    import engine.repositories.UserRepository;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RequestBody;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RestController;
+
+    import javax.validation.Valid;
+
+    @RestController
+    @RequestMapping("/api/register")
+    class UserController {
+        private UserRepository users;
+        private PasswordEncoder passwordEncoder;
+
+        public UserController(UserRepository users, PasswordEncoder passwordEncoder) {
+            this.users = users;
+            this.passwordEncoder = passwordEncoder;
+        }
+
+        @PostMapping
+        public ResponseEntity<User> post(@Valid @RequestBody User user) {
+            if (users.findByEmail(user.getEmail()).isPresent()) {
+                return ResponseEntity.badRequest().build();
+            }
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return ResponseEntity.ok(users.save(user));
+        }
+    }
+  learner_created: true
+- name: src/engine/Security.java
+  visible: true
+  text: |
+    package engine;
+
+    import engine.services.UserService;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+    import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+    import org.springframework.security.crypto.password.PasswordEncoder;
+
+    @Configuration
+    @EnableWebSecurity
+    public class Security extends WebSecurityConfigurerAdapter {
+
+        private final UserService userService;
+
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
+        }
+
+        public Security(UserService userService) {
+            this.userService = userService;
+        }
+
+        @Override
+        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+            auth.userDetailsService(userService)
+                    .passwordEncoder(passwordEncoder());
+        }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests()
+                    .antMatchers("/api/register").permitAll()
+                    .antMatchers("/actuator/*").permitAll()
+                    .anyRequest().authenticated()
+                .and()
+                    .csrf().disable()
+                    .httpBasic();
+        }
+    }
+  learner_created: true
+- name: src/engine/models/User.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+    import org.springframework.security.core.GrantedAuthority;
+    import org.springframework.security.core.authority.SimpleGrantedAuthority;
+    import org.springframework.security.core.userdetails.UserDetails;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.Email;
+    import javax.validation.constraints.Size;
+    import java.util.Arrays;
+    import java.util.Collection;
+
+    @Data
+    @Entity
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class User implements UserDetails {
+        @Id
+        @Column
+        @GeneratedValue
+        private Integer id;
+        @Email(regexp = ".*\\..*")
+        @Column
+        private String email;
+        @Size(min=5)
+        @Column
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+        private String password;
+
+        @Override
+        public Collection<? extends GrantedAuthority> getAuthorities() {
+            return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        }
+
+        @Override
+        public String getUsername() {
+            return email;
+        }
+
+        @Override
+        public boolean isAccountNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isAccountNonLocked() {
+            return true;
+        }
+
+        @Override
+        public boolean isCredentialsNonExpired() {
+            return true;
+        }
+
+        @Override
+        public boolean isEnabled() {
+            return true;
+        }
+    }
+  learner_created: true
+- name: src/engine/repositories/UserRepository.java
+  visible: true
+  text: |
+    package engine.repositories;
+
+    import engine.models.User;
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
+
+    import java.util.Optional;
+
+    @Repository
+    public interface UserRepository extends CrudRepository<User, Integer> {
+        Optional<User> findByEmail(String email);
+    }
+  learner_created: true
+- name: src/engine/models/Feedback.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+
+    @Data
+    @AllArgsConstructor
+    public class Feedback {
+        private boolean success;
+        private String feedback;
+    }
+  learner_created: true
+- name: src/engine/models/Quiz.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.NotBlank;
+    import javax.validation.constraints.NotNull;
+    import javax.validation.constraints.Size;
+    import java.util.List;
+
+    @Data
+    @Entity
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Quiz {
+        @Id
+        @Column
+        @GeneratedValue
+        private Integer id;
+        @NotBlank
+        @Column
+        private String title;
+        @NotBlank
+        @Column
+        private String text;
+        @Column
+        @Size(min=2) @NotNull
+        @ElementCollection
+        private List<String> options;
+        @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+        @Column
+        @ElementCollection
+        private List<Integer> answer;
+        @JsonIgnore
+        @ManyToOne(cascade = CascadeType.DETACH)
+        private User author;
+    }
+  learner_created: true
+- name: src/engine/services/UserService.java
+  visible: true
+  text: |
+    package engine.services;
+
+    import engine.repositories.UserRepository;
+    import org.springframework.security.core.userdetails.UserDetails;
+    import org.springframework.security.core.userdetails.UserDetailsService;
+    import org.springframework.security.core.userdetails.UsernameNotFoundException;
+    import org.springframework.stereotype.Service;
+
+    @Service
+    public class UserService implements UserDetailsService {
+        private UserRepository users;
+
+        public UserService(UserRepository users) {
+            this.users = users;
+        }
+
+        @Override
+        public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+            var user = users.findByEmail(username);
+            if (user.isPresent()) {
+                return user.get();
+            }
+            throw new UsernameNotFoundException("User '" + username + "' not found!");
+        }
+    }
+  learner_created: true
+- name: src/engine/WebQuizEngine.java
+  visible: true
+  text: |
+    package engine;
+
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+    @SpringBootApplication
+    public class WebQuizEngine {
+
+        public static void main(String[] args) {
+            SpringApplication.run(WebQuizEngine.class, args);
+        }
+
+    }
+  learner_created: true
+- name: build.gradle
+  visible: true
+  text: |
+    plugins {
+        id 'org.springframework.boot' version '2.2.2.RELEASE'
+        id 'java'
+    }
+
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = '11'
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceSets.main.resources.srcDirs = ["src/resources"]
+
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter'
+        implementation 'org.springframework.boot:spring-boot-starter-actuator'
+        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+
+        runtimeOnly 'com.h2database:h2'
+        implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+    }
+  learner_created: true
+- name: src/engine/models/Answer.java
+  visible: true
+  text: |
+    package engine.models;
+
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public class Answer {
+        private int[] answer;
+    }
+  learner_created: true
+- name: src/engine/repositories/QuizRepository.java
+  visible: true
+  text: |
+    package engine.repositories;
+
+    import engine.models.Quiz;
+    import org.springframework.data.repository.CrudRepository;
+    import org.springframework.stereotype.Repository;
+
+    @Repository
+    public interface QuizRepository extends CrudRepository<Quiz, Integer> {
+    }
+  learner_created: true
+- name: src/engine/controllers/QuizController.java
+  visible: true
+  text: |
+    package engine.controllers;
+
+    import engine.models.Answer;
+    import engine.models.Quiz;
+    import engine.models.Feedback;
+    import engine.models.User;
+    import engine.repositories.QuizRepository;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.security.core.annotation.AuthenticationPrincipal;
+    import org.springframework.validation.annotation.Validated;
+    import org.springframework.web.bind.annotation.*;
+
+    import javax.validation.Valid;
+    import java.util.Arrays;
+    import java.util.List;
+    import java.util.Optional;
+
+    @Validated
+    @RestController
+    @RequestMapping("api/quizzes")
+    public class QuizController {
+
+        private final QuizRepository quizzes;
+
+        public QuizController(QuizRepository quizzes) {
+            this.quizzes = quizzes;
+        }
+
+        @GetMapping
+        public ResponseEntity<Iterable<Quiz>> get() {
+            return ResponseEntity.ok(quizzes.findAll());
+        }
+
+        @GetMapping("{id}")
+        public ResponseEntity<Quiz> get(@PathVariable String id) {
+            var quiz = getQuiz(id);
+            if (quiz.isPresent()) {
+                return ResponseEntity.ok(quiz.get());
+            }
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        @DeleteMapping("{id}")
+        public ResponseEntity delete(@PathVariable String id, @AuthenticationPrincipal User user) {
+            var quiz = getQuiz(id);
+            if (quiz.isPresent()) {
+                if (quiz.get().getAuthor().equals(user)) {
+                    quizzes.delete(quiz.get());
+                    return new ResponseEntity(HttpStatus.NO_CONTENT);
+                } else {
+                    return new ResponseEntity(HttpStatus.FORBIDDEN);
+                }
+            }
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        @PostMapping
+        public ResponseEntity<Quiz> post(@Valid @RequestBody Quiz quiz, @AuthenticationPrincipal User user) {
+            quiz.setAuthor(user);
+            quiz = quizzes.save(quiz);
+            return ResponseEntity.ok(quiz);
+        }
+
+        @PostMapping("{id}/solve")
+        public ResponseEntity<Feedback> post(@PathVariable String id, @RequestBody Answer answer) {
+            var quiz = getQuiz(id);
+            if (quiz.isPresent()) {
+                var providedAnswers = answer == null || answer.getAnswer() == null
+                        ? new int[0]
+                        : Arrays.stream(answer.getAnswer())
+                        .distinct()
+                        .toArray();
+                var quizAnswers = quiz.get().getAnswer();
+                var correctAnswers = quizAnswers == null
+                        ? List.of()
+                        : quizAnswers;
+                if (correctAnswers.size() == providedAnswers.length &&
+                        Arrays.stream(answer.getAnswer())
+                                .filter(a -> correctAnswers.stream()
+                                        .filter(v -> ((Integer)v).intValue() == a)
+                                        .findAny()
+                                        .isPresent())
+                                .count() == correctAnswers.size()) {
+                    return ResponseEntity.ok(
+                            new Feedback(true, "Congratulations, you're right!"));
+                }
+                return ResponseEntity.ok(
+                        new Feedback(false, "Wrong answer! Please try again.")
+                );
+            }
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        private Optional<Quiz> getQuiz(String id) {
+            var idValue = Integer.parseInt(id);
+            var quiz = quizzes.findById(idValue);
+            return quiz;
+        }
+
+    }
+  learner_created: true
+- name: src/engine/models/Completion.java
+  visible: true
+  learner_created: true
+- name: src/engine/repositories/CompletionRepository.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/509/implement
-status: Unchecked
+status: Solved
 record: -1
