@@ -28,19 +28,14 @@ public class Quiz {
     @Column
     private String text;
     @Column
-    @Size(min = 2)
-    @NotNull
+    @Size(min=2) @NotNull
     @ElementCollection
     private List<String> options;
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column
     @ElementCollection
     private List<Integer> answer;
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     private User author;
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.REMOVE)
-    @JsonIgnore
-    private List<Completion> completions;
 }

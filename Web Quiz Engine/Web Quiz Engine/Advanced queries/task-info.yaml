@@ -1513,12 +1513,6 @@ files:
 
     }
   learner_created: true
-- name: src/engine/models/Completion.java
-  visible: true
-  learner_created: true
-- name: src/engine/repositories/CompletionRepository.java
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/509/implement
 status: Solved
 record: -1

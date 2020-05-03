@@ -36,7 +36,6 @@ public class Security extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/register").permitAll()
                 .antMatchers("/actuator/*").permitAll()
-                .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .csrf().disable()
