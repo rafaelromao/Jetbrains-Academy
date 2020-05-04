@@ -108,6 +108,9 @@ files:
         }
     }
   learner_created: false
+- name: src/analyzer/Analizer.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/343/implement
-status: Unchecked
+status: Solved
 record: -1
