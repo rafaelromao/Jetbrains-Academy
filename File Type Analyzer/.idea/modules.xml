@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/File_Type_Analyzer.iml" filepath="$PROJECT_DIR$/.idea/modules/File_Type_Analyzer.iml" group="File_Type_Analyzer" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task.iml" filepath="$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task.iml" group="File_Type_Analyzer/File_Type_Analyzer-task" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task_main.iml" filepath="$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task_main.iml" group="File_Type_Analyzer/File_Type_Analyzer-task" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task_test.iml" filepath="$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task_test.iml" group="File_Type_Analyzer/File_Type_Analyzer-task" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/util.iml" group="File_Type_Analyzer/util" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/util_main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/util_main.iml" group="File_Type_Analyzer/util" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/util_test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/util_test.iml" group="File_Type_Analyzer/util" />
+    </modules>
+  </component>
+</project>
