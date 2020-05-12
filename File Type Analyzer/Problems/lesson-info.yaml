@@ -1,3 +1,5 @@
 content:
 - All occurrences
 - Finding a string in a matrix
+- Non-overlapping occurrences of a pattern
+- Number of distinct substrings in a string

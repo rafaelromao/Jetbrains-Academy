@@ -14,6 +14,8 @@
             <option value="$PROJECT_DIR$/File Type Analyzer/task" />
             <option value="$PROJECT_DIR$/Problems/All occurrences" />
             <option value="$PROJECT_DIR$/Problems/Finding a string in a matrix" />
+            <option value="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern" />
+            <option value="$PROJECT_DIR$/Problems/Number of distinct substrings in a string" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
