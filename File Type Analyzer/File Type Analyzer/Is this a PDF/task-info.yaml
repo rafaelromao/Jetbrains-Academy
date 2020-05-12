@@ -108,9 +108,9 @@ files:
         }
     }
   learner_created: false
-- name: src/analyzer/Analizer.java
+- name: src/analyzer/Analyzer.java
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/343/implement
 status: Solved
-record: -1
+record: 1

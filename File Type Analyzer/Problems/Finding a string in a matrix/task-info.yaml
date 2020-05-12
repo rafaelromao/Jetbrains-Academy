@@ -1,0 +1,10 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "// write your answer here \n\nclass Task {\n  public static void main(String[]\
+    \ args) {\n    // put your code here\n  }\n}\n"
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9638
+status: Failed
+record: -1

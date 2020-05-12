@@ -172,6 +172,48 @@ files:
         }
     }
   learner_created: false
+- name: src/analyzer/Main.java
+  visible: true
+  text: |
+    package analyzer;
+
+    import java.io.FileInputStream;
+    import java.io.IOException;
+
+    public class Main {
+        private static final String UNKNOWN_FILE_TYPE = "Unknown file type";
+
+        public static void main(String[] args) {
+            var fileName = args[0];
+            var pattern = args[1];
+            var type = args[2];
+            var analyzer = new Analyzer();
+            try (var file = new FileInputStream(fileName)) {
+                var isMatch = analyzer.isMatch(file, pattern);
+                System.out.println(isMatch ? type : UNKNOWN_FILE_TYPE);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+  learner_created: true
+- name: src/analyzer/Analyzer.java
+  visible: true
+  text: |
+    package analyzer;
+
+    import java.io.*;
+
+    public class Analyzer {
+        public boolean isMatch(InputStream content, String pattern) throws IOException {
+            try (var reader = new InputStreamReader(content);
+                 var buffer = new BufferedReader(reader)) {
+                var lines = buffer.lines();
+                return lines.anyMatch(line -> line.matches(".*" + pattern + ".*"));
+            }
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/344/implement
 status: Unchecked
 record: -1
