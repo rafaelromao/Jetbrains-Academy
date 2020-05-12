@@ -33,8 +33,8 @@ class Task {
         var m = matrix[0].length;
         var j = 0;
         for (var i = 0; i < n * m; i++) {
-            var line = i % m;
-            var column = i / m;
+            var line = i / m;
+            var column = i % m;
             while (j > 0 && matrix[line][column] != pattern.charAt(j)) {
                 j = prefix[j - 1];
             }
@@ -43,7 +43,7 @@ class Task {
             }
             if (j == pattern.length()) {
                 var r = i - j - 1;
-                occurrences.add(new Integer[] { r % m, r / m });
+                occurrences.add(new Integer[] { r / m, r % m });
                 j = prefix[j - 1];
             }
         }
