@@ -34,7 +34,6 @@ class Task {
         for (var indexInMatrix = 0; indexInMatrix < length(matrix); indexInMatrix++) {
 
             var patternWidth = pattern[0].length;
-            // Get the char in a sub matrix of the size of the pattern
             var startLine = line(matrix, indexInMatrix);
             var startColumn = column(matrix, indexInMatrix);
             // If the pattern does not fit in the remaining lines or columns, no need to search
@@ -42,6 +41,7 @@ class Task {
                 startColumn > matrix[0].length - patternWidth) {
                 continue;
             }
+            // Get the char in a sub matrix of the size of the pattern
             var charAtSubMatrix = charAt(
                     matrix,
                     indexInPattern,

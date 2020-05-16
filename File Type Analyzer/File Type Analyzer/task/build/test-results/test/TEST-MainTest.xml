@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-16T14:26:36" hostname="home" time="0.07">
+  <properties/>
+  <testcase name="start" classname="MainTest" time="0.07"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+PDF document
+It took 0.003889401 seconds
+?[1;31m
+Start test 2?[0m
+DOC document
+It took 0.0034089 seconds
+?[1;31m
+Start test 3?[0m
+Unknown file type
+It took 0.0024679 seconds
+?[1;31m
+Start test 4?[0m
+Unknown file type
+It took 0.0031678 seconds
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

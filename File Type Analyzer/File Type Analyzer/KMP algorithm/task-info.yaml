@@ -214,6 +214,15 @@ files:
         }
     }
   learner_created: true
+- name: src/analyzer/SearchStrategy.java
+  visible: true
+  learner_created: true
+- name: src/analyzer/NaiveSearchStrategy.java
+  visible: true
+  learner_created: true
+- name: src/analyzer/KMPSearchStrategy.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/344/implement
-status: Unchecked
+status: Solved
 record: -1
