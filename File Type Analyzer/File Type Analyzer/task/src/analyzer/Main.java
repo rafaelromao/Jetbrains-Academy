@@ -1,41 +1,39 @@
 package analyzer;
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
-import static java.lang.System.nanoTime;
+import static java.util.stream.Collectors.toList;
 
 public class Main {
     private static final String UNKNOWN_FILE_TYPE = "Unknown file type";
 
-    public static void main(String[] args) {
-        var strategy = args[0];
-        var fileName = args[1];
-        var pattern = args[2];
-        var type = args[3];
-
-        SearchStrategy searchStrategy;
-        switch (strategy) {
-            case "--naive":
-                searchStrategy = new NaiveSearchStrategy(type);
-                break;
-            case "--KMP":
-                searchStrategy = new KMPSearchStrategy(type);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid search strategy: " + strategy);
-        }
-
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        var folder = args[0];
+        var pattern = args[1];
+        var type = args[2];
+        var searchStrategy = new KMPSearchStrategy(type);
+        var executor = Executors.newCachedThreadPool();
         var analyzer = new Analyzer(searchStrategy);
-        try (var file = new FileInputStream(fileName)) {
-            var start = nanoTime();
-            var result = analyzer.search(file, pattern);
-            result = result == null ? UNKNOWN_FILE_TYPE : result;
-            var duration = nanoTime() - start;
-            System.out.println(result);
-            System.out.println("It took " + (double) duration / 1_000_000_000.0 + " seconds");
-        } catch (IOException e) {
-            e.printStackTrace();
+        var files = new File(folder);
+        var searches = Arrays.stream(files.listFiles())
+                .<Callable<String>>map(file ->
+                        () -> {
+                            try (var stream = new FileInputStream(file)) {
+                                var result = analyzer.search(stream, pattern);
+                                result = result == null ? UNKNOWN_FILE_TYPE : result;
+                                return file.getName() + ": " + result;
+                            }
+                        }
+                )
+                .collect(toList());
+        for (var future : executor.invokeAll(searches)) {
+            System.out.println(future.get());
         }
+        System.out.println();
     }
 }
