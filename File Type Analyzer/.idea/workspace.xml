@@ -2,133 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7fd0b61-d66a-43d8-86f3-f850b92147f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/SearchPattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/SearchResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileContent/fileContent.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/jarAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_cedarsoftware_json_io_4_10_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_annotations_2_9_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_core_2_9_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_fasterxml_jackson_core_jackson_databind_2_9_8.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_hyperskill_hs_test_v7_0_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_stefanbirkner_system_rules_1_19_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_9.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_core_3_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_swing_3_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_swing_junit_3_8_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_easytesting_fest_reflect_1_4_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_easytesting_fest_util_1_2_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_3_21.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/File Type Analyzer/task/File_Type_Analyzer-task_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/File_Type_Analyzer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/All occurrences/Problems-All_occurrences.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/All occurrences/Problems-All_occurrences_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/All occurrences/Problems-All_occurrences_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Count the number of merge operations/Problems-Count_the_number_of_merge_operations.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Count the number of merge operations/Problems-Count_the_number_of_merge_operations_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Count the number of merge operations/Problems-Count_the_number_of_merge_operations_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Finding a string in a matrix/Problems-Finding_a_string_in_a_matrix.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Finding a string in a matrix/Problems-Finding_a_string_in_a_matrix_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Finding a string in a matrix/Problems-Finding_a_string_in_a_matrix_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Finding substrings in a matrix/Problems-Finding_substrings_in_a_matrix.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Finding substrings in a matrix/Problems-Finding_substrings_in_a_matrix_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Finding substrings in a matrix/Problems-Finding_substrings_in_a_matrix_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Max and Min/Problems-Max_and_Min.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Max and Min/Problems-Max_and_Min_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Max and Min/Problems-Max_and_Min_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Merge all sequences/Problems-Merge_all_sequences.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Merge all sequences/Problems-Merge_all_sequences_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Merge all sequences/Problems-Merge_all_sequences_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Non-overlapping occurrences of a pattern/Problems-Non-overlapping_occurrences_of_a_pattern.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Non-overlapping occurrences of a pattern/Problems-Non-overlapping_occurrences_of_a_pattern_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Non-overlapping occurrences of a pattern/Problems-Non-overlapping_occurrences_of_a_pattern_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Number of distinct substrings in a string/Problems-Number_of_distinct_substrings_in_a_string.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Number of distinct substrings in a string/Problems-Number_of_distinct_substrings_in_a_string_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Number of distinct substrings in a string/Problems-Number_of_distinct_substrings_in_a_string_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Pick your team/Problems-Pick_your_team.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Pick your team/Problems-Pick_your_team_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/Pick your team/Problems-Pick_your_team_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/The number of inversions/Problems-The_number_of_inversions.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/The number of inversions/Problems-The_number_of_inversions_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/The number of inversions/Problems-The_number_of_inversions_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/The number of required shifts/Problems-The_number_of_required_shifts.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/The number of required shifts/Problems-The_number_of_required_shifts_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Problems/The number of required shifts/Problems-The_number_of_required_shifts_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/util/util.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/util/util_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/util/util_test.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/A question of priorities/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/A question of priorities/task-info.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin.idx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_10027045264931645509_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_11296090797580650934_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_11371213211646370607_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_12060063088852647889_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_12351981973994239299_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_13174530182527219504_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_14516832684837208786_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_16592720621322460110_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_16893726403765126786_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_17399205919316484938_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_17597700042519548202_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_2052522219211076512_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_3520628671200771421_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_5365133959756119369_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_5801141455422113329_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_7580588434250522308_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_775554258070818220_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_8367722181015507713_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_8492688758193063248_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/tmp/test/jar_extract_8810410033814467241_tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/Analyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/Analyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/KMPSearchStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/KMPSearchStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/NaiveSearchStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/NaiveSearchStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/SearchStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/src/analyzer/SearchStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/Rabin-Karp/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/Rabin-Karp/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/test/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/test/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +80,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -251,7 +129,10 @@
       <option name="presentableId" value="Default" />
       <updated>1590521809575</updated>
       <workItem from="1590521816378" duration="6938000" />
-      <workItem from="1590528774377" duration="1347000" />
+      <workItem from="1590528774377" duration="2221000" />
+      <workItem from="1590531012957" duration="61000" />
+      <workItem from="1590531086261" duration="161000" />
+      <workItem from="1590531346978" duration="33000" />
     </task>
     <servers />
   </component>
@@ -262,10 +143,10 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1016" y="320" width="2375" height="1479" key="#Project_Structure" timestamp="1590522074960">
+    <state x="1016" y="320" width="2375" height="1479" key="#Project_Structure" timestamp="1590531359834">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state x="1016" y="320" width="2375" height="1479" key="#Project_Structure/0.0.3840.2120@0.0.3840.2120" timestamp="1590522074960" />
+    <state x="1016" y="320" width="2375" height="1479" key="#Project_Structure/0.0.3840.2120@0.0.3840.2120" timestamp="1590531359834" />
     <state x="1129" y="636" key="#com.intellij.debugger.streams.ui.EvaluationAwareTraceWindow" timestamp="1590528364586">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
@@ -286,37 +167,37 @@
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="92" y="92" width="3656" height="1936" key="DiffContextDialog/0.0.3840.2120@0.0.3840.2120" timestamp="1590528760122" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.bottom" timestamp="1590530091598">
+    <state width="1239" height="1896" key="GridCell.Tab.0.bottom" timestamp="1590530997137">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.0.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091598" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.center" timestamp="1590530091598">
+    <state width="1239" height="1896" key="GridCell.Tab.0.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
+    <state width="1239" height="1896" key="GridCell.Tab.0.center" timestamp="1590530997137">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.0.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091598" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.left" timestamp="1590530091598">
+    <state width="1239" height="1896" key="GridCell.Tab.0.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
+    <state width="1239" height="1896" key="GridCell.Tab.0.left" timestamp="1590530997137">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.0.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091598" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.right" timestamp="1590530091598">
+    <state width="1239" height="1896" key="GridCell.Tab.0.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
+    <state width="1239" height="1896" key="GridCell.Tab.0.right" timestamp="1590530997137">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.0.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091598" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.bottom" timestamp="1590530091457">
+    <state width="1239" height="1896" key="GridCell.Tab.0.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
+    <state width="1239" height="1896" key="GridCell.Tab.1.bottom" timestamp="1590530997138">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.1.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091457" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.center" timestamp="1590530091457">
+    <state width="1239" height="1896" key="GridCell.Tab.1.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
+    <state width="1239" height="1896" key="GridCell.Tab.1.center" timestamp="1590530997138">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.1.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091457" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.left" timestamp="1590530091457">
+    <state width="1239" height="1896" key="GridCell.Tab.1.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
+    <state width="1239" height="1896" key="GridCell.Tab.1.left" timestamp="1590530997137">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.1.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091457" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.right" timestamp="1590530091457">
+    <state width="1239" height="1896" key="GridCell.Tab.1.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
+    <state width="1239" height="1896" key="GridCell.Tab.1.right" timestamp="1590530997138">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
-    <state width="1239" height="1896" key="GridCell.Tab.1.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530091457" />
+    <state width="1239" height="1896" key="GridCell.Tab.1.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
   </component>
 </project>

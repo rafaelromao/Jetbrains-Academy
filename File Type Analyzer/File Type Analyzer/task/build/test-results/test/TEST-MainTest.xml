@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-26T21:55:39" hostname="home" time="0.278">
+<testsuite name="MainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-05-26T22:16:25" hostname="home" time="0.293">
   <properties/>
-  <testcase name="start" classname="MainTest" time="0.278"/>
+  <testcase name="start" classname="MainTest" time="0.293"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 text.pdf: Unknown file type
