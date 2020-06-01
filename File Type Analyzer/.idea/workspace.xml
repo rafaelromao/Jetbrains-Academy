@@ -2,9 +2,49 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7fd0b61-d66a-43d8-86f3-f850b92147f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/Rabin-Karp/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/Rabin-Karp/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/jetbrains-academy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/A question of priorities/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/A question of priorities/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/A question of priorities/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Is this a PDF?/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Is this a PDF?/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Is this a PDF?/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/KMP algorithm/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/KMP algorithm/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/KMP algorithm/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Rabin-Karp/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Rabin-Karp/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Rabin-Karp/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Wanted!/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Wanted!/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Wanted!/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/lesson-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/task/src/analyzer/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/task/test/FileTypeAnalyzerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/test/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/test/MainTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
