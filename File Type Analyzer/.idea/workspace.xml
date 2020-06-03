@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7fd0b61-d66a-43d8-86f3-f850b92147f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/5/e594587fe7a77a9e52affc6fe9a9713daca9b380" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/lesson-info.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +150,7 @@
       <workItem from="1591120985214" duration="94000" />
       <workItem from="1591121120347" duration="988000" />
       <workItem from="1591123120746" duration="18219000" />
-      <workItem from="1591197271919" duration="6000" />
+      <workItem from="1591197271919" duration="2976000" />
     </task>
     <servers />
   </component>
@@ -277,10 +276,11 @@
     <state x="1901" y="-541" key="SettingsEditor/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591030207742" />
     <state x="1901" y="-683" key="SettingsEditor/0.23.1440.797/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591123760614" />
     <state x="1901" y="-683" key="SettingsEditor/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591126534028" />
-    <state x="2138" y="-577" key="extract.method.dialog" timestamp="1591132431058">
+    <state x="2138" y="-577" key="extract.method.dialog" timestamp="1591206006349">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state x="2138" y="-577" key="extract.method.dialog/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591132431058" />
+    <state x="2138" y="-577" key="extract.method.dialog/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591206006349" />
     <state width="600" height="428" key="javadoc.popup" timestamp="1591123840947">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
