@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class MainWrapper {
     public static void main(String[] args) throws IOException {
-        FileInputStream is = new FileInputStream(new File("/Users/rromao/Downloads/hyperskill-9636-test-01.txt"));
+        FileInputStream is = new FileInputStream(new File("/Users/rromao/Downloads/hyperskill-9636-test-09.txt"));
         System.setIn(is);
         Main.main(args);
     }

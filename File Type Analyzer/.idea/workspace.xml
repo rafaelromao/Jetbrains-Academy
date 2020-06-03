@@ -2,80 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7fd0b61-d66a-43d8-86f3-f850b92147f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/rromao.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/b/8b91c77c51bb7fd6b2d90894d5310b72caf69ace" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1ee1ea9b5501d0d5dfc01eb33010101aab4ffd2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/5/e594587fe7a77a9e52affc6fe9a9713daca9b380" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/MainWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/RabinKarp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/task-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/task-remote-info.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/task.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/lesson-info.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/course-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Repetitive Substring/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Repetitive Substring/src/MainWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/MainWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Repetitive Substring/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task-info.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +152,7 @@
       <workItem from="1591117328465" duration="5000" />
       <workItem from="1591120985214" duration="94000" />
       <workItem from="1591121120347" duration="988000" />
-      <workItem from="1591123120746" duration="16795000" />
+      <workItem from="1591123120746" duration="18219000" />
     </task>
     <servers />
   </component>
@@ -271,66 +208,66 @@
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="92" y="92" width="3656" height="1936" key="DiffContextDialog/0.0.3840.2120@0.0.3840.2120" timestamp="1590528760122" />
-    <state width="589" height="265" key="GridCell.Tab.0.bottom" timestamp="1591193176217">
+    <state width="938" height="290" key="GridCell.Tab.0.bottom" timestamp="1591194238172">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
     <state width="938" height="291" key="GridCell.Tab.0.bottom/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431997" />
     <state width="589" height="264" key="GridCell.Tab.0.bottom/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
     <state width="589" height="264" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378460" />
-    <state width="589" height="265" key="GridCell.Tab.0.bottom/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
-    <state width="589" height="265" key="GridCell.Tab.0.center" timestamp="1591193176216">
+    <state width="938" height="290" key="GridCell.Tab.0.bottom/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591194238172" />
+    <state width="938" height="290" key="GridCell.Tab.0.center" timestamp="1591194238171">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
     <state width="938" height="291" key="GridCell.Tab.0.center/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431997" />
     <state width="589" height="264" key="GridCell.Tab.0.center/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765224" />
     <state width="589" height="264" key="GridCell.Tab.0.center/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378460" />
-    <state width="589" height="265" key="GridCell.Tab.0.center/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176216" />
-    <state width="589" height="265" key="GridCell.Tab.0.left" timestamp="1591193176216">
+    <state width="938" height="290" key="GridCell.Tab.0.center/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591194238171" />
+    <state width="938" height="290" key="GridCell.Tab.0.left" timestamp="1591194238171">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
     <state width="938" height="291" key="GridCell.Tab.0.left/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431996" />
     <state width="589" height="264" key="GridCell.Tab.0.left/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765224" />
     <state width="589" height="264" key="GridCell.Tab.0.left/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378460" />
-    <state width="589" height="265" key="GridCell.Tab.0.left/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176216" />
-    <state width="589" height="265" key="GridCell.Tab.0.right" timestamp="1591193176217">
+    <state width="938" height="290" key="GridCell.Tab.0.left/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591194238171" />
+    <state width="938" height="290" key="GridCell.Tab.0.right" timestamp="1591194238171">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
     <state width="938" height="291" key="GridCell.Tab.0.right/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431997" />
     <state width="589" height="264" key="GridCell.Tab.0.right/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
     <state width="589" height="264" key="GridCell.Tab.0.right/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378564" />
-    <state width="589" height="265" key="GridCell.Tab.0.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
-    <state width="589" height="265" key="GridCell.Tab.1.bottom" timestamp="1591193176218">
+    <state width="938" height="290" key="GridCell.Tab.0.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591194238171" />
+    <state width="589" height="266" key="GridCell.Tab.1.bottom" timestamp="1591193492951">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
     <state width="589" height="264" key="GridCell.Tab.1.bottom/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765226" />
     <state width="589" height="264" key="GridCell.Tab.1.bottom/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
-    <state width="589" height="265" key="GridCell.Tab.1.bottom/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176218" />
-    <state width="589" height="265" key="GridCell.Tab.1.center" timestamp="1591193176217">
+    <state width="589" height="266" key="GridCell.Tab.1.bottom/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193492951" />
+    <state width="589" height="266" key="GridCell.Tab.1.center" timestamp="1591193492950">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
     <state width="589" height="264" key="GridCell.Tab.1.center/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
     <state width="589" height="264" key="GridCell.Tab.1.center/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
-    <state width="589" height="265" key="GridCell.Tab.1.center/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
-    <state width="589" height="265" key="GridCell.Tab.1.left" timestamp="1591193176217">
+    <state width="589" height="266" key="GridCell.Tab.1.center/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193492950" />
+    <state width="589" height="266" key="GridCell.Tab.1.left" timestamp="1591193492950">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
     <state width="589" height="264" key="GridCell.Tab.1.left/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
     <state width="589" height="264" key="GridCell.Tab.1.left/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
-    <state width="589" height="265" key="GridCell.Tab.1.left/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
-    <state width="589" height="265" key="GridCell.Tab.1.right" timestamp="1591193176218">
+    <state width="589" height="266" key="GridCell.Tab.1.left/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193492950" />
+    <state width="589" height="266" key="GridCell.Tab.1.right" timestamp="1591193492950">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
     <state width="589" height="264" key="GridCell.Tab.1.right/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
     <state width="589" height="264" key="GridCell.Tab.1.right/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
-    <state width="589" height="265" key="GridCell.Tab.1.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176218" />
+    <state width="589" height="266" key="GridCell.Tab.1.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193492950" />
     <state x="1926" y="-735" width="948" height="601" key="Registry" timestamp="1591131763687">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>

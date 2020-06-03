@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Main {
     private static int k;
-    private static final int a = 53;
-    private static final long m = 1_000_000_000 + 9L;
-    private static final Map<Long, String> map = new HashMap<>();
+    private static final int A = 53;
+    private static final long M = 1_000_000_000 + 9L;
+    private static final Map<Long, Integer> HASH_MAP = new HashMap<>();
 
     public static void main(String[] args) {
         try (var scanner = new Scanner(System.in)) {
@@ -23,9 +23,9 @@ public class Main {
             var includedChar = t.charAt(i);
             var includedLong = charToLong(includedChar);
             currentHash += includedLong * pow;
-            currentHash %= m;
+            currentHash %= M;
             if (i < t.length() - 1) {
-                pow = pow * a % m;
+                pow = pow * A % M;
             }
         }
         map(t, t.length() - k, currentHash);
@@ -35,24 +35,28 @@ public class Main {
             var removedLong = charToLong(removedChar);
             var includedChar = t.charAt(i);
             var includedLong = charToLong(includedChar);
-            currentHash = (currentHash - removedLong * pow % m + m) * a % m;
-            currentHash = (currentHash + includedLong) % m;
-            var f = map(t, i, currentHash);
-            if (f.isPresent()) {
-                return f;
+            currentHash = (currentHash - removedLong * pow % M + M) * A % M;
+            currentHash = (currentHash + includedLong) % M;
+            var occurrence = map(t, i, currentHash);
+            if (occurrence.isPresent()) {
+                return occurrence;
             }
         }
         return Optional.empty();
     }
 
     private static Optional<String> map(String t, int i, long h) {
-        var s = t.substring(i, i + k);
-        if (map.containsKey(h)) {
-            if (map.get(h).equals(s)) {
-                return Optional.of(s);
+        if (HASH_MAP.containsKey(h)) {
+            // It is important to store the start position instead of the substring,
+            // otherwise it will cause 4 seconds of GC and exceed the time limit
+            var now = t.substring(i, i + k);
+            var j = HASH_MAP.get(h);
+            var then = t.substring(j, j + k);
+            if (then.equals(now)) {
+                return Optional.of(now);
             }
         }
-        map.put(h, s);
+        HASH_MAP.put(h, i);
         return Optional.empty();
     }
 
