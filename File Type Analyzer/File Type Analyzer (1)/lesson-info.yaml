@@ -1,9 +1,0 @@
-type: framework
-custom_name: File Type Analyzer
-content:
-- Is this a PDF?
-- KMP algorithm
-- Wanted!
-- A question of priorities
-- Rabin-Karp
-current_task: 0
