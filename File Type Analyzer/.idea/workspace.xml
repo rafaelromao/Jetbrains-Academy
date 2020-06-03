@@ -2,50 +2,80 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7fd0b61-d66a-43d8-86f3-f850b92147f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/jetbrains-academy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/A question of priorities/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/A question of priorities/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/A question of priorities/task.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Is this a PDF?/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Is this a PDF?/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Is this a PDF?/task.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/KMP algorithm/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/KMP algorithm/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/KMP algorithm/task.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Rabin-Karp/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Rabin-Karp/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Rabin-Karp/task.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Wanted!/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Wanted!/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/Wanted!/task.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/lesson-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/task/src/analyzer/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/File Type Analyzer (1)/task/test/FileTypeAnalyzerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/rromao.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/b/8b91c77c51bb7fd6b2d90894d5310b72caf69ace" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1ee1ea9b5501d0d5dfc01eb33010101aab4ffd2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/5/e594587fe7a77a9e52affc6fe9a9713daca9b380" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/MainWrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/src/RabinKarp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Problems/Repetitive Substring/task.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.3.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/classes/MainTest.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/reports/tests/test/packages/default-package.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/TEST-MainTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/output.bin.idx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/File Type Analyzer/task/test/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/File Type Analyzer/task/test/MainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/All occurrences/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Count the number of merge operations/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding a string in a matrix/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Finding substrings in a matrix/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Max and Min/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Merge all sequences/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Number of distinct substrings in a string/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Pick your team/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of inversions/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/task-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/task-remote-info.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/The number of required shifts/task.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +96,9 @@
         <task path="$PROJECT_DIR$">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/Problems/Repetitive Substring">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -76,18 +109,18 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="File_Type_Analyzer" type="f1a62948:ProjectNode" />
-                <item name="File_Type_Analyzer-task" type="2d1252cf:ModuleNode" />
+                <item name="Problems-Repetitive_Substring" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="File_Type_Analyzer" type="f1a62948:ProjectNode" />
-                <item name="File_Type_Analyzer-task" type="2d1252cf:ModuleNode" />
+                <item name="Problems-Repetitive_Substring" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="File_Type_Analyzer" type="f1a62948:ProjectNode" />
-                <item name="File_Type_Analyzer-task" type="2d1252cf:ModuleNode" />
+                <item name="Problems-Repetitive_Substring" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="verification" type="c8890929:TasksNode$1" />
               </path>
@@ -132,32 +165,38 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.38273454" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RunManager">
-    <configuration name="File Type Analyzer:File Type Analyzer:task [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/File Type Analyzer/task" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.MainWrapper">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="File_Type_Analyzer.Problems-Repetitive_Substring.main" />
+      <option name="REDIRECT_INPUT" value="true" />
+      <option name="INPUT_FILE" value="$USER_HOME$/Downloads/hyperskill-9636-test-01.rtf" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
+    <configuration name="MainWrapper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainWrapper" />
+      <module name="File_Type_Analyzer.Problems-Repetitive_Substring.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.MainWrapper" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.File Type Analyzer:File Type Analyzer:task [test]" />
+        <item itemvalue="Application.MainWrapper" />
       </list>
     </recent_temporary>
   </component>
@@ -173,6 +212,10 @@
       <workItem from="1590531012957" duration="61000" />
       <workItem from="1590531086261" duration="161000" />
       <workItem from="1590531346978" duration="33000" />
+      <workItem from="1591117328465" duration="5000" />
+      <workItem from="1591120985214" duration="94000" />
+      <workItem from="1591121120347" duration="988000" />
+      <workItem from="1591123120746" duration="16795000" />
     </task>
     <servers />
   </component>
@@ -183,61 +226,132 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1016" y="320" width="2375" height="1479" key="#Project_Structure" timestamp="1590531359834">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state x="2009" y="-703" key="#Main" timestamp="1591188823642">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="2009" y="-703" key="#Main/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591128983165" />
+    <state x="2009" y="-703" key="#Main/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591188823642" />
+    <state x="2115" y="-460" key="#Project_Settings" timestamp="1591134603239">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="2115" y="-460" key="#Project_Settings/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591134603239" />
+    <state x="1948" y="-699" width="2375" height="1479" key="#Project_Structure" timestamp="1591121111240">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state x="1016" y="320" width="2375" height="1479" key="#Project_Structure/0.0.3840.2120@0.0.3840.2120" timestamp="1590531359834" />
+    <state x="1948" y="-699" key="#Project_Structure/0.23.1440.797/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591121111240" />
     <state x="1129" y="636" key="#com.intellij.debugger.streams.ui.EvaluationAwareTraceWindow" timestamp="1590528364586">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="1129" y="636" key="#com.intellij.debugger.streams.ui.EvaluationAwareTraceWindow/0.0.3840.2120@0.0.3840.2120" timestamp="1590528364586" />
+    <state x="1864" y="-660" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1591189762440">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="1864" y="-660" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591128961917" />
+    <state x="1864" y="-660" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591189762440" />
     <state x="1584" y="567" key="#com.intellij.ide.util.MemberChooser" timestamp="1590524784444">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="1584" y="567" key="#com.intellij.ide.util.MemberChooser/0.0.3840.2120@0.0.3840.2120" timestamp="1590524784444" />
+    <state x="2137" y="-525" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1591128864989">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="2137" y="-525" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591128864989" />
+    <state x="2137" y="-525" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591128683575" />
     <state x="965" y="391" width="1910" height="1505" key="CommitChangelistDialog2" timestamp="1590524452954">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="965" y="391" width="1910" height="1505" key="CommitChangelistDialog2/0.0.3840.2120@0.0.3840.2120" timestamp="1590524452954" />
-    <state width="1345" height="765" key="DebuggerActiveHint" timestamp="1590529115095">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="673" height="390" key="DebuggerActiveHint" timestamp="1591189928332">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1345" height="765" key="DebuggerActiveHint/0.0.3840.2120@0.0.3840.2120" timestamp="1590529115095" />
+    <state width="673" height="390" key="DebuggerActiveHint/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591189928332" />
     <state x="92" y="92" width="3656" height="1936" key="DiffContextDialog" timestamp="1590528760122">
       <screen x="0" y="0" width="3840" height="2120" />
     </state>
     <state x="92" y="92" width="3656" height="1936" key="DiffContextDialog/0.0.3840.2120@0.0.3840.2120" timestamp="1590528760122" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.bottom" timestamp="1590530997137">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="589" height="265" key="GridCell.Tab.0.bottom" timestamp="1591193176217">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.center" timestamp="1590530997137">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="938" height="291" key="GridCell.Tab.0.bottom/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431997" />
+    <state width="589" height="264" key="GridCell.Tab.0.bottom/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
+    <state width="589" height="264" key="GridCell.Tab.0.bottom/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378460" />
+    <state width="589" height="265" key="GridCell.Tab.0.bottom/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
+    <state width="589" height="265" key="GridCell.Tab.0.center" timestamp="1591193176216">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.left" timestamp="1590530997137">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="938" height="291" key="GridCell.Tab.0.center/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431997" />
+    <state width="589" height="264" key="GridCell.Tab.0.center/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765224" />
+    <state width="589" height="264" key="GridCell.Tab.0.center/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378460" />
+    <state width="589" height="265" key="GridCell.Tab.0.center/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176216" />
+    <state width="589" height="265" key="GridCell.Tab.0.left" timestamp="1591193176216">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
-    <state width="1239" height="1896" key="GridCell.Tab.0.right" timestamp="1590530997137">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="938" height="291" key="GridCell.Tab.0.left/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431996" />
+    <state width="589" height="264" key="GridCell.Tab.0.left/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765224" />
+    <state width="589" height="264" key="GridCell.Tab.0.left/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378460" />
+    <state width="589" height="265" key="GridCell.Tab.0.left/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176216" />
+    <state width="589" height="265" key="GridCell.Tab.0.right" timestamp="1591193176217">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.0.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.bottom" timestamp="1590530997138">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="938" height="291" key="GridCell.Tab.0.right/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591105431997" />
+    <state width="589" height="264" key="GridCell.Tab.0.right/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
+    <state width="589" height="264" key="GridCell.Tab.0.right/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378564" />
+    <state width="589" height="265" key="GridCell.Tab.0.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
+    <state width="589" height="265" key="GridCell.Tab.1.bottom" timestamp="1591193176218">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.bottom/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.center" timestamp="1590530997138">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="589" height="264" key="GridCell.Tab.1.bottom/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765226" />
+    <state width="589" height="264" key="GridCell.Tab.1.bottom/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
+    <state width="589" height="265" key="GridCell.Tab.1.bottom/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176218" />
+    <state width="589" height="265" key="GridCell.Tab.1.center" timestamp="1591193176217">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.center/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.left" timestamp="1590530997137">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="589" height="264" key="GridCell.Tab.1.center/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
+    <state width="589" height="264" key="GridCell.Tab.1.center/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
+    <state width="589" height="265" key="GridCell.Tab.1.center/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
+    <state width="589" height="265" key="GridCell.Tab.1.left" timestamp="1591193176217">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.left/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997137" />
-    <state width="1239" height="1896" key="GridCell.Tab.1.right" timestamp="1590530997138">
-      <screen x="0" y="0" width="3840" height="2120" />
+    <state width="589" height="264" key="GridCell.Tab.1.left/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
+    <state width="589" height="264" key="GridCell.Tab.1.left/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
+    <state width="589" height="265" key="GridCell.Tab.1.left/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176217" />
+    <state width="589" height="265" key="GridCell.Tab.1.right" timestamp="1591193176218">
+      <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
     <state width="1239" height="1896" key="GridCell.Tab.1.right/0.0.3840.2120@0.0.3840.2120" timestamp="1590530997138" />
+    <state width="589" height="264" key="GridCell.Tab.1.right/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
+    <state width="589" height="264" key="GridCell.Tab.1.right/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
+    <state width="589" height="265" key="GridCell.Tab.1.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591193176218" />
+    <state x="1926" y="-735" width="948" height="601" key="Registry" timestamp="1591131763687">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="1926" y="-735" width="948" height="601" key="Registry/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591131763687" />
+    <state x="1901" y="-683" key="SettingsEditor" timestamp="1591126534028">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="1901" y="-541" key="SettingsEditor/0.23.1440.797/1440.-720.1920.1080@1440.-720.1920.1080" timestamp="1591030207742" />
+    <state x="1901" y="-683" key="SettingsEditor/0.23.1440.797/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591123760614" />
+    <state x="1901" y="-683" key="SettingsEditor/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591126534028" />
+    <state x="2138" y="-577" key="extract.method.dialog" timestamp="1591132431058">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="2138" y="-577" key="extract.method.dialog/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591132431058" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1591123840947">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.23.1440.797/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591123840947" />
+    <state x="2063" y="-623" width="672" height="678" key="search.everywhere.popup" timestamp="1591131704589">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="2063" y="-623" width="672" height="678" key="search.everywhere.popup/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591131704589" />
   </component>
 </project>

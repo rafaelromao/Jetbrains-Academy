@@ -1,0 +1,16 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: "public class Main {\n    public static void main(String[] args) {\n     \
+    \    // put your code here       \n    }\n}"
+  learner_created: false
+- name: src/RabinKarp.java
+  visible: true
+  learner_created: true
+- name: src/MainWrapper.java
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/9636
+status: Failed
+record: -1

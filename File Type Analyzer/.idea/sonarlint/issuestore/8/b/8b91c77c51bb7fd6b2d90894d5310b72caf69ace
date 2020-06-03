@@ -1,0 +1,10 @@
+
+7
+java:S1220""Move this file to a named package.8õš¢²§.
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(İçÑÓøÿÿÿÿ8Ä‚©²§.
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‚ùÖë8ÎÌÊ²§.
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ì¯ì8¹à²²§.
+C
+java:S1172"&Remove these unused method parameters.(‚ùÖë8ÎÌÊ²§.
