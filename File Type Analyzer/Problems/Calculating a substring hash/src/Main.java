@@ -15,12 +15,16 @@ public class Main {
                 ijs[i][1] = scanner.nextInt();
             }
             var prefixes = getPrefixHashes(t);
-            prefixes.stream().forEach(p -> System.out.printf("%s ", p));
-            System.out.println();
+            for (var i = 0; i < prefixes.size(); i++) {
+                System.out.print(prefixes.get(i));
+                System.out.print(i == prefixes.size() - 1 ? "\n" : " ");
+            }
             for (var ij : ijs) {
                 var i = ij[0];
                 var j = ij[1];
-                var r = (prefixes.get(j - 1) - prefixes.get(i - 1) + M) % M;
+                var pj = prefixes.get(j - 1);
+                var pi = i > 0 ? prefixes.get(i - 1) : 0;
+                var r = (pj - pi + M) % M;
                 System.out.printf("%s ", r);
             }
         }

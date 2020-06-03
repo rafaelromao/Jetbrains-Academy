@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7fd0b61-d66a-43d8-86f3-f850b92147f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Problems/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Calculating a substring hash/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Problems/Calculating a substring hash/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Problems/Calculating a substring hash/task-info.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +146,7 @@
       <workItem from="1591120985214" duration="94000" />
       <workItem from="1591121120347" duration="988000" />
       <workItem from="1591123120746" duration="18219000" />
-      <workItem from="1591197271919" duration="2976000" />
+      <workItem from="1591197271919" duration="4498000" />
     </task>
     <servers />
   </component>
@@ -266,6 +262,10 @@
     <state width="589" height="264" key="GridCell.Tab.1.right/0.23.1440.798/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591190765225" />
     <state width="589" height="264" key="GridCell.Tab.1.right/0.23.1440.801/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591191378461" />
     <state width="589" height="266" key="GridCell.Tab.1.right/0.23.1440.804/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591195914607" />
+    <state x="1988" y="-572" key="IDE.errors.dialog" timestamp="1591209145726">
+      <screen x="1440" y="-862" width="1920" height="1080" />
+    </state>
+    <state x="1988" y="-572" key="IDE.errors.dialog/0.23.1440.808/1440.-862.1920.1080@1440.-862.1920.1080" timestamp="1591209145726" />
     <state x="1926" y="-735" width="948" height="601" key="Registry" timestamp="1591131763687">
       <screen x="1440" y="-862" width="1920" height="1080" />
     </state>
