@@ -7,24 +7,13 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$PROJECT_DIR$/../../../../ProgramData/chocolatey/lib/gradle/tools/gradle-6.3" />
+        <option name="gradleHome" value="$USER_HOME$/ProgramData/chocolatey/lib/gradle/tools/gradle-6.3" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/File Type Analyzer (1)/task" />
             <option value="$PROJECT_DIR$/File Type Analyzer/task" />
-            <option value="$PROJECT_DIR$/Problems/All occurrences" />
-            <option value="$PROJECT_DIR$/Problems/Count the number of merge operations" />
-            <option value="$PROJECT_DIR$/Problems/Finding a string in a matrix" />
-            <option value="$PROJECT_DIR$/Problems/Finding substrings in a matrix" />
-            <option value="$PROJECT_DIR$/Problems/Max and Min" />
-            <option value="$PROJECT_DIR$/Problems/Merge all sequences" />
-            <option value="$PROJECT_DIR$/Problems/Non-overlapping occurrences of a pattern" />
-            <option value="$PROJECT_DIR$/Problems/Number of distinct substrings in a string" />
-            <option value="$PROJECT_DIR$/Problems/Pick your team" />
             <option value="$PROJECT_DIR$/Problems/Repetitive Substring" />
-            <option value="$PROJECT_DIR$/Problems/The number of inversions" />
-            <option value="$PROJECT_DIR$/Problems/The number of required shifts" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>

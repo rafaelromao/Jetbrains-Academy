@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -7,10 +8,13 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Blockchain" />
-        <option name="gradleJvm" value="adopt-openj9-11" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Blockchain" />
+            <option value="$PROJECT_DIR$/Blockchain/Blockchain/task" />
+            <option value="$PROJECT_DIR$/Blockchain/util" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
@@ -20,10 +24,28 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Contacts" />
-        <option name="gradleJvm" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Contacts" />
+            <option value="$PROJECT_DIR$/Contacts/Contacts/task" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (1)/Violator" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (10)/Generating passwords" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (11)/Concat all strings without digits" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (12)/Convert to bytes" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (13)/Reverse input text" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (14)/Count words" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (2)/Quality control system" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (3)/Getting the type of comparator" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (4)/Photocopiers" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (5)/The star figure" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (6)/Rotate a rectange array" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (7)/Check sudoku" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (8)/The lucky ticket" />
+            <option value="$PROJECT_DIR$/Contacts/Problems (9)/Compression algorithm" />
+            <option value="$PROJECT_DIR$/Contacts/Problems/Violator" />
+            <option value="$PROJECT_DIR$/Contacts/util" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
@@ -33,10 +55,15 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/File Type Analyzer" />
-        <option name="gradleJvm" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/File Type Analyzer" />
+            <option value="$PROJECT_DIR$/File Type Analyzer/File Type Analyzer (1)/task" />
+            <option value="$PROJECT_DIR$/File Type Analyzer/File Type Analyzer/task" />
+            <option value="$PROJECT_DIR$/File Type Analyzer/Problems/Repetitive Substring" />
+            <option value="$PROJECT_DIR$/File Type Analyzer/util" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
@@ -46,10 +73,29 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Phone Book" />
-        <option name="gradleJvm" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Phone Book" />
+            <option value="$PROJECT_DIR$/Phone Book/Phone Book/task" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Alternating Fibonacci numbers" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Find a fixed point in an array" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Find array elements in another array" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Fix the method to print strings in the reverse order" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Implementing the EntrySet method" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Move the pivot" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Movie" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/N-th power" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Number of decompositions" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Phone Book" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Print comparisons" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Remove HTML tags" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Remove comments" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Remove extra spaces" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Removing" />
+            <option value="$PROJECT_DIR$/Phone Book/Problems/Search in a descending ordered array" />
+            <option value="$PROJECT_DIR$/Phone Book/util" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
@@ -59,10 +105,13 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Readability Score" />
-        <option name="gradleJvm" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Readability Score" />
+            <option value="$PROJECT_DIR$/Readability Score/Readability Score/task" />
+            <option value="$PROJECT_DIR$/Readability Score/util" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
@@ -72,10 +121,13 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Simple Search Engine" />
-        <option name="gradleJvm" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Simple Search Engine" />
+            <option value="$PROJECT_DIR$/Simple Search Engine/Simple Search Engine/task" />
+            <option value="$PROJECT_DIR$/Simple Search Engine/util" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
@@ -85,10 +137,12 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/Web Quiz Engine" />
-        <option name="gradleJvm" />
+        <option name="gradleHome" value="/usr/local/Cellar/gradle/6.4.1/libexec" />
+        <option name="gradleJvm" value="11" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/Web Quiz Engine" />
+            <option value="$PROJECT_DIR$/Web Quiz Engine/Web Quiz Engine/task" />
           </set>
         </option>
         <option name="useQualifiedModuleNames" value="true" />
