@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
@@ -8,7 +7,7 @@ public class Main {
     private static final long M = 1_000_000_000 + 9L;
     private static final List<Long> POWS = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         try (var reader = new InputStreamReader(System.in);
              var buffer = new BufferedReader(reader)) {
             var s = buffer.readLine();
@@ -25,18 +24,23 @@ public class Main {
                 var hsij = substringHashWithMultiplier(prefixHashes, ijkn, 0, 1);
                 var hskn = substringHashWithMultiplier(prefixHashes, ijkn, 2, 3);
 
-                //Compensate the multipliers (p^i factors), according to https://cp-algorithms.com/string/string-hashing.html
+                // Compensate the multipliers (p^i factors), according to
+                // https://cp-algorithms.com/string/string-hashing.html
                 if (ijkn[0] < ijkn[2]) {
                     hsij *= POWS.get(ijkn[2] - ijkn[0]);
                 } else {
-                    hsij *= POWS.get(ijkn[0] - ijkn[2]);
+                    hskn *= POWS.get(ijkn[0] - ijkn[2]);
                 }
                 hsij %= M;
                 hskn %= M;
 
-                if (hsij == hskn) count++;
+                if (hsij == hskn) {
+                    count++;
+                }
             }
             System.out.println(count);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -48,8 +52,7 @@ public class Main {
         }
         var hpj = prefixHashes.get(j - 1);
         var hpi = i == 0 ? 0 : prefixHashes.get(i - 1);
-        var hij = (hpj - hpi + M) % M;
-        return hij;
+        return (hpj - hpi + M) % M;
     }
 
     private static List<Long> prefixHashes(String text) {
@@ -62,18 +65,20 @@ public class Main {
         return hashes;
     }
 
-    private static long prefixHash(String text, int index, long hash) {
+    private static long prefixHash(String text, int index, long currentHash) {
         var pow = pow(index);
         var includedChar = text.charAt(index);
         var includedLong = charToLong(includedChar);
-        hash += (includedLong * pow) % M;
+        var hash = currentHash + (includedLong * pow) % M;
         hash %= M;
         return hash;
     }
 
     private static long pow(int index) {
         var pow = 1L;
-        if (POWS.size() > 0) {
+        if (POWS.isEmpty()) {
+            POWS.add(pow);
+        } else {
             if (POWS.size() > index) {
                 pow = POWS.get(index);
             } else {
@@ -81,8 +86,6 @@ public class Main {
                 pow = (pow * A) % M;
                 POWS.add(pow);
             }
-        } else {
-            POWS.add(pow);
         }
         return pow;
     }
