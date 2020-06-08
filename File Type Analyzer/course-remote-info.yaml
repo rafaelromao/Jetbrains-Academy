@@ -36,6 +36,8 @@ topics:
     theory_id: 9704
   - title: Command line overview
     theory_id: 8977
+  - title: Parameters and options
+    theory_id: 9746
   - title: Files
     theory_id: 3635
   - title: Reading files
@@ -133,6 +135,8 @@ topics:
     theory_id: 4953
   - title: The big O notation
     theory_id: 4991
+  - title: Time complexity function
+    theory_id: 9724
   - title: String basics
     theory_id: 5141
   - title: Searching a substring
@@ -202,14 +206,14 @@ topics:
     theory_id: 4882
   - title: Interruptions
     theory_id: 4881
-  - title: Executors
-    theory_id: 4895
   - title: Generic programming
     theory_id: 3492
   - title: Generics and Object
     theory_id: 3493
   - title: Functional interfaces and lambda expressions
     theory_id: 3601
+  - title: Executors
+    theory_id: 4895
   - title: What are collections
     theory_id: 3770
   - title: ArrayList
