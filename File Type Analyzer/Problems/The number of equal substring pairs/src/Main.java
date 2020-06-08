@@ -66,7 +66,7 @@ public class Main {
         var pow = pow(index);
         var includedChar = text.charAt(index);
         var includedLong = charToLong(includedChar);
-        hash += includedLong * pow;
+        hash += (includedLong * pow) % M;
         hash %= M;
         return hash;
     }
@@ -78,7 +78,7 @@ public class Main {
                 pow = POWS.get(index);
             } else {
                 pow = POWS.get(POWS.size() - 1);
-                pow = pow * A % M;
+                pow = (pow * A) % M;
                 POWS.add(pow);
             }
         } else {
