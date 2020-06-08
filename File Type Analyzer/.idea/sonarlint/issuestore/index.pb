@@ -13,3 +13,9 @@ q
 AProblems/The number of equal substring pairs/src/MainWrapper.java,1/a/1a87b0d72cfe8c3f6902758c579ed71fbd7994ee
 j
 :Problems/The number of equal substring pairs/src/Main.java,0/9/09c81ef25978e0475765e431ccf747d7d4758ea4
+@
+course-info.yaml,8/1/81db7fbbb03b3e3f063d803783ac0942e85a4031
+G
+course-remote-info.yaml,8/e/8ebfd624cee09c71902f5a4e0950d589f705f81d
+S
+#File Type Analyzer/lesson-info.yaml,4/b/4b34dd82462cdea4b805902b29ec4381175090f2
