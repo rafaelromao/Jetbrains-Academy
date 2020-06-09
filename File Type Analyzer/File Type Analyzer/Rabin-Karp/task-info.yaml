@@ -309,6 +309,9 @@ files:
 - name: src/analyzer/SearchStrategy.java
   visible: true
   learner_created: false
+- name: src/analyzer/RabinKarpSearchStrategy.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/347/implement
-status: Unchecked
+status: Solved
 record: 2

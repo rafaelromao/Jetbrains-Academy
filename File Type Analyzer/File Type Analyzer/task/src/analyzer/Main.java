@@ -16,7 +16,7 @@ public class Main {
                 .stream()
                 .map(SearchPattern::parse)
                 .collect(toList());
-        var searchStrategy = new KMPSearchStrategy();
+        var searchStrategy = new RabinKarpSearchStrategy();
         var analyzer = new Analyzer(searchStrategy);
         var files = new File(folder);
 
