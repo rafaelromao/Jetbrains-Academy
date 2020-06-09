@@ -1,14 +1,6 @@
 
 b
 2File Type Analyzer/task/src/analyzer/Analyzer.java,d/1/d1ee1ea9b5501d0d5dfc01eb33010101aab4ffd2
-[
-+Problems/Repetitive Substring/src/Main.java,8/b/8b91c77c51bb7fd6b2d90894d5310b72caf69ace
-`
-0Problems/Repetitive Substring/src/RabinKarp.java,5/d/5d4897f66560e2474ab4a0ebd6253f724fd4424f
-b
-2Problems/Repetitive Substring/src/MainWrapper.java,4/7/479c8c446e04e802a9cd573a9586d4e7d952eec8
-c
-3Problems/Calculating a substring hash/src/Main.java,1/7/17b36d91a225cc2db7d432b74e685d228c81c99e
 q
 AProblems/The number of equal substring pairs/src/MainWrapper.java,1/a/1a87b0d72cfe8c3f6902758c579ed71fbd7994ee
 j
@@ -19,3 +11,13 @@ G
 course-remote-info.yaml,8/e/8ebfd624cee09c71902f5a4e0950d589f705f81d
 S
 #File Type Analyzer/lesson-info.yaml,4/b/4b34dd82462cdea4b805902b29ec4381175090f2
+I
+Problems/lesson-info.yaml,2/8/281bba3425fe750f62b6d56e3fbf0611c11a95e3
+c
+3File Type Analyzer/Rabin-Karp/task-remote-info.yaml,2/5/25a16e84a6904127a9a8a0a3906129a36b59b4b5
+W
+'File Type Analyzer/Rabin-Karp/task.html,f/5/f505c54810e245d318cd2922c25f334f2f7d5c20
+\
+,File Type Analyzer/Rabin-Karp/task-info.yaml,9/b/9bae7f6bd13e1ff75a685d7ad462175e36e63cad
+_
+/File Type Analyzer/KMP algorithm/task-info.yaml,c/f/cff3bdb949ea21832ec0445f288fb30f5c44e2ae

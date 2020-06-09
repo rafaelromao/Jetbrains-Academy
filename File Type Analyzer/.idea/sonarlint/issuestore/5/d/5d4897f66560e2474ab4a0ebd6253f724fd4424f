@@ -1,7 +1,0 @@
-
-0
-java:S1220""Move this file to a named package.
-g
-java:S3776	"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ÎÕác
-\
-java:S1118":Add a private constructor to hide the implicit public one.(ñ¶á§üÿÿÿÿ8óò‹Ô§.
