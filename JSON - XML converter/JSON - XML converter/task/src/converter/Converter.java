@@ -24,20 +24,43 @@ interface Converter {
     }
 
     class JSON2XMLConverter implements Converter {
+
         @Override
         public String convert(String content) {
+            XMLWriter writer = new XMLWriter();
             var reader = new JSONReader();
-            var obj = reader.readObject(content);
-            var property = reader.readProperty(obj);
-            var writer = new XMLWriter();
-            if (property[1] == null || property[1].length() == 0) {
-                writer.writeElement(property[0]);
-            } else {
-                writer.writeBeginElement(property[0]);
-                writer.writeValue(property[1]);
-                writer.writeEndElement(property[0]);
+            var value = reader.readObject(content);
+            var properties = value.split("(?!\\B\\{[^\\}]*),(?![^\\{]*\\}\\B)");
+            properties = properties.length == 0 ? new String[] { value } : properties;
+            for (var property: properties) {
+                var keyValuePair = reader.readProperty(property);
+                writeElement(writer, keyValuePair[0], keyValuePair[1]);
             }
             return writer.toString();
+        }
+
+        private void writeElement(XMLWriter writer, String name, String value) {
+            var elementType = JSONReader.ElementType.of(value);
+            switch (elementType) {
+                case LITERAL:
+                case STRING:
+                    writeLiteral(writer, name, value);
+                    break;
+                case OBJECT:
+                    var obj = convert(value);
+                    writeElement(writer, name, obj);
+                    break;
+            }
+        }
+
+        private void writeLiteral(XMLWriter writer, String name, String value) {
+            if (value == null || value.length() == 0) {
+                writer.writeElement(name);
+            } else {
+                writer.writeBeginElement(name);
+                writer.writeValue(value);
+                writer.writeEndElement(name);
+            }
         }
     }
 }
