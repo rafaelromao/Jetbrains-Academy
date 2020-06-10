@@ -103,6 +103,21 @@ files:
 
     }
   learner_created: false
+- name: src/converter/Converter.java
+  visible: true
+  learner_created: true
+- name: src/converter/XMLReader.java
+  visible: true
+  learner_created: true
+- name: src/converter/JSONWriter.java
+  visible: true
+  learner_created: true
+- name: src/converter/JSONReader.java
+  visible: true
+  learner_created: true
+- name: src/converter/XMLWriter.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/329/implement
-status: Unchecked
+status: Solved
 record: -1
