@@ -1,6 +1,6 @@
 package converter;
 
-public interface Converter {
+interface Converter {
 
     String convert(String content);
 

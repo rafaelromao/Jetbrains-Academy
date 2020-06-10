@@ -1,27 +1,27 @@
 package converter;
 
-public class XMLWriter {
+class XMLWriter {
     private StringBuilder builder = new StringBuilder();
 
-    public void writeBeginElement(String elementName) {
+    void writeBeginElement(String elementName) {
         builder.append("<");
         builder.append(elementName);
         builder.append(">");
     }
 
-    public void writeEndElement(String elementName) {
+    void writeEndElement(String elementName) {
         builder.append("</");
         builder.append(elementName);
         builder.append(">");
     }
 
-    public void writeElement(String elementName) {
+    void writeElement(String elementName) {
         builder.append("<");
         builder.append(elementName);
         builder.append("/>");
     }
 
-    public void writeValue(String value) {
+    void writeValue(String value) {
         builder.append(value == null ? "" : value);
     }
 

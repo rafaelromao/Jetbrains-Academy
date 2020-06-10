@@ -451,6 +451,203 @@ files:
 
     }
   learner_created: false
+- name: src/converter/JSONReader.java
+  visible: true
+  text: |
+    package converter;
+
+    import java.util.regex.Pattern;
+
+    public class JSONReader {
+        private Pattern objectPattern = Pattern.compile("\\s*\\{\\s*(.*)\\s*\\}\\s*");
+        private Pattern propertyNamePattern = Pattern.compile("\\s*\"(\\w*)\"\\s*:\\s*");
+        private Pattern propertyValuePattern = Pattern.compile("\\s*:\\s*\"*([^\\\"|}]*)\"*\\s*");
+
+        public String readObject(String content) {
+            var objectMatcher = objectPattern.matcher(content);
+            objectMatcher.find();
+            return objectMatcher.group(1);
+        }
+
+        public String[] readProperty(String content) {
+            var keyMatcher = propertyNamePattern.matcher(content);
+            keyMatcher.find();
+            var key = keyMatcher.group(1);
+            var valueMatcher = propertyValuePattern.matcher(content);
+            valueMatcher.find();
+            var value = valueMatcher.group(1);
+            value = "null".equals(value) ? null : value;
+            return new String[]{key, value};
+        }
+    }
+  learner_created: true
+- name: src/converter/XMLWriter.java
+  visible: true
+  text: |
+    package converter;
+
+    public class XMLWriter {
+        private StringBuilder builder = new StringBuilder();
+
+        public void writeBeginElement(String elementName) {
+            builder.append("<");
+            builder.append(elementName);
+            builder.append(">");
+        }
+
+        public void writeEndElement(String elementName) {
+            builder.append("</");
+            builder.append(elementName);
+            builder.append(">");
+        }
+
+        public void writeElement(String elementName) {
+            builder.append("<");
+            builder.append(elementName);
+            builder.append("/>");
+        }
+
+        public void writeValue(String value) {
+            builder.append(value == null ? "" : value);
+        }
+
+        @Override
+        public String toString() {
+            return builder.toString();
+        }
+    }
+  learner_created: true
+- name: src/converter/Converter.java
+  visible: true
+  text: |
+    package converter;
+
+    public interface Converter {
+
+        String convert(String content);
+
+        class Factory {
+            public static Converter createFor(String input) {
+                return input.charAt(0) == '<' ? new XML2JSONConverter() : new JSON2XMLConverter();
+            }
+        }
+
+        class XML2JSONConverter implements Converter {
+            @Override
+            public String convert(String content) {
+                var reader = new XMLReader();
+                var element = reader.readElement(content);
+                var writer = new JSONWriter();
+                writer.writeBeginObject();
+                writer.writeProperty(element[0], element[1]);
+                writer.writeEndObject();
+                return writer.toString();
+            }
+        }
+
+        class JSON2XMLConverter implements Converter {
+            @Override
+            public String convert(String content) {
+                var reader = new JSONReader();
+                var obj = reader.readObject(content);
+                var property = reader.readProperty(obj);
+                var writer = new XMLWriter();
+                if (property[1] == null || property[1].length() == 0) {
+                    writer.writeElement(property[0]);
+                } else {
+                    writer.writeBeginElement(property[0]);
+                    writer.writeValue(property[1]);
+                    writer.writeEndElement(property[0]);
+                }
+                return writer.toString();
+            }
+        }
+    }
+  learner_created: true
+- name: src/converter/JSONWriter.java
+  visible: true
+  text: |
+    package converter;
+
+    public class JSONWriter {
+        private StringBuilder builder = new StringBuilder();
+
+        void writeBeginObject() {
+            builder.append("{");
+        }
+
+        void writeEndObject() {
+            builder.append("}");
+        }
+
+        void writeProperty(String key, String value) {
+            writeString(key);
+            builder.append(":");
+            writeString(value);
+        }
+
+        void writeString(String value) {
+            if (value == null || value.length() == 0) {
+                builder.append("null");
+            } else {
+                builder.append("\"");
+                builder.append(value);
+                builder.append("\"");
+            }
+        }
+
+        @Override
+        public String toString() {
+            return builder.toString();
+        }
+    }
+  learner_created: true
+- name: src/converter/XMLReader.java
+  visible: true
+  text: |
+    package converter;
+
+    import java.util.regex.Pattern;
+
+    public class XMLReader {
+        private Pattern elementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
+        private Pattern elementNamePattern = Pattern.compile("\\s*\\<(.*?)\\>\\s*");
+        private Pattern elementValuePattern = Pattern.compile("\\>(.*)\\<");
+
+        String[] readElement(String content) {
+            var elementMatcher = elementPattern.matcher(content);
+            if (elementMatcher.find()) {
+                return new String[] { elementMatcher.group(1), null };
+            } else {
+                var keyMatcher = elementNamePattern.matcher(content);
+                keyMatcher.find();
+                var key = keyMatcher.group(1);
+                var valueMatcher = elementValuePattern.matcher(content);
+                valueMatcher.find();
+                var value = valueMatcher.group(1);
+                return new String[]{key, value};
+            }
+        }
+    }
+  learner_created: true
+- name: src/converter/Main.java
+  visible: true
+  text: |
+    package converter;
+
+    import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+            try (var scanner = new Scanner(System.in)) {
+                var input = scanner.nextLine().strip();
+                var converter = Converter.Factory.createFor(input);
+                var output = converter.convert(input);
+                System.out.println(output);
+            }
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/330/implement
 status: Unchecked
 record: -1

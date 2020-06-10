@@ -1,6 +1,6 @@
 package converter;
 
-public class JSONWriter {
+class JSONWriter {
     private StringBuilder builder = new StringBuilder();
 
     void writeBeginObject() {

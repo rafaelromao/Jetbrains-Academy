@@ -2,7 +2,7 @@ package converter;
 
 import java.util.regex.Pattern;
 
-public class XMLReader {
+class XMLReader {
     private Pattern elementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
     private Pattern elementNamePattern = Pattern.compile("\\s*\\<(.*?)\\>\\s*");
     private Pattern elementValuePattern = Pattern.compile("\\>(.*)\\<");
