@@ -21,3 +21,11 @@ W
 ,File Type Analyzer/Rabin-Karp/task-info.yaml,9/b/9bae7f6bd13e1ff75a685d7ad462175e36e63cad
 _
 /File Type Analyzer/KMP algorithm/task-info.yaml,c/f/cff3bdb949ea21832ec0445f288fb30f5c44e2ae
+m
+=File Type Analyzer/task/src/analyzer/NaiveSearchStrategy.java,4/e/4ee4b5a99a832806201c887b90c4df8d191043e9
+k
+;File Type Analyzer/task/src/analyzer/KMPSearchStrategy.java,7/f/7fc1f2e475dd43f65305777a658f7001da69cdc9
+^
+.File Type Analyzer/task/src/analyzer/Main.java,5/5/55362ad097e5405ad6a84c657824de443ef0a9f2
+q
+AFile Type Analyzer/task/src/analyzer/RabinKarpSearchStrategy.java,b/9/b93d75255597b2cdf59612ab49c90e680de06f02
