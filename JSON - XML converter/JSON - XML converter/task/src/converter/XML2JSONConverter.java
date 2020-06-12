@@ -6,6 +6,7 @@ class XML2JSONConverter implements Converter {
     private Pattern elementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
     private Pattern elementNamePattern = Pattern.compile("\\s*\\<(.*?)\\>\\s*");
     private Pattern elementValuePattern = Pattern.compile("\\>(.*)\\<");
+    private Pattern elementsPattern = Pattern.compile("(?!\\B\\{[^\\}]*),(?![^\\{]*\\}\\B)");
     private StringBuilder builder = new StringBuilder();
 
     @Override

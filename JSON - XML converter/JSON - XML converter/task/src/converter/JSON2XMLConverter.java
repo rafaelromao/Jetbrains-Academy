@@ -53,22 +53,28 @@ class JSON2XMLConverter implements Converter {
 
     private void writeObject(String name, String value) {
         var properties = propertiesPattern.split(readObject(value));
+        var content = Arrays.stream(properties)
+                .filter(p -> p.startsWith("\"#"))
+                .findAny();
         var attributes = Arrays.stream(properties)
                 .filter(p -> p.startsWith("\"@"))
                 .toArray(String[]::new);
         var elements = Arrays.stream(properties)
-                .filter(p -> !p.startsWith("\"@"))
+                .filter(p -> !p.startsWith("\"@") && !p.startsWith("\"#"))
                 .toArray(String[]::new);
-        if (elements.length == 0) {
+        if (!content.isPresent() && elements.length == 0) {
             writeSimpleElement(name, attributes);
         } else {
             writeBeginElement(name, attributes);
+            if (content.isPresent()) {
+                writeValue(readProperty(content.get())[1]);
+            }
             for (var element : elements) {
                 var keyValuePair = readProperty(element);
                 writeElement(keyValuePair[0], keyValuePair[1]);
             }
+            writeEndElement(name);
         }
-        writeEndElement(name);
     }
 
     private void writeLiteral(String name, String value, String... attributes) {
