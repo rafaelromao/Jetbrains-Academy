@@ -117,8 +117,10 @@ class JSON2XMLConverter implements Converter {
     private void writeAttribute(String attribute) {
         var keyValuePair = attribute.replace("\"", "").split(":");
         builder.append(keyValuePair[0].strip().substring(1));
-        builder.append("=");
+        builder.append(" = ");
+        builder.append("\"");
         builder.append(keyValuePair[1].strip());
+        builder.append("\"");
     }
 
     private void writeValue(String value) {
