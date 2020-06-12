@@ -12,16 +12,14 @@ class JSON2XMLConverter implements Converter {
 
     @Override
     public String convert(String content) {
-        var value = readObject(content);
+        var value = readContent(content);
         var properties = propertiesPattern.split(value);
-        for (var property : properties) {
-            var keyValuePair = readProperty(property);
-            writeElement(keyValuePair[0], keyValuePair[1]);
-        }
+        var keyValuePair = readProperty(properties[0]);
+        writeRecursively(keyValuePair[0], keyValuePair[1]);
         return builder.toString();
     }
 
-    private String readObject(String content) {
+    private String readContent(String content) {
         var objectMatcher = objectPattern.matcher(content.replaceAll("\\s", ""));
         objectMatcher.find();
         return objectMatcher.group(1);
@@ -39,7 +37,7 @@ class JSON2XMLConverter implements Converter {
         return new String[]{key, value};
     }
 
-    private void writeElement(String name, String value, String... attributes) {
+    private void writeRecursively(String name, String value, String... attributes) {
         var elementType = ElementType.of(value);
         switch (elementType) {
             case LITERAL:
@@ -47,12 +45,12 @@ class JSON2XMLConverter implements Converter {
                 writeLiteral(name, value, attributes);
                 break;
             case OBJECT:
-                writeObject(name, value);
+                writeElement(name, value);
         }
     }
 
-    private void writeObject(String name, String value) {
-        var properties = propertiesPattern.split(readObject(value));
+    private void writeElement(String name, String value) {
+        var properties = propertiesPattern.split(readContent(value));
         var content = Arrays.stream(properties)
                 .filter(p -> p.startsWith("\"#"))
                 .findAny();
@@ -71,7 +69,7 @@ class JSON2XMLConverter implements Converter {
             }
             for (var element : elements) {
                 var keyValuePair = readProperty(element);
-                writeElement(keyValuePair[0], keyValuePair[1]);
+                writeRecursively(keyValuePair[0], keyValuePair[1]);
             }
             writeEndElement(name);
         }
