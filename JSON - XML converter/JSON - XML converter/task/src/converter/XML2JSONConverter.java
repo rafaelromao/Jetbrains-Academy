@@ -21,7 +21,7 @@ class XML2JSONConverter implements Converter {
     public String convert(String content) {
         writeBeginObject();
         var elements = readElements(content);
-        var keyValuePair = readElement(elements.get(0));
+        var keyValuePair = readElement(elements.get(0).replace("\n", ""));
         writeRecursively(
                 keyValuePair[0],
                 keyValuePair[1],
@@ -81,8 +81,8 @@ class XML2JSONConverter implements Converter {
     }
 
     private String[] readElement(String element) {
-        var elementMatcher = simpleElementPattern.matcher(element);
-        if (elementMatcher.find()) {
+        var elementMatcher = elementContentPattern.matcher(element);
+        if (!elementMatcher.find()) {
             var tagMatcher = simpleElementPattern.matcher(element);
             tagMatcher.find();
             var tag = tagMatcher.group(1);

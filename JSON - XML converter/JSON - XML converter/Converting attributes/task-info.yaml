@@ -522,9 +522,6 @@ files:
 - name: src/converter/XML2JSONConverter.java
   visible: true
   learner_created: true
-- name: test.txt
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/330/implement
 status: Solved
-record: -1
+record: 2

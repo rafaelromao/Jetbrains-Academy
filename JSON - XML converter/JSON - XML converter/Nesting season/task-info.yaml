@@ -394,6 +394,408 @@ files:
         }
     }
   learner_created: false
+- name: src/converter/XML2JSONConverter.java
+  visible: true
+  text: |
+    package converter;
+
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.regex.Pattern;
+    import java.util.stream.Stream;
+
+    import static java.util.stream.Collectors.toList;
+
+    class XML2JSONConverter implements Converter {
+        private Pattern simpleElementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
+        private Pattern elementNameAndAttributesPattern = Pattern.compile("\\<?\\/?(\\w*)(.*)($|\\>)");
+        private Pattern attributesPartsPattern = Pattern.compile("\\s*(\\w*)\\s*=\\s*\\\"(\\w*)\\\"\\s*");
+        private Pattern elementStartingPattern = Pattern.compile("\\s*\\<\\/?(.*?)\\/?\\>\\s*");
+        private Pattern elementContentPattern = Pattern.compile("\\>(.*)\\<");
+        private Pattern elementsPartsPattern = Pattern.compile("(\\<.*?\\>)|(.+?(?=\\<|$))");
+        private Pattern elementClosingPattern = Pattern.compile("\\<\\/(.*?)\\>|\\<(.*?)\\/\\>");
+        private StringBuilder builder = new StringBuilder();
+
+        @Override
+        public String convert(String content) {
+            writeBeginObject();
+            var elements = readElements(content);
+            var keyValuePair = readElement(elements.get(0));
+            writeRecursively(
+                    keyValuePair[0],
+                    keyValuePair[1],
+                    keyValuePair[2]);
+            writeEndObject();
+            return builder.toString();
+        }
+
+        private List<String> readElements(String elements) {
+            var result = new ArrayList<String>();
+            var partsMatcher = elementsPartsPattern.matcher(elements);
+            partsMatcher.find();
+            var parts = Stream.concat(
+                    Stream.of(partsMatcher.group().strip()),
+                    partsMatcher.results().map(r -> r.group().strip()))
+                    .collect(toList());
+            var currentElement = new StringBuilder();
+            var currentElementName = "";
+            for (var part : parts) {
+                // If starting element
+                var isOpeningTag = currentElement.length() == 0;
+                if (isOpeningTag) {
+                    var elementNameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(part);
+                    if (elementNameAndAttributesMatcher.find()) {
+                        currentElementName = elementNameAndAttributesMatcher.group(1);
+                    }
+                }
+                // If literal
+                var isLiteral = !part.contains("<");
+                if (isLiteral) {
+                    var isInElement = currentElement.length() > 0;
+                    if (isInElement) {
+                        currentElement.append(part);
+                    } else {
+                        result.add(part);
+                        currentElement.setLength(0);
+                    }
+                    continue;
+                }
+                // At this point, the part will compose the current element no matter what
+                currentElement.append(part);
+                // If closing element
+                var closingMatcher = elementClosingPattern.matcher(part);
+                var isClosingTag = closingMatcher.find();
+                if (isClosingTag) {
+                    var elementNameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(part);
+                    if (elementNameAndAttributesMatcher.find()) {
+                        var closingElementName = elementNameAndAttributesMatcher.group(1);
+                        if (currentElementName.equals(closingElementName)) {
+                            result.add(currentElement.toString());
+                            currentElement.setLength(0);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+
+        private String[] readElement(String element) {
+            var elementMatcher = simpleElementPattern.matcher(element);
+            if (elementMatcher.find()) {
+                var tagMatcher = simpleElementPattern.matcher(element);
+                tagMatcher.find();
+                var tag = tagMatcher.group(1);
+                var nameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(tag);
+                nameAndAttributesMatcher.find();
+                var name = nameAndAttributesMatcher.group(1);
+                var attributes = nameAndAttributesMatcher.groupCount() == 3
+                        ? nameAndAttributesMatcher.group(2)
+                        : null;
+                return new String[]{name, null, attributes};
+            } else {
+                var tagMatcher = elementStartingPattern.matcher(element);
+                tagMatcher.find();
+                var tag = tagMatcher.group(1);
+                var nameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(tag);
+                nameAndAttributesMatcher.find();
+                var name = nameAndAttributesMatcher.group(1);
+                var attributes = nameAndAttributesMatcher.groupCount() == 3
+                        ? nameAndAttributesMatcher.group(2)
+                        : null;
+                var contentMatcher = elementContentPattern.matcher(element);
+                contentMatcher.find();
+                var content = contentMatcher.group(1);
+                content = content.strip().length() == 0 ? "null" : content;
+                return new String[]{name, content, attributes};
+            }
+        }
+
+        private void writeRecursively(String name, String content, String attributes) {
+            var elementType = ValueType.of(content);
+            if (attributes != null && attributes.length() > 0) {
+                elementType = ValueType.OBJECT;
+            }
+            switch (elementType) {
+                case LITERAL:
+                case STRING:
+                    writeString(name, content);
+                    break;
+                case OBJECT:
+                    writeObject(name, content, attributes);
+            }
+        }
+
+        private void writeObject(String name, String value, String attributes) {
+            builder.append("\"");
+            builder.append(name);
+            builder.append("\"");
+            builder.append(":");
+            var valueType = ValueType.of(value);
+            var elements = valueType == ValueType.LITERAL
+                    ? List.<String[]>of()
+                    : readElements(value.replaceAll("\\s", ""))
+                        .stream()
+                        .map(this::readElement)
+                        .collect(toList());
+            if (attributes != null && attributes.length() > 0) {
+                var element = new ArrayList<String[]>();
+                element.add(new String[]{"#" + name, value, null});
+                var attrs = readAttributes(attributes);
+                elements = Stream
+                        .of(element.stream(), elements.stream(), attrs.stream())
+                        .reduce(Stream::concat)
+                        .get()
+                        .collect(toList());
+            }
+            if (elements.size() > 1) {
+                writeBeginObject();
+            }
+            for (var i = 0; i < elements.size(); i++) {
+                var keyValuePair = elements.get(i);
+                writeRecursively(
+                        keyValuePair[0],
+                        keyValuePair[1],
+                        keyValuePair[2]);
+                if (i < elements.size() - 1) {
+                    builder.append(",");
+                }
+            }
+            if (elements.size() > 1) {
+                writeEndObject();
+            }
+        }
+
+        private List<String[]> readAttributes(String attributes) {
+            var result = new ArrayList<String[]>();
+            var matcher = attributesPartsPattern.matcher(attributes);
+            while (matcher.find()) {
+                result.add(new String[]{"@" + matcher.group(1), matcher.group(2), null});
+            }
+            return result;
+        }
+
+        private void writeString(String name, String value) {
+            builder.append("\"");
+            builder.append(name);
+            builder.append("\"");
+            builder.append(":");
+            if (value == null || value.length() == 0) {
+                builder.append("null");
+            } else {
+                builder.append("\"");
+                builder.append(value);
+                builder.append("\"");
+            }
+        }
+
+        private void writeBeginObject() {
+            builder.append("{");
+        }
+
+        private void writeEndObject() {
+            builder.append("}");
+        }
+
+        private enum ValueType {
+            OBJECT,
+            ARRAY,
+            STRING,
+            LITERAL;
+
+            public static ValueType of(String valueType) {
+                if (valueType == null) return ValueType.LITERAL;
+                if (valueType.charAt(0) == '<') return ValueType.OBJECT;
+                if (valueType.charAt(0) == '"') return ValueType.STRING;
+                return ValueType.LITERAL;
+            }
+        }
+    }
+  learner_created: true
+- name: src/converter/Converter.java
+  visible: true
+  text: |
+    package converter;
+
+    interface Converter {
+
+        String convert(String content);
+
+        class Factory {
+            public static Converter createFor(String input) {
+                return input.charAt(0) == '<' ? new XML2JSONConverter() : new JSON2XMLConverter();
+            }
+        }
+    }
+  learner_created: true
+- name: src/converter/JSON2XMLConverter.java
+  visible: true
+  text: |
+    package converter;
+
+    import java.util.Arrays;
+    import java.util.regex.Pattern;
+
+    class JSON2XMLConverter implements Converter {
+        private Pattern objectPattern = Pattern.compile("\\s*\\{\\s*(.*)\\s*\\}\\s*");
+        private Pattern propertyNamePattern = Pattern.compile("\\s*\"([\\w|@|#]*)\"\\s*:\\s*");
+        private Pattern propertyValuePattern = Pattern.compile("\\s*:\\s*\"*(.*)[$|\"?\\s*]");
+        private Pattern propertiesPattern = Pattern.compile("(?!\\B\\{[^\\}]*),(?![^\\{]*\\}\\B)");
+        private StringBuilder builder = new StringBuilder();
+
+        @Override
+        public String convert(String content) {
+            var value = readContent(content);
+            var properties = propertiesPattern.split(value);
+            var keyValuePair = readProperty(properties[0]);
+            writeRecursively(keyValuePair[0], keyValuePair[1]);
+            return builder.toString();
+        }
+
+        private String readContent(String content) {
+            var objectMatcher = objectPattern.matcher(content.replaceAll("\\s", ""));
+            objectMatcher.find();
+            return objectMatcher.group(1);
+        }
+
+        private String[] readProperty(String content) {
+            content = !content.strip().endsWith("\"") ? content.strip() + "\n" : content.strip();
+            var keyMatcher = propertyNamePattern.matcher(content);
+            keyMatcher.find();
+            var key = keyMatcher.group(1);
+            var valueMatcher = propertyValuePattern.matcher(content);
+            valueMatcher.find();
+            var value = valueMatcher.group(1).strip();
+            value = "null".equals(value) ? null : value;
+            return new String[]{key, value};
+        }
+
+        private void writeRecursively(String name, String value, String... attributes) {
+            var elementType = ElementType.of(value);
+            switch (elementType) {
+                case LITERAL:
+                case STRING:
+                    writeLiteral(name, value, attributes);
+                    break;
+                case OBJECT:
+                    writeElement(name, value);
+            }
+        }
+
+        private void writeElement(String name, String value) {
+            var properties = propertiesPattern.split(readContent(value));
+            var content = Arrays.stream(properties)
+                    .filter(p -> p.startsWith("\"#"))
+                    .findAny();
+            var attributes = Arrays.stream(properties)
+                    .filter(p -> p.startsWith("\"@"))
+                    .toArray(String[]::new);
+            var elements = Arrays.stream(properties)
+                    .filter(p -> !p.startsWith("\"@") && !p.startsWith("\"#"))
+                    .toArray(String[]::new);
+            if (!content.isPresent() && elements.length == 0) {
+                writeSimpleElement(name, attributes);
+            } else {
+                writeBeginElement(name, attributes);
+                if (content.isPresent()) {
+                    writeValue(readProperty(content.get())[1]);
+                }
+                for (var element : elements) {
+                    var keyValuePair = readProperty(element);
+                    writeRecursively(keyValuePair[0], keyValuePair[1]);
+                }
+                writeEndElement(name);
+            }
+        }
+
+        private void writeLiteral(String name, String value, String... attributes) {
+            if (value == null || value.length() == 0) {
+                writeSimpleElement(name, attributes);
+            } else {
+                writeBeginElement(name, attributes);
+                writeValue(value);
+                writeEndElement(name);
+            }
+        }
+
+        private void writeBeginElement(String elementName, String... attributes) {
+            builder.append("<");
+            builder.append(elementName.startsWith("#") ? elementName.substring(1) : elementName);
+            writeAttributes(attributes);
+            builder.append(">");
+        }
+
+        private void writeEndElement(String elementName) {
+            builder.append("</");
+            builder.append(elementName.startsWith("#") ? elementName.substring(1) : elementName);
+            builder.append(">");
+        }
+
+        private void writeSimpleElement(String elementName, String... attributes) {
+            builder.append("<");
+            builder.append(elementName.startsWith("#") ? elementName.substring(1) : elementName);
+            writeAttributes(attributes);
+            builder.append("/>");
+        }
+
+        private void writeAttributes(String[] attributes) {
+            if (attributes.length > 0) {
+                builder.append(" ");
+                for (var i = 0; i < attributes.length; i++) {
+                    String attribute = attributes[i];
+                    writeAttribute(attribute);
+                    if (i < attributes.length - 1) {
+                        builder.append(" ");
+                    }
+                }
+            }
+        }
+
+        private void writeAttribute(String attribute) {
+            var keyValuePair = attribute.replace("\"", "").split(":");
+            builder.append(keyValuePair[0].strip().substring(1));
+            builder.append(" = ");
+            builder.append("\"");
+            builder.append(keyValuePair[1].strip());
+            builder.append("\"");
+        }
+
+        private void writeValue(String value) {
+            builder.append(value == null ? "" : value);
+        }
+
+        private enum ElementType {
+            OBJECT,
+            ARRAY,
+            STRING,
+            LITERAL;
+
+            public static ElementType of(String elementValue) {
+                if (elementValue.charAt(0) == '{') return ElementType.OBJECT;
+                if (elementValue.charAt(0) == '[') return ElementType.ARRAY;
+                if (elementValue.charAt(0) == '"') return ElementType.STRING;
+                return ElementType.LITERAL;
+            }
+        }
+    }
+  learner_created: true
+- name: src/converter/Main.java
+  visible: true
+  text: |
+    package converter;
+
+    import java.io.IOException;
+    import java.nio.file.Files;
+    import java.nio.file.Path;
+
+    public class Main {
+        public static void main(String[] args) throws IOException {
+            var input = Files.readString(Path.of("test.txt"));
+            var converter = Converter.Factory.createFor(input);
+            var output = converter.convert(input);
+            System.out.println(output);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/331/implement
-status: Unchecked
+status: Failed
 record: -1
