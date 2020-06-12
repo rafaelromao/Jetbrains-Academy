@@ -26,7 +26,7 @@ class JSON2XMLConverter implements Converter {
     }
 
     private String[] readProperty(String content) {
-        content = content.strip().endsWith("}") ? content.strip() + "\n" : content.strip();
+        content = !content.strip().endsWith("\"") ? content.strip() + "\n" : content.strip();
         var keyMatcher = propertyNamePattern.matcher(content);
         keyMatcher.find();
         var key = keyMatcher.group(1);

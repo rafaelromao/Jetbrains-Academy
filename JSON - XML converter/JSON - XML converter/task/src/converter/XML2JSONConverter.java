@@ -1,6 +1,7 @@
 package converter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -8,8 +9,8 @@ import static java.util.stream.Collectors.toList;
 
 class XML2JSONConverter implements Converter {
     private Pattern simpleElementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
-    private Pattern elementNameAndAttributesPattern = Pattern.compile("\\<?(\\w*)(.*)($|\\>)");
-    private Pattern attributesPartsPattern = Pattern.compile("(\\w*)=\\\"(\\w*)\\\"");
+    private Pattern elementNameAndAttributesPattern = Pattern.compile("\\<?\\/?(\\w*)(.*)($|\\>)");
+    private Pattern attributesPartsPattern = Pattern.compile("\\s*(\\w*)\\s*=\\s*\\\"(\\w*)\\\"\\s*");
     private Pattern elementStartingPattern = Pattern.compile("\\s*\\<\\/?(.*?)\\/?\\>\\s*");
     private Pattern elementContentPattern = Pattern.compile("\\>(.*)\\<");
     private Pattern elementsPartsPattern = Pattern.compile("(\\<.*?\\>)|(.+?(?=\\<|$))");
@@ -18,16 +19,18 @@ class XML2JSONConverter implements Converter {
 
     @Override
     public String convert(String content) {
+        writeBeginObject();
         var elements = readElements(content);
-        var keyValuePair = readElement(elements[0]);
+        var keyValuePair = readElement(elements.get(0));
         writeRecursively(
                 keyValuePair[0],
                 keyValuePair[1],
                 keyValuePair[2]);
+        writeEndObject();
         return builder.toString();
     }
 
-    private String[] readElements(String elements) {
+    private List<String> readElements(String elements) {
         var result = new ArrayList<String>();
         var partsMatcher = elementsPartsPattern.matcher(elements);
         partsMatcher.find();
@@ -44,8 +47,6 @@ class XML2JSONConverter implements Converter {
                 var elementNameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(part);
                 if (elementNameAndAttributesMatcher.find()) {
                     currentElementName = elementNameAndAttributesMatcher.group(1);
-                    currentElement.append(part);
-                    continue;
                 }
             }
             // If literal
@@ -65,21 +66,33 @@ class XML2JSONConverter implements Converter {
             // If closing element
             var closingMatcher = elementClosingPattern.matcher(part);
             var isClosingTag = closingMatcher.find();
-            var isClosingCurrentElement =
-                    isClosingTag &&
-                            currentElementName.equals(closingMatcher.group(1));
-            if (isClosingCurrentElement) {
-                result.add(currentElement.toString());
-                currentElement.setLength(0);
+            if (isClosingTag) {
+                var elementNameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(part);
+                if (elementNameAndAttributesMatcher.find()) {
+                    var closingElementName = elementNameAndAttributesMatcher.group(1);
+                    if (currentElementName.equals(closingElementName)) {
+                        result.add(currentElement.toString());
+                        currentElement.setLength(0);
+                    }
+                }
             }
         }
-        return result.toArray(String[]::new);
+        return result;
     }
 
     private String[] readElement(String element) {
         var elementMatcher = simpleElementPattern.matcher(element);
         if (elementMatcher.find()) {
-            return new String[]{elementMatcher.group(1), null};
+            var tagMatcher = simpleElementPattern.matcher(element);
+            tagMatcher.find();
+            var tag = tagMatcher.group(1);
+            var nameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(tag);
+            nameAndAttributesMatcher.find();
+            var name = nameAndAttributesMatcher.group(1);
+            var attributes = nameAndAttributesMatcher.groupCount() == 3
+                    ? nameAndAttributesMatcher.group(2)
+                    : null;
+            return new String[]{name, null, attributes};
         } else {
             var tagMatcher = elementStartingPattern.matcher(element);
             tagMatcher.find();
@@ -114,41 +127,55 @@ class XML2JSONConverter implements Converter {
     }
 
     private void writeObject(String name, String value, String attributes) {
-        writeBeginObject();
         builder.append("\"");
         builder.append(name);
         builder.append("\"");
         builder.append(":");
+        var valueType = ValueType.of(value);
+        var elements = valueType == ValueType.LITERAL
+                ? List.<String[]>of()
+                : readElements(value.replaceAll("\\s", ""))
+                    .stream()
+                    .map(this::readElement)
+                    .collect(toList());
         if (attributes != null && attributes.length() > 0) {
-
+            var element = new ArrayList<String[]>();
+            element.add(new String[]{"#" + name, value, null});
+            var attrs = readAttributes(attributes);
+            elements = Stream
+                    .of(element.stream(), elements.stream(), attrs.stream())
+                    .reduce(Stream::concat)
+                    .get()
+                    .collect(toList());
         }
-        var elements = readElements(value.replaceAll("\\s", ""));
-        if (elements.length == 1) {
+        if (elements.size() > 1) {
             writeBeginObject();
-        } else {
-            writeBeginArray();
         }
-        for (var i = 0; i < elements.length; i++) {
-            String element = elements[i];
-            var keyValuePair = readElement(element);
+        for (var i = 0; i < elements.size(); i++) {
+            var keyValuePair = elements.get(i);
             writeRecursively(
                     keyValuePair[0],
                     keyValuePair[1],
                     keyValuePair[2]);
-            if (i < elements.length - 1) {
+            if (i < elements.size() - 1) {
                 builder.append(",");
             }
         }
-        if (elements.length == 1) {
+        if (elements.size() > 1) {
             writeEndObject();
-        } else {
-            writeEndArray();
         }
-        writeEndObject();
+    }
+
+    private List<String[]> readAttributes(String attributes) {
+        var result = new ArrayList<String[]>();
+        var matcher = attributesPartsPattern.matcher(attributes);
+        while (matcher.find()) {
+            result.add(new String[]{"@" + matcher.group(1), matcher.group(2), null});
+        }
+        return result;
     }
 
     private void writeString(String name, String value) {
-        writeBeginObject();
         builder.append("\"");
         builder.append(name);
         builder.append("\"");
@@ -160,7 +187,6 @@ class XML2JSONConverter implements Converter {
             builder.append(value);
             builder.append("\"");
         }
-        writeEndObject();
     }
 
     private void writeBeginObject() {
@@ -171,14 +197,6 @@ class XML2JSONConverter implements Converter {
         builder.append("}");
     }
 
-    private void writeBeginArray() {
-        builder.append("[");
-    }
-
-    private void writeEndArray() {
-        builder.append("]");
-    }
-
     private enum ValueType {
         OBJECT,
         ARRAY,
@@ -186,6 +204,7 @@ class XML2JSONConverter implements Converter {
         LITERAL;
 
         public static ValueType of(String valueType) {
+            if (valueType == null) return ValueType.LITERAL;
             if (valueType.charAt(0) == '<') return ValueType.OBJECT;
             if (valueType.charAt(0) == '"') return ValueType.STRING;
             return ValueType.LITERAL;

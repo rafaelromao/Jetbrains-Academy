@@ -498,72 +498,6 @@ files:
         }
     }
   learner_created: true
-- name: src/converter/JSONWriter.java
-  visible: true
-  text: |
-    package converter;
-
-    public class JSONWriter {
-        private StringBuilder builder = new StringBuilder();
-
-        void writeBeginObject() {
-            builder.append("{");
-        }
-
-        void writeEndObject() {
-            builder.append("}");
-        }
-
-        void writeProperty(String key, String value) {
-            writeString(key);
-            builder.append(":");
-            writeString(value);
-        }
-
-        void writeString(String value) {
-            if (value == null || value.length() == 0) {
-                builder.append("null");
-            } else {
-                builder.append("\"");
-                builder.append(value);
-                builder.append("\"");
-            }
-        }
-
-        @Override
-        public String toString() {
-            return builder.toString();
-        }
-    }
-  learner_created: true
-- name: src/converter/XMLReader.java
-  visible: true
-  text: |
-    package converter;
-
-    import java.util.regex.Pattern;
-
-    public class XMLReader {
-        private Pattern elementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
-        private Pattern elementNamePattern = Pattern.compile("\\s*\\<(.*?)\\>\\s*");
-        private Pattern elementValuePattern = Pattern.compile("\\>(.*)\\<");
-
-        String[] readElement(String content) {
-            var elementMatcher = elementPattern.matcher(content);
-            if (elementMatcher.find()) {
-                return new String[] { elementMatcher.group(1), null };
-            } else {
-                var keyMatcher = elementNamePattern.matcher(content);
-                keyMatcher.find();
-                var key = keyMatcher.group(1);
-                var valueMatcher = elementValuePattern.matcher(content);
-                valueMatcher.find();
-                var value = valueMatcher.group(1);
-                return new String[]{key, value};
-            }
-        }
-    }
-  learner_created: true
 - name: src/converter/Main.java
   visible: true
   text: |
@@ -588,6 +522,9 @@ files:
 - name: src/converter/XML2JSONConverter.java
   visible: true
   learner_created: true
+- name: test.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/330/implement
-status: Unchecked
+status: Solved
 record: -1
