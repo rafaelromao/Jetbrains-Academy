@@ -105,14 +105,14 @@ class XML2JSONConverter implements Converter {
             tagMatcher.find();
             var tag = tagMatcher.group(1);
             var nameAndAttributes = extractNameAndAttributes(tag);
-            return new String[]{nameAndAttributes[0], null, nameAndAttributes[1]};
+            return new String[]{nameAndAttributes[0], null, nameAndAttributes[1].strip()};
         } else {
             var tagMatcher = elementStartingPattern.matcher(element);
             tagMatcher.find();
             var tag = tagMatcher.group(1);
             var nameAndAttributes = extractNameAndAttributes(tag);
             var content = extractContent(element);
-            return new String[]{nameAndAttributes[0], content, nameAndAttributes[1]};
+            return new String[]{nameAndAttributes[0], content, nameAndAttributes[1].strip()};
         }
     }
 
@@ -145,7 +145,7 @@ class XML2JSONConverter implements Converter {
         switch (elementType) {
             case LITERAL:
             case STRING:
-                writeString(name, content);
+                writeString(parentPath, name, content);
                 break;
             case OBJECT:
                 writeObject(parentPath, name, content, attributes);
@@ -153,31 +153,15 @@ class XML2JSONConverter implements Converter {
     }
 
     private void writeObject(String parentPath, String name, String value, String attributes) {
-
         var path = computePath(parentPath, name);
-        if (!name.startsWith("#") && !name.startsWith("@")) {
-            println("Element:");
-            println("path = %s", path);
-            var valueType = ValueType.of(value);
-            if (valueType == ValueType.STRING || valueType == ValueType.LITERAL) {
-                println("value = %s", value);
-            }
-            if (attributes != null && attributes.length() > 0) {
-                println("attributes:");
-                var attrs = readAttributes(attributes);
-                for (var attr : attrs) {
-                    println("%s = \"%s\"", attr[0].substring(1), attr[1]);
-                }
-            }
-            println("");
-        }
+        logElement(path, name, value, attributes);
 
         builder.append("\"");
         builder.append(name);
         builder.append("\"");
         builder.append(":");
         var valueType = ValueType.of(value);
-        var children = valueType == ValueType.LITERAL
+        var children = valueType == ValueType.LITERAL || valueType == ValueType.STRING
                 ? List.<String[]>of()
                 : readElements(value.strip())
                 .stream()
@@ -233,6 +217,30 @@ class XML2JSONConverter implements Converter {
         }
     }
 
+    private void logElement(String path, String name, String value, String attributes) {
+        if (!name.startsWith("#") && !name.startsWith("@")) {
+            println("Element:");
+            println("path = %s", path);
+            var valueType = ValueType.of(value);
+            switch (valueType) {
+                case STRING:
+                    println("value = \"%s\"", value);
+                    break;
+                case LITERAL:
+                    println("value = %s", value);
+                    break;
+            }
+            if (attributes != null && attributes.length() > 0) {
+                println("attributes:");
+                var attrs = readAttributes(attributes);
+                for (var attr : attrs) {
+                    println("%s = \"%s\"", attr[0].substring(1), attr[1]);
+                }
+            }
+            println("");
+        }
+    }
+
     private String computePath(String parent, String name) {
         return name.startsWith("#")
                 ? parent
@@ -250,7 +258,10 @@ class XML2JSONConverter implements Converter {
         return result;
     }
 
-    private void writeString(String name, String value) {
+    private void writeString(String parentPath, String name, String value) {
+        var path = computePath(parentPath, name);
+        logElement(path, name, value, null);
+
         builder.append("\"");
         builder.append(name);
         builder.append("\"");
@@ -287,10 +298,10 @@ class XML2JSONConverter implements Converter {
         LITERAL;
 
         public static ValueType of(String valueType) {
-            if (valueType == null || valueType.length() == 0) return ValueType.LITERAL;
+            if (valueType == null || valueType.equals("null")) return ValueType.LITERAL;
+            if (valueType.length() == 0 || valueType.charAt(0) == '"') return ValueType.STRING;
             if (valueType.charAt(0) == '<') return ValueType.OBJECT;
-            if (valueType.charAt(0) == '"') return ValueType.STRING;
-            return ValueType.LITERAL;
+            return ValueType.STRING;
         }
     }
 }
