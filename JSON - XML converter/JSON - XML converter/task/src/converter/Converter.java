@@ -1,8 +1,12 @@
 package converter;
 
+import java.io.PrintStream;
+
 interface Converter {
 
     String convert(String content);
+
+    void logTo(PrintStream out);
 
     class Factory {
         public static Converter createFor(String input) {

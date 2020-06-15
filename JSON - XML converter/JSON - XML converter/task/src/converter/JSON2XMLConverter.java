@@ -1,5 +1,6 @@
 package converter;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
@@ -9,6 +10,7 @@ class JSON2XMLConverter implements Converter {
     private Pattern propertyValuePattern = Pattern.compile("\\s*:\\s*\"*(.*)[$|\"?\\s*]");
     private Pattern propertiesPattern = Pattern.compile("(?!\\B\\{[^\\}]*),(?![^\\{]*\\}\\B)");
     private StringBuilder builder = new StringBuilder();
+    private PrintStream out;
 
     @Override
     public String convert(String content) {
@@ -17,6 +19,17 @@ class JSON2XMLConverter implements Converter {
         var keyValuePair = readProperty(properties[0]);
         writeRecursively(keyValuePair[0], keyValuePair[1]);
         return builder.toString();
+    }
+
+    @Override
+    public void logTo(PrintStream out) {
+        this.out = out;
+    }
+
+    private void log(String fmt, String... params) {
+        if (out != null) {
+            out.printf(fmt + "\n", params);
+        }
     }
 
     private String readContent(String content) {

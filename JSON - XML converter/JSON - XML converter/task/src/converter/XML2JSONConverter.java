@@ -1,5 +1,8 @@
 package converter;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -16,13 +19,14 @@ class XML2JSONConverter implements Converter {
     private Pattern elementsPartsPattern = Pattern.compile("(\\<.*?\\>)|(.+?(?=\\<|$))");
     private Pattern elementClosingPattern = Pattern.compile("\\<\\/(.*?)\\>|\\<(.*?)\\/\\>");
     private StringBuilder builder = new StringBuilder();
+    private PrintStream out;
 
     @Override
     public String convert(String content) {
         writeBeginObject();
         var elements = readElements(content
-                        .replace("\r", "")
-                        .replace("\n", ""));
+                .replace("\r", "")
+                .replace("\n", ""));
         var keyValuePair = readElement(elements.get(0));
         writeRecursively(
                 keyValuePair[0],
@@ -30,6 +34,17 @@ class XML2JSONConverter implements Converter {
                 keyValuePair[2]);
         writeEndObject();
         return builder.toString();
+    }
+
+    @Override
+    public void logTo(PrintStream out) {
+        this.out = out;
+    }
+
+    private void log(String fmt, String... params) {
+        if (out != null) {
+            out.printf(fmt + "\n", params);
+        }
     }
 
     private List<String> readElements(String elements) {
@@ -89,29 +104,37 @@ class XML2JSONConverter implements Converter {
             var tagMatcher = simpleElementPattern.matcher(element);
             tagMatcher.find();
             var tag = tagMatcher.group(1);
-            var nameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(tag);
-            nameAndAttributesMatcher.find();
-            var name = nameAndAttributesMatcher.group(1);
-            var attributes = nameAndAttributesMatcher.groupCount() == 3
-                    ? nameAndAttributesMatcher.group(2)
-                    : null;
-            return new String[]{name, null, attributes};
+            var nameAndAttributes = extractNameAndAttributes(tag);
+            return new String[]{nameAndAttributes[0], null, nameAndAttributes[1]};
         } else {
             var tagMatcher = elementStartingPattern.matcher(element);
             tagMatcher.find();
             var tag = tagMatcher.group(1);
-            var nameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(tag);
-            nameAndAttributesMatcher.find();
-            var name = nameAndAttributesMatcher.group(1);
-            var attributes = nameAndAttributesMatcher.groupCount() == 3
-                    ? nameAndAttributesMatcher.group(2)
-                    : null;
-            var contentMatcher = elementContentPattern.matcher(element);
-            contentMatcher.find();
-            var content = contentMatcher.group(1);
-            content = content.strip().length() == 0 ? "null" : content;
-            return new String[]{name, content, attributes};
+            var nameAndAttributes = extractNameAndAttributes(tag);
+            var content = extractContent(element);
+            return new String[]{nameAndAttributes[0], content, nameAndAttributes[1]};
         }
+    }
+
+    @NotNull
+    private String extractContent(String element) {
+        var contentMatcher = elementContentPattern.matcher(element);
+        contentMatcher.find();
+        var content = contentMatcher.group(1);
+        content = content.strip().length() == 0 ? "null" : content;
+        return content;
+    }
+
+    @NotNull
+    private String[] extractNameAndAttributes(String tag) {
+        var nameAndAttributes = new String[2];
+        var nameAndAttributesMatcher = elementNameAndAttributesPattern.matcher(tag);
+        nameAndAttributesMatcher.find();
+        nameAndAttributes[0] = nameAndAttributesMatcher.group(1);
+        nameAndAttributes[1] = nameAndAttributesMatcher.groupCount() == 3
+                ? nameAndAttributesMatcher.group(2)
+                : null;
+        return nameAndAttributes;
     }
 
     private void writeRecursively(String name, String content, String attributes) {
@@ -138,9 +161,9 @@ class XML2JSONConverter implements Converter {
         var elements = valueType == ValueType.LITERAL
                 ? List.<String[]>of()
                 : readElements(value.strip())
-                    .stream()
-                    .map(this::readElement)
-                    .collect(toList());
+                .stream()
+                .map(this::readElement)
+                .collect(toList());
         if (elements.size() > 0 || (attributes != null && attributes.length() > 0)) {
             valueType = ValueType.OBJECT;
         }
