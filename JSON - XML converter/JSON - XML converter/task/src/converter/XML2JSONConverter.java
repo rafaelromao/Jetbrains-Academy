@@ -20,8 +20,10 @@ class XML2JSONConverter implements Converter {
     @Override
     public String convert(String content) {
         writeBeginObject();
-        var elements = readElements(content);
-        var keyValuePair = readElement(elements.get(0).replace("\n", ""));
+        var elements = readElements(content
+                        .replace("\r", "")
+                        .replace("\n", ""));
+        var keyValuePair = readElement(elements.get(0));
         writeRecursively(
                 keyValuePair[0],
                 keyValuePair[1],
@@ -37,6 +39,7 @@ class XML2JSONConverter implements Converter {
         var parts = Stream.concat(
                 Stream.of(partsMatcher.group().strip()),
                 partsMatcher.results().map(r -> r.group().strip()))
+                .filter(r -> r.length() > 0)
                 .collect(toList());
         var currentElement = new StringBuilder();
         var currentElementName = "";
@@ -134,35 +137,57 @@ class XML2JSONConverter implements Converter {
         var valueType = ValueType.of(value);
         var elements = valueType == ValueType.LITERAL
                 ? List.<String[]>of()
-                : readElements(value.replaceAll("\\s", ""))
+                : readElements(value.strip())
                     .stream()
                     .map(this::readElement)
                     .collect(toList());
+        if (elements.size() > 0) {
+            valueType = ValueType.OBJECT;
+        }
+        if (elements.size() > 1 && (attributes == null || attributes.length() == 0)) {
+            valueType = ValueType.ARRAY;
+        }
         if (attributes != null && attributes.length() > 0) {
             var element = new ArrayList<String[]>();
             element.add(new String[]{"#" + name, value, null});
             var attrs = readAttributes(attributes);
             elements = Stream
-                    .of(element.stream(), elements.stream(), attrs.stream())
+                    .of(element.stream(), attrs.stream())
                     .reduce(Stream::concat)
                     .get()
                     .collect(toList());
         }
-        if (elements.size() > 1) {
-            writeBeginObject();
+        switch (valueType) {
+            case OBJECT:
+                writeBeginObject();
+                break;
+            case ARRAY:
+                writeBeginArray();
+                break;
         }
         for (var i = 0; i < elements.size(); i++) {
+            if (valueType == ValueType.ARRAY) {
+                writeBeginObject();
+            }
             var keyValuePair = elements.get(i);
             writeRecursively(
                     keyValuePair[0],
                     keyValuePair[1],
                     keyValuePair[2]);
+            if (valueType == ValueType.ARRAY) {
+                writeEndObject();
+            }
             if (i < elements.size() - 1) {
                 builder.append(",");
             }
         }
-        if (elements.size() > 1) {
-            writeEndObject();
+        switch (valueType) {
+            case OBJECT:
+                writeEndObject();
+                break;
+            case ARRAY:
+                writeEndArray();
+                break;
         }
     }
 
@@ -195,6 +220,14 @@ class XML2JSONConverter implements Converter {
 
     private void writeEndObject() {
         builder.append("}");
+    }
+
+    private void writeBeginArray() {
+        builder.append("[");
+    }
+
+    private void writeEndArray() {
+        builder.append("]");
     }
 
     private enum ValueType {
