@@ -26,7 +26,7 @@ class JSON2XMLConverter implements Converter {
         this.out = out;
     }
 
-    private void log(String fmt, String... params) {
+    private void println(String fmt, String... params) {
         if (out != null) {
             out.printf(fmt + "\n", params);
         }

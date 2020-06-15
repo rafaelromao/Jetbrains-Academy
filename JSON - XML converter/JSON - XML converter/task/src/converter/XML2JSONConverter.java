@@ -28,7 +28,7 @@ class XML2JSONConverter implements Converter {
                 .replace("\r", "")
                 .replace("\n", ""));
         var keyValuePair = readElement(elements.get(0));
-        writeRecursively(
+        writeRecursively(null,
                 keyValuePair[0],
                 keyValuePair[1],
                 keyValuePair[2]);
@@ -41,7 +41,7 @@ class XML2JSONConverter implements Converter {
         this.out = out;
     }
 
-    private void log(String fmt, String... params) {
+    private void println(String fmt, String... params) {
         if (out != null) {
             out.printf(fmt + "\n", params);
         }
@@ -121,7 +121,7 @@ class XML2JSONConverter implements Converter {
         var contentMatcher = elementContentPattern.matcher(element);
         contentMatcher.find();
         var content = contentMatcher.group(1);
-        content = content.strip().length() == 0 ? "null" : content;
+        content = content == null ? "null" : content;
         return content;
     }
 
@@ -137,7 +137,7 @@ class XML2JSONConverter implements Converter {
         return nameAndAttributes;
     }
 
-    private void writeRecursively(String name, String content, String attributes) {
+    private void writeRecursively(String parentPath, String name, String content, String attributes) {
         var elementType = ValueType.of(content);
         if (attributes != null && attributes.length() > 0) {
             elementType = ValueType.OBJECT;
@@ -148,33 +148,52 @@ class XML2JSONConverter implements Converter {
                 writeString(name, content);
                 break;
             case OBJECT:
-                writeObject(name, content, attributes);
+                writeObject(parentPath, name, content, attributes);
         }
     }
 
-    private void writeObject(String name, String value, String attributes) {
+    private void writeObject(String parentPath, String name, String value, String attributes) {
+
+        var path = computePath(parentPath, name);
+        if (!name.startsWith("#") && !name.startsWith("@")) {
+            println("Element:");
+            println("path = %s", path);
+            var valueType = ValueType.of(value);
+            if (valueType == ValueType.STRING || valueType == ValueType.LITERAL) {
+                println("value = %s", value);
+            }
+            if (attributes != null && attributes.length() > 0) {
+                println("attributes:");
+                var attrs = readAttributes(attributes);
+                for (var attr : attrs) {
+                    println("%s = \"%s\"", attr[0].substring(1), attr[1]);
+                }
+            }
+            println("");
+        }
+
         builder.append("\"");
         builder.append(name);
         builder.append("\"");
         builder.append(":");
         var valueType = ValueType.of(value);
-        var elements = valueType == ValueType.LITERAL
+        var children = valueType == ValueType.LITERAL
                 ? List.<String[]>of()
                 : readElements(value.strip())
                 .stream()
                 .map(this::readElement)
                 .collect(toList());
-        if (elements.size() > 0 || (attributes != null && attributes.length() > 0)) {
+        if (children.size() > 0 || (attributes != null && attributes.length() > 0)) {
             valueType = ValueType.OBJECT;
         }
-        if (elements.size() > 1 && (attributes == null || attributes.length() == 0)) {
+        if (children.size() > 1 && (attributes == null || attributes.length() == 0)) {
             valueType = ValueType.ARRAY;
         }
         if (attributes != null && attributes.length() > 0) {
             var element = new ArrayList<String[]>();
             element.add(new String[]{"#" + name, value, null});
             var attrs = readAttributes(attributes);
-            elements = Stream
+            children = Stream
                     .of(element.stream(), attrs.stream())
                     .reduce(Stream::concat)
                     .get()
@@ -188,19 +207,19 @@ class XML2JSONConverter implements Converter {
                 writeBeginArray();
                 break;
         }
-        for (var i = 0; i < elements.size(); i++) {
+        for (var i = 0; i < children.size(); i++) {
             if (valueType == ValueType.ARRAY) {
                 writeBeginObject();
             }
-            var keyValuePair = elements.get(i);
-            writeRecursively(
+            var keyValuePair = children.get(i);
+            writeRecursively(path,
                     keyValuePair[0],
                     keyValuePair[1],
                     keyValuePair[2]);
             if (valueType == ValueType.ARRAY) {
                 writeEndObject();
             }
-            if (i < elements.size() - 1) {
+            if (i < children.size() - 1) {
                 builder.append(",");
             }
         }
@@ -212,6 +231,14 @@ class XML2JSONConverter implements Converter {
                 writeEndArray();
                 break;
         }
+    }
+
+    private String computePath(String parent, String name) {
+        return name.startsWith("#")
+                ? parent
+                : parent != null
+                ? parent + ", " + name
+                : name;
     }
 
     private List<String[]> readAttributes(String attributes) {
@@ -228,7 +255,7 @@ class XML2JSONConverter implements Converter {
         builder.append(name);
         builder.append("\"");
         builder.append(":");
-        if (value == null || value.length() == 0) {
+        if (value == null) {
             builder.append("null");
         } else {
             builder.append("\"");
@@ -260,7 +287,7 @@ class XML2JSONConverter implements Converter {
         LITERAL;
 
         public static ValueType of(String valueType) {
-            if (valueType == null) return ValueType.LITERAL;
+            if (valueType == null || valueType.length() == 0) return ValueType.LITERAL;
             if (valueType.charAt(0) == '<') return ValueType.OBJECT;
             if (valueType.charAt(0) == '"') return ValueType.STRING;
             return ValueType.LITERAL;

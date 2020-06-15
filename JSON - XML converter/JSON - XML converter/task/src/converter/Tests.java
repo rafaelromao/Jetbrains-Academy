@@ -65,7 +65,7 @@ public class Tests {
                 "        <subchild id = \"5\" auth=\"auth3\"/>\n" +
                 "    </child>\n" +
                 "</node>";
-        var expected = "{\"node\":[{\"child\":{\"#child\":{\"subchild\":{\"#subchild\":\"Value1\",\"@id\":\"1\",\"@auth\":\"auth1\"}},\"@name\":\"child_name1\",\"@type\":\"child_type1\"}},{\"child\":{\"#child\":[{\"subchild\":{\"#subchild\":\"Value2\",\"@id\":\"2\",\"@auth\":\"auth1\"}},{\"subchild\":{\"#subchild\":\"Value3\",\"@id\":\"3\",\"@auth\":\"auth2\"}},{\"subchild\":{\"#subchild\":\"null\",\"@id\":\"4\",\"@auth\":\"auth3\"}},{\"subchild\":{\"#subchild\":null,\"@id\":\"5\",\"@auth\":\"auth3\"}}],\"@name\":\"child_name2\",\"@type\":\"child_type2\"}}]}";
+        var expected = "{\"node\":[{\"child\":{\"#child\":{\"subchild\":{\"#subchild\":\"Value1\",\"@id\":\"1\",\"@auth\":\"auth1\"}},\"@name\":\"child_name1\",\"@type\":\"child_type1\"}},{\"child\":{\"#child\":[{\"subchild\":{\"#subchild\":\"Value2\",\"@id\":\"2\",\"@auth\":\"auth1\"}},{\"subchild\":{\"#subchild\":\"Value3\",\"@id\":\"3\",\"@auth\":\"auth2\"}},{\"subchild\":{\"#subchild\":\"\",\"@id\":\"4\",\"@auth\":\"auth3\"}},{\"subchild\":{\"#subchild\":null,\"@id\":\"5\",\"@auth\":\"auth3\"}}],\"@name\":\"child_name2\",\"@type\":\"child_type2\"}}]}";
         var converter = Converter.Factory.createFor(input);
         var output = converter.convert(input);
         Assert.assertEquals(expected, output);
