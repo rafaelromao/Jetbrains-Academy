@@ -141,7 +141,7 @@ class XML2JSONConverter implements Converter {
                     .stream()
                     .map(this::readElement)
                     .collect(toList());
-        if (elements.size() > 0) {
+        if (elements.size() > 0 || (attributes != null && attributes.length() > 0)) {
             valueType = ValueType.OBJECT;
         }
         if (elements.size() > 1 && (attributes == null || attributes.length() == 0)) {
