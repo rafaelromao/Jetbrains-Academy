@@ -41,7 +41,7 @@ class XML2JSONConverter implements Converter {
         this.out = out;
     }
 
-    private void println(String fmt, String... params) {
+    private void println(String fmt, Object... params) {
         if (out != null) {
             out.printf(fmt + "\n", params);
         }

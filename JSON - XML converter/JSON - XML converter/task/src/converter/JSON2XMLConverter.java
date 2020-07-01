@@ -26,12 +26,6 @@ class JSON2XMLConverter implements Converter {
         this.out = out;
     }
 
-    private void println(String fmt, String... params) {
-        if (out != null) {
-            out.printf(fmt + "\n", params);
-        }
-    }
-
     private String readContent(String content) {
         var objectMatcher = objectPattern.matcher(content.replaceAll("\\s", ""));
         objectMatcher.find();

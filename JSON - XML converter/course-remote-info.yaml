@@ -60,6 +60,8 @@ topics:
     theory_id: 3523
   - title: Conditional statement
     theory_id: 3503
+  - title: Ternary operator
+    theory_id: 3506
   - title: The for-loop
     theory_id: 3505
   - title: The while and do-while loops
@@ -91,8 +93,6 @@ topics:
     theory_id: 7255
   - title: Dynamic array
     theory_id: 5357
-  - title: Binary numbers
-    theory_id: 5544
   - title: Regexps basics
     theory_id: 7580
   - title: Computer programming
@@ -151,8 +151,6 @@ topics:
     theory_id: 3510
   - title: Final variables
     theory_id: 7427
-  - title: Ternary operator
-    theory_id: 3506
   - title: Iterating over arrays
     theory_id: 3602
   - title: Defining methods

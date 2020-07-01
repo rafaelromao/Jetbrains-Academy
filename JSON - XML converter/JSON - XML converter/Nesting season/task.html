@@ -16,7 +16,7 @@
     ...
 &lt;/node&gt;</code></pre>
 
-<p>You’ll need to create a function that will parse and traverse XML document. You don't need to use parsing libraries, you need to write a parser by yourself.</p>
+<p>You’ll need to create a function that will parse and traverse XML document. You don't need to use parsing libraries, you need to write a parser by yourself.</p>
 
 <p>In the previous stage, you’ve learned how to parse attributes. When you traverse an XML tree, you need to check if an element contains attributes. To do this, you can substring data between opening and closing tags and split every attribute data into keys and values.</p>
 
@@ -63,7 +63,7 @@ attributeN = valueN</code></pre>
 
 <p><strong>Example 1:</strong></p>
 
-<p>Input example #1 (file <code class="language-xml">test.txt</code>)</p>
+<p>Input example #1 (file <code class="language-xml">test.txt</code>)</p>
 
 <pre><code class="language-xml">&lt;transaction&gt;
     &lt;id&gt;6753322&lt;/id&gt;
@@ -157,11 +157,11 @@ day = "12"
 month = "12"
 year = "2018"</code></pre>
 
-<p> </p>
+<p> </p>
 
 <p><strong>Example 2:</strong></p>
 
-<p>Input example #2 (file <code class="language-xml">test.txt</code>)</p>
+<p>Input example #2 (file <code class="language-xml">test.txt</code>)</p>
 
 <pre><code class="language-xml">&lt;node&gt;
     &lt;child name = "child_name1" type = "child_type1"&gt;
@@ -227,11 +227,11 @@ attributes:
 id = "5"
 auth = "auth3"</code></pre>
 
-<p> </p>
+<p> </p>
 
 <p><strong>Example 3:</strong></p>
 
-<p>Input example #3 (file <code class="language-xml">test.txt</code>)</p>
+<p>Input example #3 (file <code class="language-xml">test.txt</code>)</p>
 
 <pre><code class="language-xml">&lt;node&gt;&lt;child name="child_name1" type="child_type1"&gt;&lt;subchild id="1" auth="auth1"&gt;Value1&lt;/subchild&gt;&lt;/child&gt;&lt;child name="child_name2" type="child_type2"&gt;&lt;subchild id="2" auth="auth1"&gt;Value2&lt;/subchild&gt;&lt;subchild id="3" auth="auth2"&gt;Value3&lt;/subchild&gt;&lt;subchild id="4" auth="auth3"&gt;&lt;/subchild&gt;&lt;subchild id="5" auth="auth3"/&gt;&lt;/child&gt;&lt;/node&gt;</code></pre>
 
