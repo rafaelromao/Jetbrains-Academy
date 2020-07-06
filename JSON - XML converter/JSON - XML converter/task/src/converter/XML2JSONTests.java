@@ -3,7 +3,7 @@ package converter;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class Tests {
+public class XML2JSONTests {
     @Test
     public void xml2json_simpleContent_noAttributes() {
         var input = "<employee>Garry Smith</employee>";

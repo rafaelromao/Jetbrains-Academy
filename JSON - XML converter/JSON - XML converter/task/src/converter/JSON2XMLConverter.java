@@ -1,22 +1,23 @@
 package converter;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 class JSON2XMLConverter implements Converter {
-    private Pattern objectPattern = Pattern.compile("\\s*\\{\\s*(.*)\\s*\\}\\s*");
+    private Pattern contentPattern = Pattern.compile("\\s*[\\[\\{]\\s*(.*)\\s*[\\}\\]]\\s*");
     private Pattern propertyNamePattern = Pattern.compile("\\s*\"([\\w|@|#]*)\"\\s*:\\s*");
     private Pattern propertyValuePattern = Pattern.compile("\\s*:\\s*\"*(.*)[$|\"?\\s*]");
-    private Pattern propertiesPattern = Pattern.compile("(?!\\B\\{[^\\}]*),(?![^\\{]*\\}\\B)");
+    private Pattern separatorPattern = Pattern.compile("(\\\"\\w*\\\"\\s*)(:)\\s*([\\{\\[\\\"]|\\bnull\\b|\\d+)");
     private StringBuilder builder = new StringBuilder();
     private PrintStream out;
 
     @Override
     public String convert(String content) {
-        var value = readContent(content);
-        var properties = propertiesPattern.split(value);
-        var keyValuePair = readProperty(properties[0]);
+        var properties = splitContent(content);
+        var keyValuePair = readProperty(properties.get(0));
         writeRecursively(keyValuePair[0], keyValuePair[1]);
         return builder.toString();
     }
@@ -26,10 +27,74 @@ class JSON2XMLConverter implements Converter {
         this.out = out;
     }
 
+    private List<String> splitContent(String content) {
+        content = readContent(content);
+        var result = new ArrayList<String>();
+        var matcher = separatorPattern.matcher(content);
+        var start = 0;
+        while (true) {
+            matcher.find(start);
+            start = matcher.start(3);
+            var property = readContent(
+                    matcher.group(1),
+                    content,
+                    start);
+            if (property != null) {
+                result.add(property);
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+    private String readContent(String name, String content, int valueStart) {
+        String value;
+        switch (ElementType.of(content.substring(valueStart, valueStart + 1))) {
+            case OBJECT:
+                value = readUntilMatching('}', content, valueStart);
+                break;
+            case ARRAY:
+                value = readUntilMatching(']', content, valueStart);
+                break;
+            case STRING:
+                value = readUntilMatching('"', content, valueStart);
+                break;
+            default:
+                value = readUntilMatching(',', content + ",", valueStart);
+                break;
+        }
+        if (value == null) {
+            return null;
+        }
+        return String.format("%s:%s", name, value);
+    }
+
+    private String readUntilMatching(char enclosingChar, String content, int valueStart) {
+        boolean inArray = enclosingChar == '}';
+        boolean inObject = enclosingChar == ']';
+        int openObjects = 0;
+        int openArrays = 0;
+        for (int index = valueStart + 1; index < content.length(); index++) {
+            char currentChar = content.charAt(index);
+            if (currentChar == '[') openArrays++;
+            if (currentChar == ']') openArrays--;
+            if (currentChar == '{') openObjects++;
+            if (currentChar == '}') openObjects--;
+            if (!inArray && !inObject && (currentChar == '[' || currentChar == '{')) {
+                return null;
+            }
+            if (currentChar == enclosingChar && openObjects == 0 && openArrays == 0) {
+                return content.substring(valueStart, index);
+            }
+        }
+        return null;
+    }
+
     private String readContent(String content) {
-        var objectMatcher = objectPattern.matcher(content.replaceAll("\\s", ""));
-        objectMatcher.find();
-        return objectMatcher.group(1);
+        var matcher = contentPattern.matcher(content);
+        matcher.find();
+        return matcher.group(1).trim();
     }
 
     private String[] readProperty(String content) {
@@ -52,19 +117,20 @@ class JSON2XMLConverter implements Converter {
                 writeLiteral(name, value, attributes);
                 break;
             case OBJECT:
+            case ARRAY:
                 writeElement(name, value);
         }
     }
 
     private void writeElement(String name, String value) {
-        var properties = propertiesPattern.split(readContent(value));
-        var content = Arrays.stream(properties)
+        var properties = splitContent(value);
+        var content = properties.stream()
                 .filter(p -> p.startsWith("\"#"))
                 .findAny();
-        var attributes = Arrays.stream(properties)
+        var attributes = properties.stream()
                 .filter(p -> p.startsWith("\"@"))
                 .toArray(String[]::new);
-        var elements = Arrays.stream(properties)
+        var elements = properties.stream()
                 .filter(p -> !p.startsWith("\"@") && !p.startsWith("\"#"))
                 .toArray(String[]::new);
         if (!content.isPresent() && elements.length == 0) {
@@ -72,7 +138,15 @@ class JSON2XMLConverter implements Converter {
         } else {
             writeBeginElement(name, attributes);
             if (content.isPresent()) {
-                writeValue(readProperty(content.get())[1]);
+                var keyValuePair = readProperty(content.get());
+                var contentValue = keyValuePair[1];
+                if (ElementType.of(contentValue) == ElementType.LITERAL) {
+                    writeValue(contentValue);
+                } else {
+                    var contentProperty = splitContent(keyValuePair[1]).get(0);
+                    keyValuePair = readProperty(contentProperty);
+                    writeRecursively(keyValuePair[0], keyValuePair[1]);
+                }
             }
             for (var element : elements) {
                 var keyValuePair = readProperty(element);
