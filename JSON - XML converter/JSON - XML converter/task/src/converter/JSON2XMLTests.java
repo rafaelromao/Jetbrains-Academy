@@ -14,9 +14,45 @@ public class JSON2XMLTests {
     }
 
     @Test
+    public void json2xml_invalidAttribute() {
+        var input = "\"inner4\": {\n" +
+                "            \"@\": 123,\n" +
+                "            \"#inner4\": \"value3\"\n" +
+                "        },";
+        var expected = "<inner4><inner4>value3</inner4></inner4>";
+        var converter = Converter.Factory.createFor(input);
+        var output = converter.convert(input);
+        Assert.assertEquals(expected, output);
+    }
+
+    @Test
+    public void json2xml_invalidContent() {
+        var input = "\"inner5\": {\n" +
+                "            \"@attr1\": 123.456,\n" +
+                "            \"#inner4\": \"value4\"\n" +
+                "        }";
+        var expected = "<inner5><attr1>123.456</attr1><inner4>value4</inner4></inner5>";
+        var converter = Converter.Factory.createFor(input);
+        var output = converter.convert(input);
+        Assert.assertEquals(expected, output);
+    }
+
+    @Test
+    public void json2xml_invalidElement() {
+        var input = "\"inner4.2\": {\n" +
+                "            \"\": 123,\n" +
+                "            \"#inner4.2\": \"value3\"\n" +
+                "        }";
+        var expected = "<inner4.2><inner4.2>value3</inner4.2></inner4.2>";
+        var converter = Converter.Factory.createFor(input);
+        var output = converter.convert(input);
+        Assert.assertEquals(expected, output);
+    }
+
+    @Test
     public void json2xml_simpleContent_singleAttribute() {
         var input = "{\"employee\":{\"#employee\":\"Garry Smith\",\"@department\":\"finance\"}}";
-        var expected = "<employee department = \"finance\">Garry Smith</employee>";
+        var expected = "<employee department=\"finance\">Garry Smith</employee>";
         var converter = Converter.Factory.createFor(input);
         var output = converter.convert(input);
         Assert.assertEquals(expected, output);
@@ -34,7 +70,7 @@ public class JSON2XMLTests {
     @Test
     public void json2xml_simpleObjectContent_singleAttribute() {
         var input = "{\"employee\":{\"#employee\":{\"item\":\"Garry Smith\"},\"@department\":\"finance\"}}";
-        var expected = "<employee department = \"finance\"><item>Garry Smith</item></employee>";
+        var expected = "<employee department=\"finance\"><item>Garry Smith</item></employee>";
         var converter = Converter.Factory.createFor(input);
         var output = converter.convert(input);
         Assert.assertEquals(expected, output);
@@ -52,7 +88,7 @@ public class JSON2XMLTests {
     @Test
     public void json2xml_multipleSimpleObjectsContent_singleAttribute() {
         var input = "{\"employee\":{\"#employee\":[{\"item\":\"Garry Smith\"},{\"item\":\"test\"}],\"@department\":\"finance\"}}";
-        var expected = "<employee department = \"finance\"><item>Garry Smith</item><item>test</item></employee>";
+        var expected = "<employee department=\"finance\"><item>Garry Smith</item><item>test</item></employee>";
         var converter = Converter.Factory.createFor(input);
         var output = converter.convert(input);
         Assert.assertEquals(expected, output);

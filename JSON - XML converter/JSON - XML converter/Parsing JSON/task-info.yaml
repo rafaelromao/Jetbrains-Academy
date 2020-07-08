@@ -1194,4 +1194,148 @@ files:
   learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/332/implement
 status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #1
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    Element:
+    path = transaction
+
+    Element:
+    path = transaction, id
+    value = &quot;6753322&quot;
+
+    Element:
+    path = transaction, number
+    value = &quot;8-900-000-000&quot;
+    attributes:
+    region = &quot;Russia&quot;
+
+    Element:
+    path = transaction, number, number
+    value = &quot;8-900-000-000&quot;
+    attributes:
+    region = &quot;Russia&quot;
+
+    Element:
+    path = transaction, empty1
+    value = null
+
+    Element:
+    path = transaction, empty2
+
+    Element:
+    path = transaction, empty3
+    value = &quot;&quot;
+
+    Element:
+    path = transaction, inner1
+
+    Element:
+    path = transaction, inner1, inner2
+
+    Element:
+    path = transaction, inner1, inner2, inner3
+
+    Element:
+    path = transaction, inner1, inner2, inner3, key1
+    value = &quot;value1&quot;
+
+    Element:
+    path = transaction, inner1, inner2, inner3, key2
+    value = &quot;value2&quot;
+
+    Element:
+    path = transaction, inner4
+    value = &quot;value3&quot;
+
+    Element:
+    path = transaction, inner4, inner4
+    value = &quot;value3&quot;
+
+    Element:
+    path = transaction, inner5
+    value = &quot;value4&quot;
+    attributes:
+    attr1 = 123.456
+
+    Element:
+    path = transaction, inner5, inner5
+    value = &quot;value4&quot;
+    attributes:
+    attr1 = 123.456
+
+    Element:
+    path = transaction, inner6
+    value = &quot;value5&quot;
+    attributes:
+    attr2 = 789.321
+
+    Element:
+    path = transaction, inner6, inner6
+    value = &quot;value5&quot;
+    attributes:
+    attr2 = 789.321
+
+    Element:
+    path = transaction, inner7
+    value = &quot;value6&quot;
+
+    Element:
+    path = transaction, inner7, inner7
+    value = &quot;value6&quot;
+
+    Element:
+    path = transaction, inner8
+    attributes:
+    attr3 = &quot;value7&quot;
+
+    Element:
+    path = transaction, inner9
+    value = &quot;value9&quot;
+    attributes:
+    attr4 = &quot;value8&quot;
+
+    Element:
+    path = transaction, inner9, inner9
+    value = &quot;value9&quot;
+    attributes:
+    attr4 = &quot;value8&quot;
+
+    Element:
+    path = transaction, inner9, inner9, something
+    value = &quot;value10&quot;
+
+    Element:
+    path = transaction, inner10
+    value = null         },
+    attributes:
+    attr5 = null
+
+    Element:
+    path = transaction, inner10, inner10
+    value = null         },
+    attributes:
+    attr5 = null
+
+    Element:
+    path = transaction, inner11
+
+    Element:
+    path = transaction, inner12
+    attributes:
+    somekey = &quot;attrvalue&quot;
+
+    Element:
+    path = transaction, inner12, somekey
+    value = &quot;keyvalue&quot;
+
+    Element:
+    path = transaction, inner12, inner12
+    value = &quot;notnull&quot;
+  time: Wed, 08 Jul 2020 22:08:28 UTC
 record: -1

@@ -2,23 +2,25 @@ package converter;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 class JSON2XMLConverter implements Converter {
-    private Pattern contentPattern = Pattern.compile("\\s*[\\[\\{]\\s*(.*)\\s*[\\}\\]]\\s*");
-    private Pattern propertyNamePattern = Pattern.compile("\\s*\"([\\w|@|#]*)\"\\s*:\\s*");
-    private Pattern propertyValuePattern = Pattern.compile("\\s*:\\s*\"*(.*)[$|\"?\\s*]");
-    private Pattern separatorPattern = Pattern.compile("(\\\"\\w*\\\"\\s*)(:)\\s*([\\{\\[\\\"]|\\bnull\\b|\\d+)");
+    private Pattern contentPattern = Pattern.compile("\\s*[\\[\\{]?\\s*(.*)\\s*[\\}\\]]?\\s*", Pattern.DOTALL);
+    private Pattern propertyNamePattern = Pattern.compile("\\s*\"([\\w@#.-_]*)\"\\s*:\\s*");
+    private Pattern separatorPattern = Pattern.compile("(\\\"[#@]?[\\w.-_]*\\\"\\s*)(:)\\s*([\\{\\[\\\"]|\\bnull\\b|\\d+)");
     private StringBuilder builder = new StringBuilder();
     private PrintStream out;
 
     @Override
     public String convert(String content) {
-        var properties = splitContent(content);
+        var properties = splitContent(content.replace('\n', ' '));
         var keyValuePair = readProperty(properties.get(0));
-        writeRecursively(keyValuePair[0], keyValuePair[1]);
+        writeRecursively(null, keyValuePair[0], keyValuePair[1]);
         return builder.toString();
     }
 
@@ -27,19 +29,48 @@ class JSON2XMLConverter implements Converter {
         this.out = out;
     }
 
+    private void println(String fmt, Object... params) {
+        if (out != null) {
+            out.printf(fmt + "\n", params);
+        }
+    }
+
+    private void logElement(String path, String name, Optional<String> value, String... attributes) {
+        if (!name.startsWith("@")) {
+            println("Element:");
+            println("path = %s", path);
+            if (value != null) {
+                var elementType = JSON2XMLConverter.ElementType.of(value.orElse(null));
+                switch (elementType) {
+                    case STRING:
+                    case LITERAL:
+                        println("value = %s", value.orElse(null));
+                        break;
+                }
+            }
+            if (attributes != null && attributes.length > 0) {
+                println("attributes:");
+                for (var attribute : attributes) {
+                    var attr = readProperty(attribute);
+                    println("%s = %s", attr[0].substring(1), attr[1]);
+                }
+            }
+            println("");
+        }
+    }
+
     private List<String> splitContent(String content) {
         content = readContent(content);
         var result = new ArrayList<String>();
         var matcher = separatorPattern.matcher(content);
         var start = 0;
-        while (true) {
-            matcher.find(start);
-            start = matcher.start(3);
+        while (start < content.length() && matcher.find(start)) {
             var property = readContent(
                     matcher.group(1),
                     content,
-                    start);
+                    matcher.start(3));
             if (property != null) {
+                start = matcher.start(1) + property.length();
                 result.add(property);
             } else {
                 break;
@@ -71,11 +102,13 @@ class JSON2XMLConverter implements Converter {
     }
 
     private String readUntilMatching(char enclosingChar, String content, int valueStart) {
-        boolean inArray = enclosingChar == '}';
-        boolean inObject = enclosingChar == ']';
+        boolean inArray = enclosingChar == ']';
+        boolean inObject = enclosingChar == '}';
+        boolean inString = enclosingChar == '"';
         int openObjects = 0;
         int openArrays = 0;
-        for (int index = valueStart + 1; index < content.length(); index++) {
+        for (int index = valueStart; index < content.length(); index++) {
+            if (index == valueStart && inString) continue;
             char currentChar = content.charAt(index);
             if (currentChar == '[') openArrays++;
             if (currentChar == ']') openArrays--;
@@ -85,13 +118,16 @@ class JSON2XMLConverter implements Converter {
                 return null;
             }
             if (currentChar == enclosingChar && openObjects == 0 && openArrays == 0) {
-                return content.substring(valueStart, index);
+                return enclosingChar == ','
+                        ? content.substring(valueStart, index)
+                        : content.substring(valueStart, index + 1);
             }
         }
-        return null;
+        return content.substring(valueStart);
     }
 
     private String readContent(String content) {
+        if (content.length() == 0) return content;
         var matcher = contentPattern.matcher(content);
         matcher.find();
         return matcher.group(1).trim();
@@ -102,65 +138,161 @@ class JSON2XMLConverter implements Converter {
         var keyMatcher = propertyNamePattern.matcher(content);
         keyMatcher.find();
         var key = keyMatcher.group(1);
-        var valueMatcher = propertyValuePattern.matcher(content);
-        valueMatcher.find();
-        var value = valueMatcher.group(1).strip();
+        var separatorMatcher = separatorPattern.matcher(content);
+        separatorMatcher.find();
+        var value = content.substring(separatorMatcher.start(3)).strip();
         value = "null".equals(value) ? null : value;
         return new String[]{key, value};
     }
 
-    private void writeRecursively(String name, String value, String... attributes) {
+    private void writeRecursively(String parentPath, String name, String value) {
+        if (name.strip().length() == 0) return;
         var elementType = ElementType.of(value);
         switch (elementType) {
             case LITERAL:
             case STRING:
-                writeLiteral(name, value, attributes);
+                writeElementWithSimpleContent(parentPath, name, value);
                 break;
             case OBJECT:
             case ARRAY:
-                writeElement(name, value);
+                writeElementWithComplexContent(parentPath, name, value);
         }
     }
 
-    private void writeElement(String name, String value) {
+    private void writeElementWithComplexContent(String parentPath, String name, String value) {
         var properties = splitContent(value);
+        var valids = properties.stream()
+                .filter(p -> !hasContent(p) && !hasAttribute(p))
+                .collect(toList());
+        var invalids = properties.stream()
+                .filter(p -> hasInvalidContent(name, p) ||
+                        hasInvalidAttribute(p) ||
+                        hasInvalidElement(p))
+                .collect(toList());
+        var fixed = invalids.isEmpty() ? properties : properties.stream()
+                .filter(p -> !hasInvalidContent(p))
+                .filter(p -> !hasInvalidAttribute(p))
+                .filter(p -> !hasInvalidElement(p))
+                .map(p -> fixInvalidContent(p))
+                .map(p -> fixInvalidAttributes(p))
+                .collect(toList());
+
+        properties = Stream.concat(valids.stream(), fixed.stream())
+                .distinct()
+                .collect(toList());
+
         var content = properties.stream()
-                .filter(p -> p.startsWith("\"#"))
+                .filter(p -> p.startsWith("\"#" + name + "\":"))
                 .findAny();
         var attributes = properties.stream()
                 .filter(p -> p.startsWith("\"@"))
                 .toArray(String[]::new);
         var elements = properties.stream()
-                .filter(p -> !p.startsWith("\"@") && !p.startsWith("\"#"))
+                .filter(p -> !p.startsWith("\"@") && !hasContent(p))
                 .toArray(String[]::new);
+        if (content.isPresent()) {
+            var keyValuePair = readProperty(content.get());
+            if (keyValuePair[1] == null) {
+                content = Optional.empty();
+            }
+        }
+
+        var path = computePath(parentPath, name);
+        if (content.isPresent()) {
+            var contentValue = readProperty(content.get())[1];
+            logElement(path, name, Optional.ofNullable(contentValue), attributes);
+        } else {
+            logElement(path, name, null, attributes);
+        }
+
         if (!content.isPresent() && elements.length == 0) {
             writeSimpleElement(name, attributes);
         } else {
             writeBeginElement(name, attributes);
             if (content.isPresent()) {
                 var keyValuePair = readProperty(content.get());
-                var contentValue = keyValuePair[1];
-                if (ElementType.of(contentValue) == ElementType.LITERAL) {
-                    writeValue(contentValue);
+                var elementType = ElementType.of(keyValuePair[1]);
+                if (elementType == ElementType.LITERAL || elementType == ElementType.STRING) {
+                    path = computePath(path, name);
+                    logElement(path, keyValuePair[0].substring(1), Optional.ofNullable(keyValuePair[1]), attributes);
+                    writeValue(keyValuePair[1]);
                 } else {
-                    var contentProperty = splitContent(keyValuePair[1]).get(0);
-                    keyValuePair = readProperty(contentProperty);
-                    writeRecursively(keyValuePair[0], keyValuePair[1]);
+                    var contentProperties = splitContent(keyValuePair[1]);
+                    for (var contentProperty : contentProperties) {
+                        keyValuePair = readProperty(contentProperty);
+                        writeRecursively(path, keyValuePair[0], keyValuePair[1]);
+                    }
                 }
             }
             for (var element : elements) {
                 var keyValuePair = readProperty(element);
-                writeRecursively(keyValuePair[0], keyValuePair[1]);
+                writeRecursively(path, keyValuePair[0], keyValuePair[1]);
             }
             writeEndElement(name);
         }
     }
 
-    private void writeLiteral(String name, String value, String... attributes) {
+    private boolean hasAttribute(String p) {
+        return p.startsWith("\"@");
+    }
+
+    private boolean hasContent(String p) {
+        return p.startsWith("\"#");
+    }
+
+    private String fixInvalidContent(String p) {
+        return p.replace("\"#", "\"");
+    }
+
+    private String fixInvalidAttributes(String p) {
+        return p.replace("\"@", "\"");
+    }
+
+    private boolean hasInvalidContent(String p) {
+        return p.startsWith("\"#:");
+    }
+
+    private boolean hasInvalidElement(String p) {
+        return p.startsWith("\"\":");
+    }
+
+    private boolean hasInvalidAttribute(String p) {
+        return p.startsWith("\"@\":") || p.matches("\\\"@.*\\\":[\\{\\[]");
+    }
+
+    private boolean hasInvalidContent(String name, String p) {
+        return !p.startsWith("\"#" + name + "\":") && hasContent(p);
+    }
+
+    private String computePath(String parent, String name) {
+        return parent == null
+                ? name
+                : name.startsWith("#")
+                ? parent
+                : parent != null
+                ? parent + ", " + name
+                : name;
+    }
+
+    private String dequote(String value) {
+        if (value != null &&
+                value.length() > 1 &&
+                value.charAt(0) == '\"' &&
+                value.charAt(value.length() - 1) == '\"') {
+            return value.substring(1, value.length() - 1);
+        }
+        return value;
+    }
+
+    private void writeElementWithSimpleContent(String parentPath, String name, String value) {
+        var path = computePath(parentPath, name);
+        logElement(path, name, Optional.ofNullable(value), null);
+
+        value = dequote(value);
         if (value == null || value.length() == 0) {
-            writeSimpleElement(name, attributes);
+            writeSimpleElement(name);
         } else {
-            writeBeginElement(name, attributes);
+            writeBeginElement(name);
             writeValue(value);
             writeEndElement(name);
         }
@@ -202,13 +334,14 @@ class JSON2XMLConverter implements Converter {
     private void writeAttribute(String attribute) {
         var keyValuePair = attribute.replace("\"", "").split(":");
         builder.append(keyValuePair[0].strip().substring(1));
-        builder.append(" = ");
+        builder.append("=");
         builder.append("\"");
         builder.append(keyValuePair[1].strip());
         builder.append("\"");
     }
 
     private void writeValue(String value) {
+        value = dequote(value);
         builder.append(value == null ? "" : value);
     }
 
@@ -219,6 +352,8 @@ class JSON2XMLConverter implements Converter {
         LITERAL;
 
         public static ElementType of(String elementValue) {
+            if (elementValue == null) return ElementType.LITERAL;
+            if (elementValue.length() == 0) return ElementType.STRING;
             if (elementValue.charAt(0) == '{') return ElementType.OBJECT;
             if (elementValue.charAt(0) == '[') return ElementType.ARRAY;
             if (elementValue.charAt(0) == '"') return ElementType.STRING;
