@@ -1192,9 +1192,6 @@ files:
 - name: src/converter/JSON2XMLTests.java
   visible: true
   learner_created: true
-- name: test.txt
-  visible: true
-  learner_created: true
 feedback_link: https://hyperskill.org/projects/61/stages/332/implement
 status: Failed
 feedback:
@@ -1305,5 +1302,5 @@ feedback:
     value = null
     attributes:
     somekey = &quot;attrvalue&quot;
-  time: Thu, 09 Jul 2020 18:29:18 UTC
+  time: Thu, 09 Jul 2020 18:32:17 UTC
 record: -1
