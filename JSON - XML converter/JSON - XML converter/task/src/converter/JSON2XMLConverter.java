@@ -3,16 +3,15 @@ package converter;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Pattern;
 
 import static java.util.stream.Collectors.toList;
 
 class JSON2XMLConverter implements Converter {
-    private Pattern contentPattern = Pattern.compile("\\s*[\\[\\{]?\\s*(.*)\\s*[\\}\\]]?\\s*", Pattern.DOTALL);
-    private Pattern propertyNamePattern = Pattern.compile("\\s*\"([\\w@#.-_]*)\"\\s*:\\s*");
-    private Pattern separatorPattern = Pattern.compile("(\\\"[#@]?[\\w.-_]*\\\"\\s*)(:)\\s*([\\{\\[\\\"]|\\bnull\\b|\\d+)");
-    private StringBuilder builder = new StringBuilder();
+    private final Pattern contentPattern = Pattern.compile("\\s*[\\[{]?\\s*(.*)\\s*[}\\]]?\\s*", Pattern.DOTALL);
+    private final Pattern propertyNamePattern = Pattern.compile("\\s*\"([\\w@#.-_]*)\"\\s*:\\s*");
+    private final Pattern separatorPattern = Pattern.compile("(\"[#@]?[\\w.-_]*\"\\s*)(:)\\s*([{\\[\"]|\\bnull\\b|\\d+)");
+    private final StringBuilder builder = new StringBuilder();
     private PrintStream out;
 
     @Override
@@ -30,7 +29,8 @@ class JSON2XMLConverter implements Converter {
 
     private void println(String fmt, Object... params) {
         if (out != null) {
-            out.printf(fmt + "\n", params);
+            out.printf(fmt, params);
+            out.println();
         }
     }
 
@@ -40,30 +40,42 @@ class JSON2XMLConverter implements Converter {
         }
         println("Element:");
         println("path = %s", path);
-        if (elements != null) {
-            if (elements.length == 0) {
-                println("value = \"\"");
-            } else if (elements.length == 1) {
-                var value = elements[0];
-                var separatorIndex = value.indexOf(":");
-                if (separatorIndex == -1) {
-                    println("value = %s", value);
-                } else {
-                    var keyValuePair = readProperty(value);
-                    var name = keyValuePair[0];
-                    value = keyValuePair[1];
-                    if (path.endsWith(", " + name)) {
-                        var elementType = JSON2XMLConverter.ElementType.of(value);
-                        switch (elementType) {
-                            case STRING:
-                            case LITERAL:
-                                println("value = %s", value);
-                                break;
-                        }
+        printValue(path, elements);
+        printAttributes(attributes);
+        println("");
+    }
+
+    private void printValue(String path, String[] elements) {
+        if (elements == null) {
+            return;
+        }
+        if (elements.length == 0) {
+            println("value = \"\"");
+        } else if (elements.length == 1) {
+            var value = elements[0];
+            var separatorIndex = value.indexOf(":");
+            if (separatorIndex == -1) {
+                println("value = %s", value);
+            } else {
+                var keyValuePair = readProperty(value);
+                var name = keyValuePair[0];
+                value = keyValuePair[1];
+                if (path.endsWith(", " + name)) {
+                    var elementType = ElementType.of(value);
+                    switch (elementType) {
+                        case STRING:
+                        case LITERAL:
+                            println("value = %s", value);
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
         }
+    }
+
+    private void printAttributes(String[] attributes) {
         if (attributes != null && attributes.length > 0) {
             println("attributes:");
             for (var attribute : attributes) {
@@ -71,7 +83,6 @@ class JSON2XMLConverter implements Converter {
                 println("%s = %s", attr[0], attr[1]);
             }
         }
-        println("");
     }
 
     private boolean hasContent(String p) {
@@ -115,8 +126,8 @@ class JSON2XMLConverter implements Converter {
                 .filter(p -> !hasInvalidContent(p))
                 .filter(p -> !hasInvalidAttribute(p))
                 .filter(p -> !hasInvalidElement(p))
-                .map(p -> fixElementContentName(p))
-                .map(p -> fixAttributeName(p))
+                .map(this::fixElementContentName)
+                .map(this::fixAttributeName)
                 .collect(toList());
 
         return properties;
@@ -143,13 +154,9 @@ class JSON2XMLConverter implements Converter {
     }
 
     private String computePath(String parent, String name) {
-        return parent == null
-                ? name
-                : name.startsWith("#")
-                ? parent
-                : parent != null
-                ? parent + ", " + name
-                : name;
+        if (parent == null) return name;
+        if (name.startsWith("#")) return parent;
+        return parent + ", " + name;
     }
 
     private String dequote(String value) {
@@ -201,31 +208,43 @@ class JSON2XMLConverter implements Converter {
         boolean inArray = enclosingChars.equals("]");
         boolean inObject = enclosingChars.equals("}");
         boolean inString = enclosingChars.equals("\"");
+        var startIndex = inString ? valueStart + 1 : valueStart;
         int openObjects = 0;
         int openArrays = 0;
-        for (int index = valueStart; index < content.length(); index++) {
-            if (index == valueStart && inString) continue;
+        for (int index = startIndex; index < content.length(); index++) {
             char currentChar = content.charAt(index);
             if (currentChar == '[') openArrays++;
             if (currentChar == ']') openArrays--;
             if (currentChar == '{') openObjects++;
             if (currentChar == '}') openObjects--;
-            if (!inArray && !inObject && (currentChar == '[' || currentChar == '{')) {
+            if (startingArrayOrObject(inArray, inObject, currentChar)) {
                 return null;
             }
-            if (enclosingChars.indexOf(currentChar) > -1 && openObjects <= 0 && openArrays <= 0) {
-                return enclosingChars.contains(",")
-                        ? content.substring(valueStart, index)
-                        : content.substring(valueStart, index + 1);
+            if (closing(enclosingChars, openObjects, openArrays, currentChar)) {
+                return extractValue(enclosingChars, content, valueStart, index);
             }
         }
-        return content.substring(valueStart);
+        return null;
+    }
+
+    private String extractValue(String enclosingChars, String content, int valueStart, int index) {
+        return enclosingChars.contains(",")
+                ? content.substring(valueStart, index)
+                : content.substring(valueStart, index + 1);
+    }
+
+    private boolean closing(String enclosingChars, int openObjects, int openArrays, char currentChar) {
+        return enclosingChars.indexOf(currentChar) > -1 && openObjects <= 0 && openArrays <= 0;
+    }
+
+    private boolean startingArrayOrObject(boolean inArray, boolean inObject, char currentChar) {
+        return !inArray && !inObject && (currentChar == '[' || currentChar == '{');
     }
 
     private String[] getElementAttributes(List<String> properties) {
         return properties.stream()
-                .filter(p -> isAttribute(p))
-                .map(p -> fixAttributeName(p))
+                .filter(this::isAttribute)
+                .map(this::fixAttributeName)
                 .toArray(String[]::new);
     }
 

@@ -11,14 +11,14 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 
 class XML2JSONConverter implements Converter {
-    private Pattern simpleElementPattern = Pattern.compile("\\s*\\<(.*?)\\/\\>\\s*");
-    private Pattern elementNameAndAttributesPattern = Pattern.compile("\\<?\\/?(\\w*)(.*)($|\\>)");
-    private Pattern attributesPartsPattern = Pattern.compile("\\s*(\\w*)\\s*=\\s*\\\"(\\w*)\\\"\\s*");
-    private Pattern elementStartingPattern = Pattern.compile("\\s*\\<\\/?(.*?)\\/?\\>\\s*");
-    private Pattern elementContentPattern = Pattern.compile("\\>(.*)\\<");
-    private Pattern elementsPartsPattern = Pattern.compile("(\\<.*?\\>)|(.+?(?=\\<|$))");
-    private Pattern elementClosingPattern = Pattern.compile("\\<\\/(.*?)\\>|\\<(.*?)\\/\\>");
-    private StringBuilder builder = new StringBuilder();
+    private final Pattern simpleElementPattern = Pattern.compile("\\s*<(.*?)/>\\s*");
+    private final Pattern elementNameAndAttributesPattern = Pattern.compile("<?/?(\\w*)(.*)($|>)");
+    private final Pattern attributesPartsPattern = Pattern.compile("\\s*(\\w*)\\s*=\\s*\"(\\w*)\"\\s*");
+    private final Pattern elementStartingPattern = Pattern.compile("\\s*</?(.*?)/?>\\s*");
+    private final Pattern elementContentPattern = Pattern.compile(">(.*)<");
+    private final Pattern elementsPartsPattern = Pattern.compile("(<.*?>)|(.+?(?=<|$))");
+    private final Pattern elementClosingPattern = Pattern.compile("</(.*?)>|<(.*?)/>");
+    private final StringBuilder builder = new StringBuilder();
     private PrintStream out;
 
     @Override
@@ -43,7 +43,8 @@ class XML2JSONConverter implements Converter {
 
     private void println(String fmt, Object... params) {
         if (out != null) {
-            out.printf(fmt + "\n", params);
+            out.printf(fmt, params);
+            out.println();
         }
     }
 
