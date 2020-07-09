@@ -50,6 +50,18 @@ public class JSON2XMLTests {
     }
 
     @Test
+    public void json2xml_nullAttributeAndNullContent() {
+        var input = "\"inner10\": {\n" +
+                "            \"@attr5\": null,\n" +
+                "            \"#inner10\": null\n" +
+                "        },";
+        var expected = "<inner10 attr5=\"\"></inner10>";
+        var converter = Converter.Factory.createFor(input);
+        var output = converter.convert(input);
+        Assert.assertEquals(expected, output);
+    }
+
+    @Test
     public void json2xml_simpleContent_singleAttribute() {
         var input = "{\"employee\":{\"#employee\":\"Garry Smith\",\"@department\":\"finance\"}}";
         var expected = "<employee department=\"finance\">Garry Smith</employee>";
@@ -97,7 +109,7 @@ public class JSON2XMLTests {
     @Test
     public void json2xml_complexObject() {
         var input = "{\"node\":[{\"child\":{\"#child\":{\"subchild\":{\"#subchild\":\"Value1\",\"@id\":\"1\",\"@auth\":\"auth1\"}},\"@name\":\"child_name1\",\"@type\":\"child_type1\"}},{\"child\":{\"#child\":[{\"subchild\":{\"#subchild\":\"Value2\",\"@id\":\"2\",\"@auth\":\"auth1\"}},{\"subchild\":{\"#subchild\":\"Value3\",\"@id\":\"3\",\"@auth\":\"auth2\"}},{\"subchild\":{\"#subchild\":\"\",\"@id\":\"4\",\"@auth\":\"auth3\"}},{\"subchild\":{\"#subchild\":null,\"@id\":\"5\",\"@auth\":\"auth3\"}}],\"@name\":\"child_name2\",\"@type\":\"child_type2\"}}]}";
-        var expected = "<node><child name=\"child_name1\" type=\"child_type1\"><subchild id=\"1\" auth=\"auth1\">Value1</subchild></child><child name=\"child_name2\" type=\"child_type2\"><subchild id=\"2\" auth=\"auth1\">Value2</subchild><subchild id=\"3\" auth=\"auth2\">Value3</subchild><subchild id=\"4\" auth=\"auth3\"></subchild><subchild id=\"5\" auth=\"auth3\"/></child></node>";
+        var expected = "<node><child name=\"child_name1\" type=\"child_type1\"><subchild id=\"1\" auth=\"auth1\">Value1</subchild></child><child name=\"child_name2\" type=\"child_type2\"><subchild id=\"2\" auth=\"auth1\">Value2</subchild><subchild id=\"3\" auth=\"auth2\">Value3</subchild><subchild id=\"4\" auth=\"auth3\"></subchild><subchild id=\"5\" auth=\"auth3\"></subchild></child></node>";
         var converter = Converter.Factory.createFor(input);
         var output = converter.convert(input);
         Assert.assertEquals(expected, output);

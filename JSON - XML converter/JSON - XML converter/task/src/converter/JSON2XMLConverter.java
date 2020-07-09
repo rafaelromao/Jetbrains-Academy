@@ -83,28 +83,26 @@ class JSON2XMLConverter implements Converter {
         String value;
         switch (ElementType.of(content.substring(valueStart, valueStart + 1))) {
             case OBJECT:
-                value = readUntilMatching('}', content, valueStart);
+                value = readUntilMatching("}", content, valueStart);
                 break;
             case ARRAY:
-                value = readUntilMatching(']', content, valueStart);
+                value = readUntilMatching("]", content, valueStart);
                 break;
             case STRING:
-                value = readUntilMatching('"', content, valueStart);
+                value = readUntilMatching("\"", content, valueStart);
                 break;
             default:
-                value = readUntilMatching(',', content + ",", valueStart);
+                value = readUntilMatching(",}]", content + ",", valueStart);
                 break;
         }
-        if (value == null) {
-            return null;
-        }
+        value = value.strip();
         return String.format("%s:%s", name, value);
     }
 
-    private String readUntilMatching(char enclosingChar, String content, int valueStart) {
-        boolean inArray = enclosingChar == ']';
-        boolean inObject = enclosingChar == '}';
-        boolean inString = enclosingChar == '"';
+    private String readUntilMatching(String enclosingChars, String content, int valueStart) {
+        boolean inArray = enclosingChars.equals("]");
+        boolean inObject = enclosingChars.equals("}");
+        boolean inString = enclosingChars.equals("\"");
         int openObjects = 0;
         int openArrays = 0;
         for (int index = valueStart; index < content.length(); index++) {
@@ -117,8 +115,8 @@ class JSON2XMLConverter implements Converter {
             if (!inArray && !inObject && (currentChar == '[' || currentChar == '{')) {
                 return null;
             }
-            if (currentChar == enclosingChar && openObjects == 0 && openArrays == 0) {
-                return enclosingChar == ','
+            if (enclosingChars.indexOf(currentChar) > -1 && openObjects <= 0 && openArrays <= 0) {
+                return enclosingChars.contains(",")
                         ? content.substring(valueStart, index)
                         : content.substring(valueStart, index + 1);
             }
@@ -141,7 +139,6 @@ class JSON2XMLConverter implements Converter {
         var separatorMatcher = separatorPattern.matcher(content);
         separatorMatcher.find();
         var value = content.substring(separatorMatcher.start(3)).strip();
-        value = "null".equals(value) ? null : value;
         return new String[]{key, value};
     }
 
@@ -161,15 +158,14 @@ class JSON2XMLConverter implements Converter {
 
     private void writeElementWithComplexContent(String parentPath, String name, String value) {
         var properties = splitContent(value);
-        var valids = properties.stream()
-                .filter(p -> !hasContent(p) && !hasAttribute(p))
-                .collect(toList());
+
         var invalids = properties.stream()
                 .filter(p -> hasInvalidContent(name, p) ||
                         hasInvalidAttribute(p) ||
                         hasInvalidElement(p))
                 .collect(toList());
-        var fixed = invalids.isEmpty() ? properties : properties.stream()
+
+        properties = invalids.isEmpty() ? properties : properties.stream()
                 .filter(p -> !hasInvalidContent(p))
                 .filter(p -> !hasInvalidAttribute(p))
                 .filter(p -> !hasInvalidElement(p))
@@ -177,15 +173,12 @@ class JSON2XMLConverter implements Converter {
                 .map(p -> fixInvalidAttributes(p))
                 .collect(toList());
 
-        properties = Stream.concat(valids.stream(), fixed.stream())
-                .distinct()
-                .collect(toList());
-
         var content = properties.stream()
                 .filter(p -> p.startsWith("\"#" + name + "\":"))
                 .findAny();
         var attributes = properties.stream()
                 .filter(p -> p.startsWith("\"@"))
+                .map(p -> p.replace("\"@", "\""))
                 .toArray(String[]::new);
         var elements = properties.stream()
                 .filter(p -> !p.startsWith("\"@") && !hasContent(p))
@@ -230,10 +223,6 @@ class JSON2XMLConverter implements Converter {
             }
             writeEndElement(name);
         }
-    }
-
-    private boolean hasAttribute(String p) {
-        return p.startsWith("\"@");
     }
 
     private boolean hasContent(String p) {
@@ -332,17 +321,23 @@ class JSON2XMLConverter implements Converter {
     }
 
     private void writeAttribute(String attribute) {
-        var keyValuePair = attribute.replace("\"", "").split(":");
-        builder.append(keyValuePair[0].strip().substring(1));
+        var keyValuePair = attribute.split(":");
+        var name = dequote(keyValuePair[0].strip());
+        var value = keyValuePair[1].strip();
+        if (value == null || "null".equals(value)) {
+            value = "\"\"";
+        }
+        builder.append(name);
         builder.append("=");
-        builder.append("\"");
-        builder.append(keyValuePair[1].strip());
-        builder.append("\"");
+        builder.append(value);
     }
 
     private void writeValue(String value) {
-        value = dequote(value);
-        builder.append(value == null ? "" : value);
+        value = dequote(value.strip());
+        if (value == null || "null".equals(value)) {
+            value = "";
+        }
+        builder.append(value);
     }
 
     private enum ElementType {

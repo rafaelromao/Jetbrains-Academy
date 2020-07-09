@@ -1251,7 +1251,6 @@ feedback:
 
     Element:
     path = transaction, inner4
-    value = &quot;value3&quot;
 
     Element:
     path = transaction, inner4, inner4
@@ -1259,15 +1258,14 @@ feedback:
 
     Element:
     path = transaction, inner5
-    value = &quot;value4&quot;
-    attributes:
-    attr1 = 123.456
 
     Element:
-    path = transaction, inner5, inner5
+    path = transaction, inner5, attr1
+    value = 123.456
+
+    Element:
+    path = transaction, inner5, inner4
     value = &quot;value4&quot;
-    attributes:
-    attr1 = 123.456
 
     Element:
     path = transaction, inner6
@@ -1337,5 +1335,107 @@ feedback:
     Element:
     path = transaction, inner12, inner12
     value = &quot;notnull&quot;
-  time: Wed, 08 Jul 2020 22:08:28 UTC
+
+    Element:
+    path = transaction, number
+
+    Element:
+    path = transaction, number, region
+    value = &quot;Russia&quot;
+
+    Element:
+    path = transaction, number, number
+    value = &quot;8-900-000-000&quot;
+
+    Element:
+    path = transaction, inner4
+
+    Element:
+    path = transaction, inner4, inner4
+    value = &quot;value3&quot;
+
+    Element:
+    path = transaction, inner5
+
+    Element:
+    path = transaction, inner5, attr1
+    value = 123.456
+
+    Element:
+    path = transaction, inner5, inner4
+    value = &quot;value4&quot;
+
+    Element:
+    path = transaction, inner6
+
+    Element:
+    path = transaction, inner6, attr2
+    value = 789.321
+
+    Element:
+    path = transaction, inner6, inner6
+    value = &quot;value5&quot;
+
+    Element:
+    path = transaction, inner7
+
+    Element:
+    path = transaction, inner7, inner7
+    value = &quot;value6&quot;
+
+    Element:
+    path = transaction, inner8
+
+    Element:
+    path = transaction, inner8, attr3
+    value = &quot;value7&quot;
+
+    Element:
+    path = transaction, inner9
+
+    Element:
+    path = transaction, inner9, attr4
+    value = &quot;value8&quot;
+
+    Element:
+    path = transaction, inner9, inner9
+    value = &quot;value9&quot;
+
+    Element:
+    path = transaction, inner9, something
+    value = &quot;value10&quot;
+
+    Element:
+    path = transaction, inner10
+
+    Element:
+    path = transaction, inner10, attr5
+    value = null
+
+    Element:
+    path = transaction, inner10, inner10
+    value = null         },
+
+    Element:
+    path = transaction, inner11
+
+    Element:
+    path = transaction, inner12
+
+    Element:
+    path = transaction, inner12, somekey
+    value = &quot;attrvalue&quot;
+
+    Element:
+    path = transaction, inner12, inner12
+    value = null
+
+    Element:
+    path = transaction, inner12, somekey
+    value = &quot;keyvalue&quot;
+
+    Element:
+    path = transaction, inner12, inner12
+    value = &quot;notnull&quot;
+  time: Thu, 09 Jul 2020 14:49:31 UTC
 record: -1
