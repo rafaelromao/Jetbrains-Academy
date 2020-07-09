@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
 
@@ -35,16 +34,17 @@ class JSON2XMLConverter implements Converter {
         }
     }
 
-    private void logElement(String path, String name, Optional<String> value, String... attributes) {
+    private void logElement(String path, String name, String[] elements, String... attributes) {
         if (!name.startsWith("@")) {
             println("Element:");
             println("path = %s", path);
-            if (value != null) {
-                var elementType = JSON2XMLConverter.ElementType.of(value.orElse(null));
+            if (elements.length == 1) {
+                var value = elements[0];
+                var elementType = JSON2XMLConverter.ElementType.of(value);
                 switch (elementType) {
                     case STRING:
                     case LITERAL:
-                        println("value = %s", value.orElse(null));
+                        println("value = %s", value);
                         break;
                 }
             }
@@ -132,6 +132,9 @@ class JSON2XMLConverter implements Converter {
     }
 
     private String[] readProperty(String content) {
+        if (content.indexOf(":") == -1) {
+            return new String[]{null, content};
+        }
         content = !content.strip().endsWith("\"") ? content.strip() + "\n" : content.strip();
         var keyMatcher = propertyNamePattern.matcher(content);
         keyMatcher.find();
@@ -143,7 +146,13 @@ class JSON2XMLConverter implements Converter {
     }
 
     private void writeRecursively(String parentPath, String name, String value) {
-        if (name.strip().length() == 0) return;
+        if (name == null) {
+            writeValue(value);
+            return;
+        }
+        if (name.strip().length() == 0) {
+            return;
+        }
         var elementType = ElementType.of(value);
         switch (elementType) {
             case LITERAL:
@@ -156,7 +165,47 @@ class JSON2XMLConverter implements Converter {
         }
     }
 
+    private void writeElementWithSimpleContent(String parentPath, String name, String value) {
+        value = dequote(value);
+        if (value == null || value.length() == 0) {
+            writeSimpleElement(name);
+        } else {
+            writeBeginElement(name);
+            writeValue(value);
+            writeEndElement(name);
+        }
+    }
+
     private void writeElementWithComplexContent(String parentPath, String name, String value) {
+        var properties = getElementProperties(name, value);
+        var attributes = getElementAttributes(properties);
+        var elements = getElementContents(name, properties);
+
+        var path = computePath(parentPath, name);
+        if (elements.length == 0) {
+            writeSimpleElement(name, attributes);
+        } else {
+            writeBeginElement(name, attributes);
+            for (var element : elements) {
+                var keyValuePair = readProperty(element);
+                var contentName = keyValuePair[0];
+                var contentValue = keyValuePair[1];
+                writeRecursively(path, contentName, contentValue);
+            }
+            writeEndElement(name);
+
+            logElement(path, name, elements, attributes);
+        }
+    }
+
+    private String[] getElementAttributes(List<String> properties) {
+        return properties.stream()
+                    .filter(p -> isAttribute(p))
+                    .map(p -> fixAttributeName(p))
+                    .toArray(String[]::new);
+    }
+
+    private List<String> getElementProperties(String name, String value) {
         var properties = splitContent(value);
 
         var invalids = properties.stream()
@@ -169,72 +218,57 @@ class JSON2XMLConverter implements Converter {
                 .filter(p -> !hasInvalidContent(p))
                 .filter(p -> !hasInvalidAttribute(p))
                 .filter(p -> !hasInvalidElement(p))
-                .map(p -> fixInvalidContent(p))
-                .map(p -> fixInvalidAttributes(p))
+                .map(p -> fixElementContentName(p))
+                .map(p -> fixAttributeName(p))
                 .collect(toList());
 
-        var content = properties.stream()
-                .filter(p -> p.startsWith("\"#" + name + "\":"))
+        return properties;
+    }
+
+    private String[] getElementContents(String name, List<String> properties) {
+        String[] elementContents;
+
+        var elementContent = properties.stream()
+                .filter(p -> isElementContent(name, p))
                 .findAny();
-        var attributes = properties.stream()
-                .filter(p -> p.startsWith("\"@"))
-                .map(p -> p.replace("\"@", "\""))
-                .toArray(String[]::new);
-        var elements = properties.stream()
-                .filter(p -> !p.startsWith("\"@") && !hasContent(p))
-                .toArray(String[]::new);
-        if (content.isPresent()) {
-            var keyValuePair = readProperty(content.get());
-            if (keyValuePair[1] == null) {
-                content = Optional.empty();
+
+        if (elementContent.isPresent()) {
+            var keyValuePair = readProperty(elementContent.get());
+            var contentValue = keyValuePair[1];
+            var elementType = ElementType.of(contentValue);
+            if (elementType == ElementType.LITERAL || elementType == ElementType.STRING) {
+                elementContents = new String[]{contentValue};
+            } else {
+                var contentProperties = splitContent(contentValue);
+                elementContents = contentProperties.toArray(String[]::new);
             }
+        } else {
+            elementContents = properties.stream()
+                    .filter(p -> !hasContent(p) && !isAttribute(p))
+                    .toArray(String[]::new);
         }
 
-        var path = computePath(parentPath, name);
-        if (content.isPresent()) {
-            var contentValue = readProperty(content.get())[1];
-            logElement(path, name, Optional.ofNullable(contentValue), attributes);
-        } else {
-            logElement(path, name, null, attributes);
-        }
+        return elementContents;
+    }
 
-        if (!content.isPresent() && elements.length == 0) {
-            writeSimpleElement(name, attributes);
-        } else {
-            writeBeginElement(name, attributes);
-            if (content.isPresent()) {
-                var keyValuePair = readProperty(content.get());
-                var elementType = ElementType.of(keyValuePair[1]);
-                if (elementType == ElementType.LITERAL || elementType == ElementType.STRING) {
-                    path = computePath(path, name);
-                    logElement(path, keyValuePair[0].substring(1), Optional.ofNullable(keyValuePair[1]), attributes);
-                    writeValue(keyValuePair[1]);
-                } else {
-                    var contentProperties = splitContent(keyValuePair[1]);
-                    for (var contentProperty : contentProperties) {
-                        keyValuePair = readProperty(contentProperty);
-                        writeRecursively(path, keyValuePair[0], keyValuePair[1]);
-                    }
-                }
-            }
-            for (var element : elements) {
-                var keyValuePair = readProperty(element);
-                writeRecursively(path, keyValuePair[0], keyValuePair[1]);
-            }
-            writeEndElement(name);
-        }
+    private String fixAttributeName(String p) {
+        return p.replace("\"@", "\"");
+    }
+
+    private boolean isAttribute(String p) {
+        return p.startsWith("\"@");
+    }
+
+    private boolean isElementContent(String name, String p) {
+        return p.startsWith("\"#" + name + "\":");
     }
 
     private boolean hasContent(String p) {
         return p.startsWith("\"#");
     }
 
-    private String fixInvalidContent(String p) {
+    private String fixElementContentName(String p) {
         return p.replace("\"#", "\"");
-    }
-
-    private String fixInvalidAttributes(String p) {
-        return p.replace("\"@", "\"");
     }
 
     private boolean hasInvalidContent(String p) {
@@ -250,7 +284,7 @@ class JSON2XMLConverter implements Converter {
     }
 
     private boolean hasInvalidContent(String name, String p) {
-        return !p.startsWith("\"#" + name + "\":") && hasContent(p);
+        return hasContent(p) && !isElementContent(name, p);
     }
 
     private String computePath(String parent, String name) {
@@ -271,20 +305,6 @@ class JSON2XMLConverter implements Converter {
             return value.substring(1, value.length() - 1);
         }
         return value;
-    }
-
-    private void writeElementWithSimpleContent(String parentPath, String name, String value) {
-        var path = computePath(parentPath, name);
-        logElement(path, name, Optional.ofNullable(value), null);
-
-        value = dequote(value);
-        if (value == null || value.length() == 0) {
-            writeSimpleElement(name);
-        } else {
-            writeBeginElement(name);
-            writeValue(value);
-            writeEndElement(name);
-        }
     }
 
     private void writeBeginElement(String elementName, String... attributes) {
